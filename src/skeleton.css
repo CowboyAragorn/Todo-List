@@ -1,0 +1,47 @@
+html{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+body{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+#base{
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+#menuBarContainer{
+    width: 15%;
+    border: 2pt black solid;
+    
+}
+
+#taskContainer{
+    width: 85%;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Tiny_Babbling_Brook.jpg/2560px-Tiny_Babbling_Brook.jpg');
+    background-size: 100%;
+}
+
+#menuBarContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+}
+
+#listHeaderContainer{
+    display: flex;
+    justify-content: space-between;
+    padding: 5pt;
+}
+
+.listHeaders{
+    font-size: 20pt;
+    margin-bottom: 10pt;
+}
+
+
