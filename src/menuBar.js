@@ -58,9 +58,26 @@ export default function openLists (){
             '4/10',
             'High'
         )
-
+        const laundry3 = new addTask(
+            'laundry3',
+            'List for Week 4/4',
+            '4/10',
+            'High'
+        )
+        const laundry4 = new addTask(
+            'laundry4',
+            'List for Week 4/4',
+            '4/10',
+            'High'
+        )
+        const laundry5 = new addTask(
+            'laundry5',
+            'List for Week 4/4',
+            '4/10',
+            'High'
+        )
     
-    let houseListArray = [laundry, ];
+    let houseListArray = [laundry, laundry2, laundry3, laundry4, laundry5 ];
         houseListArray.innerHTML = 'Housework List';
 
     console.log(groceryListArray)
@@ -84,16 +101,15 @@ for(let i=0; i < btnArray.length;i++){ //Goes through each item in button array 
         //listDisplayBox.style.display = 'block';
         let listNameDisplay = document.getElementById('listNameDisplay');
             listNameDisplay.innerHTML = btnArray[i].innerHTML;
-
-        for (let i2 = 0; i2 < listArray[i2].length; i2++){ //FOR the length of THIS ITEM in the list array//
             //next line is so important, accidental genius mode. It is operating off of listArray[i] key being i and not i2, which means it selects the number in the listArray equivalent with the position in the buttonArray, allowing selection of the correct list//
-            console.log(listArray[i2])
+            //console.log(listArray[i2])
+            //OK, so the button array cycles through at the start of the function and assigns the i value to begin with, this is how it knows how to select the correct item in the array. This is PRE-DONE at beginning of function.
             let listArrayCurrent = listArray[i];    //sets variable to be used so in nested loop so that nested loop doesn't move through to different part of the array through accidental incrementing//
+
             for(let p = 0; p < listArrayCurrent.length; p++){ //FOR the length of the currently selected item in the Array, display each listed item//
                 console.log(listArrayCurrent);
                 listArrayCurrent[p].displayList();
             } 
-        }
         
     })
 }
