@@ -59,7 +59,7 @@ export default function skeleton (){
             let listNameDisplay = document.createElement('div');
                 listNameDisplay.id = 'listNameDisplay';
                 listNameDisplay.classList = 'listHeaders';
-                listNameDisplay.innerHTML = 'Grocery List'; //testing
+                //listNameDisplay.innerHTML = 'Grocery List'; //testing
                 listDisplayTaskbar.append(listNameDisplay);
             let listExitBtn = document.createElement('button');
                 listExitBtn.id = 'listExitBtn';
