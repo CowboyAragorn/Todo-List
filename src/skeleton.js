@@ -39,6 +39,13 @@ export default function skeleton (){
                 groceryList.innerHTML = 'Grocery List'
                 groceryList.id = '0';
                 listContainer.append(groceryList)
+
+            let houseList = document.createElement('button');
+                houseList.classList = 'list';
+                houseList.innerHTML = 'Housework List'
+                houseList.id = '1';
+                listContainer.append(houseList)
+            
             
 
 
