@@ -10,9 +10,11 @@ export default function openLists (){
     }
 
 
+//This prototype is being called to display the lists//
     addTask.prototype.displayList = function(){
         let taskDisplayElement = document.createElement('p');
             taskDisplayElement.innerHTML = this.taskName;
+            taskDisplayElement.classList = 'task';
             console.log(taskDisplayElement)
         let taskDisplayContainer = document.getElementById('taskDisplayContainer')
         taskDisplayContainer.append(taskDisplayElement)
@@ -21,6 +23,8 @@ export default function openLists (){
 
     }
 
+
+//Preset lists//
 
     const mondayGrocery = new addTask(
         'Oranges',
@@ -94,7 +98,13 @@ export default function openLists (){
 
 
 
-//for loop here assignes event listener that displays information from storage arrays//
+//Purpose of loop here is to append tasks to the task screen when clicking on a list. This will allow a user to see their tasks, and to visually switch
+//between lists//
+
+
+    let taskDisplayContainerSignal = false;
+
+//for loop here assigns event listener that displays information from storage arrays//
 for(let i=0; i < btnArray.length;i++){ //Goes through each item in button array and assigns said event listener
     btnArray[i].addEventListener('click', () =>{
         let listDisplayBox = document.getElementById('listDisplayBox');
@@ -106,11 +116,21 @@ for(let i=0; i < btnArray.length;i++){ //Goes through each item in button array 
             //OK, so the button array cycles through at the start of the function and assigns the i value to begin with, this is how it knows how to select the correct item in the array. This is PRE-DONE at beginning of function.
             let listArrayCurrent = listArray[i];    //sets variable to be used so in nested loop so that nested loop doesn't move through to different part of the array through accidental incrementing//
 
+
+    //If statement here checks to see if there are currently any tasks displayed. If there are, it unappends them prior to appending new list//
+        if(taskDisplayContainerSignal = true){
+                const elements = document.getElementsByClassName('task');
+                while(elements.length > 0){
+                    taskDisplayContainer.removeChild(elements[0]);
+                    taskDisplayContainerSignal = false;
+                }
+        }
+
             for(let p = 0; p < listArrayCurrent.length; p++){ //FOR the length of the currently selected item in the Array, display each listed item//
                 console.log(listArrayCurrent);
                 listArrayCurrent[p].displayList();
+                taskDisplayContainerSignal = true;
             } 
-        
     })
 }
 
