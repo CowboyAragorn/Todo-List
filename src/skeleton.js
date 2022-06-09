@@ -1,5 +1,6 @@
 import './skeleton.css'
 
+//this function defines the basic layout for the webpage//
 export default function skeleton (){
     let base = document.createElement('div');
         base.id = 'base';
@@ -80,15 +81,15 @@ export default function skeleton (){
             let inputContainer = document.createElement('div');
                 inputContainer.id = 'inputContainer';
                 popoutBox.append(inputContainer)
-                let newTaskInput = document.createElement('input');
-                    newTaskInput.type = 'text';
-                    newTaskInput.id = 'newTaskInput';
-                    inputContainer.append(newTaskInput);
+                let userTaskInput = document.createElement('input');
+                    userTaskInput.type = 'text';
+                    userTaskInput.id = 'userTaskInput';
+                    inputContainer.append(userTaskInput);
                 let addTaskBtn = document.createElement('button');
                     addTaskBtn.id = 'addTaskBtn';
                     addTaskBtn.innerHTML = '+';
                     inputContainer.append(addTaskBtn);
-
+ 
     
     base.append(menuBarContainer);
     base.append(taskAndListContainer);

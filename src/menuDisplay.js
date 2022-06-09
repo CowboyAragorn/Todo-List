@@ -1,8 +1,9 @@
-import './menuDisplay.css'
 
-//This controls display of information when clicking buttons on the side menu, and the closing of the popout list menu//
-
-export default function openLists (){
+//declare listArray here for export later
+let listArray = [];
+let listArrayCurrent;
+//This function displays the lists on the popup when clicked from the menu//
+function openLists (){
 
     function addTask(taskName, description, dueDate, priority){
         this.taskName = taskName
@@ -95,7 +96,8 @@ export default function openLists (){
     let houseBtn = document.getElementById('1');
     let btnArray = [groceryBtn, houseBtn,] 
 
-    let listArray = [groceryListArray, houseListArray,]
+    listArray = [groceryListArray, houseListArray,]
+    listArray.id = 'listArray';
     console.log(listArray)
 
 
@@ -105,6 +107,24 @@ export default function openLists (){
 
     //popoutBox.style.display = 'none'; //Defaults popup to invisible before a list is clicked
     let taskDisplayContainerSignal = false;
+  
+
+//separate pin list as a separate function so it can be used to add new tasks to list//
+function pinList(){
+        const elements = document.getElementsByClassName('task');
+        while(elements.length > 0){
+            taskDisplayContainer.removeChild(elements[0]);
+            taskDisplayContainerSignal = false;
+        }
+
+        for(let p = 0; p < listArrayCurrent.length; p++){ //FOR the length of the currently selected item in the Array, display each listed item//
+            console.log(listArrayCurrent);
+            listArrayCurrent[p].displayList();
+            taskDisplayContainerSignal = true;
+        } 
+}
+
+
 
 //for loop here assigns event listener that displays information from storage arrays//
 for(let i=0; i < btnArray.length;i++){ //Goes through each item in button array and assigns said event listener
@@ -117,25 +137,39 @@ for(let i=0; i < btnArray.length;i++){ //Goes through each item in button array 
             //next line is so important, accidental genius mode. It is operating off of listArray[i] key being i and not i2, which means it selects the number in the listArray equivalent with the position in the buttonArray, allowing selection of the correct list//
             //console.log(listArray[i2])
             //OK, so the button array cycles through at the start of the function and assigns the i value to begin with, this is how it knows how to select the correct item in the array. This is PRE-DONE at beginning of function.
-            let listArrayCurrent = listArray[i];    //sets variable to be used so in nested loop so that nested loop doesn't move through to different part of the array through accidental incrementing//
+             listArrayCurrent = listArray[i];    //sets variable to be used so in nested loop so that nested loop doesn't move through to different part of the array through accidental incrementing//
 
 
     //If statement here checks to see if there are currently any tasks displayed. If there are, it unappends them prior to appending new list//
         if(taskDisplayContainerSignal = true){
-                const elements = document.getElementsByClassName('task');
-                while(elements.length > 0){
-                    taskDisplayContainer.removeChild(elements[0]);
-                    taskDisplayContainerSignal = false;
-                }
-        }
 
-            for(let p = 0; p < listArrayCurrent.length; p++){ //FOR the length of the currently selected item in the Array, display each listed item//
-                console.log(listArrayCurrent);
-                listArrayCurrent[p].displayList();
-                taskDisplayContainerSignal = true;
-            } 
-    })
+          pinList();
+    }
+})
 }
+
+
+
+    function addTaskToList () {
+
+        let addTaskButton = document.getElementById('addTaskBtn');
+
+        function addTaskWhenClickBtn (){
+            let userTaskInput = document.getElementById('userTaskInput');
+            let userTaskInputValue = userTaskInput.value;
+            let userAddTask = new addTask(
+                userTaskInputValue,
+                'List for Week 4/4',
+                '4/10',
+                'High'
+            )
+            listArrayCurrent.push(userAddTask);
+            pinList();
+            console.log(listArrayCurrent);
+        }
+        addTaskButton.addEventListener('click', addTaskWhenClickBtn);
+    }
+    addTaskToList();
 
 
 //x makes the popup invisible again. Probably need to reset it, do so later//
@@ -145,3 +179,5 @@ closePopupButton.addEventListener('click', () =>{
 })
 
 }
+
+export {listArray, listArrayCurrent, openLists}

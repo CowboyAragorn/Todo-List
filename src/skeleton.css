@@ -99,7 +99,7 @@ body{
     width: 100%;
 }
 
-#newTaskInput{
+#userTaskInput{
     border-radius: 15px;
     border: 1pt blue solid;
     margin-left: 2pt;
