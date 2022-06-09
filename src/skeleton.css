@@ -21,13 +21,15 @@ body{
     
 }
 
-#listAndTaskContainer{
+#popoutListBox{
     height: 100%;
     width: 85%;
     background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Tiny_Babbling_Brook.jpg/2560px-Tiny_Babbling_Brook.jpg');
     background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
+    align-items:flex-end;
 }
 
 #menuBarContainer{
@@ -47,10 +49,7 @@ body{
     margin-bottom: 10pt;
 }
 
-#listAndTaskContainer{
-    display: flex;
-    align-items:flex-end;
-}
+
 
 #listDisplayBox{
     height: 500pt;

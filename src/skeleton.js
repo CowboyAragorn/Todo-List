@@ -5,7 +5,7 @@ export default function skeleton (){
         base.id = 'base';
     document.body.append(base);
 
-    let menuBarContainer = document.createElement('div');
+    let menuBarContainer = document.createElement('div'); //This is the menu/nav bar on left side of screen
         menuBarContainer.id = 'menuBarContainer';
 
         let newTodoContainer = document.createElement('div');
@@ -53,12 +53,11 @@ export default function skeleton (){
 
 
 
-    let listAndTaskContainer = document.createElement('div');
-        listAndTaskContainer.id = 'listAndTaskContainer';
+    let popoutListBox = document.createElement('div');
+        popoutListBox.id = 'popoutListBox';
         let listDisplayBox = document.createElement('div');
             listDisplayBox.id = 'listDisplayBox';
-            listAndTaskContainer.append(listDisplayBox);
-            //listDisplayBox.style.display = 'none'; //Erasing popup display from sight until clicking a list//
+            popoutListBox.append(listDisplayBox);
 
             let listDisplayTaskbar = document.createElement('div');
                 listDisplayTaskbar.id = 'listDisplayTaskbar';
@@ -79,5 +78,5 @@ export default function skeleton (){
 
     
     base.append(menuBarContainer);
-    base.append(listAndTaskContainer);
+    base.append(popoutListBox);
 };
