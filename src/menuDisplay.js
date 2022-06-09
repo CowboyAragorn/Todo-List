@@ -81,8 +81,9 @@ export default function openLists (){
             '4/10',
             'High'
         )
+        
     
-    let houseListArray = [laundry, laundry2, laundry3, laundry4, laundry5 ];
+    let houseListArray = [laundry, laundry2, laundry3, laundry4, laundry5,];
         houseListArray.innerHTML = 'Housework List';
 
     console.log(groceryListArray)
@@ -102,14 +103,14 @@ export default function openLists (){
 //Purpose of loop here is to append tasks to the task screen when clicking on a list. This will allow a user to see their tasks, and to visually switch
 //between lists//
 
-    //listDisplayBox.style.display = 'none'; //Defaults popup to invisible before a list is clicked
+    //popoutBox.style.display = 'none'; //Defaults popup to invisible before a list is clicked
     let taskDisplayContainerSignal = false;
 
 //for loop here assigns event listener that displays information from storage arrays//
 for(let i=0; i < btnArray.length;i++){ //Goes through each item in button array and assigns said event listener
     btnArray[i].addEventListener('click', () =>{
-        let listDisplayBox = document.getElementById('listDisplayBox');
-        listDisplayBox.style.display = 'block'; //makes the popout list box appear when clicking the list button on side menu
+        let popoutBox = document.getElementById('popoutBox');
+        popoutBox.style.display = 'block'; //makes the popout list box appear when clicking the list button on side menu
         let listNameDisplay = document.getElementById('listNameDisplay');
             listNameDisplay.innerHTML = btnArray[i].innerHTML;
           
@@ -140,7 +141,7 @@ for(let i=0; i < btnArray.length;i++){ //Goes through each item in button array 
 //x makes the popup invisible again. Probably need to reset it, do so later//
 let closePopupButton = document.getElementById('listExitBtn');
 closePopupButton.addEventListener('click', () =>{
-     listDisplayBox.style.display = 'none'; //Erasing popup display from sight until clicking a list//
+     popoutBox.style.display = 'none'; //Erasing popup display from sight until clicking a list//
 })
 
 }
