@@ -2,8 +2,9 @@ import addTask from './addTask'
 
 //declare listArray here for export later
 let listArray = [];
+let btnArray = [];
 let listArrayCurrent;
-//This function controls the display of lists on the popup when clicked from the menu//
+//This function controls display on the popup. This includes clicks from the side menu, additions from the popup, and closing the popup//
 function openLists (){
 
 //This prototype is being called to display the categories from the lists//
@@ -72,7 +73,7 @@ function openLists (){
 //these ID's were defined in the skeleton//
     let groceryBtn = document.getElementById('0');
     let houseBtn = document.getElementById('1');
-    let btnArray = [groceryBtn, houseBtn,] 
+    btnArray = [groceryBtn, houseBtn,] 
 
     listArray = [groceryListArray, houseListArray,]
     listArray.id = 'listArray';
@@ -121,10 +122,17 @@ for(let i=0; i < btnArray.length;i++){ //Goes through each item in button array 
     function addTaskToList () {
 
         let addTaskButton = document.getElementById('addTaskBtn');
-
+        //would this be cleaner just put into to event listener?//
         function addTaskWhenClickBtn (){
             let userTaskInput = document.getElementById('userTaskInput');
-            let userTaskInputValue = userTaskInput.value;
+            let userTaskInputValue = userTaskInput.value
+            //If statement catches edge case of not having a value or only putting in spaces//
+            if(userTaskInputValue.trim().length === 0){
+                userTaskInput.value = ''
+                return
+            }
+            else{
+            //creates new addtask, pushes it to current array, pins it to board, erases what is typed//
             let userAddTask = new addTask(
                 userTaskInputValue,
                 'List for Week 4/4',
@@ -133,11 +141,14 @@ for(let i=0; i < btnArray.length;i++){ //Goes through each item in button array 
             )
             listArrayCurrent.push(userAddTask);
             pinList();
+            userTaskInput.value = ''
             console.log(listArrayCurrent);
-        }
+            }
+    }
         addTaskButton.addEventListener('click', addTaskWhenClickBtn);
     }
     addTaskToList();
+
 
 
 //x makes the popup invisible again. Probably need to reset it, do so later//
@@ -148,4 +159,4 @@ closePopupButton.addEventListener('click', () =>{
 
 }
 
-export {listArray, listArrayCurrent, openLists}
+export {listArray, btnArray, listArrayCurrent, openLists}
