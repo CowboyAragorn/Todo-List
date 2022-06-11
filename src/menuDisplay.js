@@ -80,7 +80,7 @@ function openLists (){
     console.log(listArray)
 //Purpose of loop here is to append tasks to the task screen when clicking on a list. This will allow a user to see their tasks, and to visually switch
 //between lists//
-    //popoutBox.style.display = 'none'; //Defaults popup to invisible before a list is clicked
+    //taskPopoutBox.style.display = 'none'; //Defaults popup to invisible before a list is clicked
     let taskDisplayContainerSignal = false;
 //separate pin list as a separate function so it can be used to add new tasks to list//
 //pin list used to be part of for loop below//
@@ -100,8 +100,8 @@ function pinList(){
 //for loop here assigns event listener that displays information from storage arrays//
 for(let i=0; i < btnArray.length;i++){ //Goes through each item in button array and assigns said event listener
     btnArray[i].addEventListener('click', () =>{
-        let popoutBox = document.getElementById('popoutBox');
-        popoutBox.style.display = 'block'; //makes the popout list box appear when clicking the list button on side menu
+        let taskPopoutBox = document.getElementById('taskPopoutBox');
+        taskPopoutBox.style.display = 'block'; //makes the popout list box appear when clicking the list button on side menu
         let listNameDisplay = document.getElementById('listNameDisplay');
             listNameDisplay.innerHTML = btnArray[i].innerHTML;
             //next line is so important, accidental genius mode. It is operating off of listArray[i] key being i and not i2, which means it selects the number in the listArray equivalent with the position in the buttonArray, allowing selection of the correct list//
@@ -154,7 +154,7 @@ for(let i=0; i < btnArray.length;i++){ //Goes through each item in button array 
 //x makes the popup invisible again. Probably need to reset it, do so later//
 let closePopupButton = document.getElementById('listExitBtn');
 closePopupButton.addEventListener('click', () =>{
-     popoutBox.style.display = 'none'; //Erasing popup display from sight until clicking a list//
+     taskPopoutBox.style.display = 'none'; //Erasing popup display from sight until clicking a list//
 })
 
 }

@@ -21,22 +21,14 @@ body{
     
 }
 
-#taskAndListContainer{
-    height: 100%;
-    width: 85%;
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Tiny_Babbling_Brook.jpg/2560px-Tiny_Babbling_Brook.jpg');
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    align-items:flex-end;
-}
 
 #menuBarContainer{
     display: flex;
     flex-direction: column;
     gap: 10%;
 }
+
+
 
 #listHeaderContainer{
     display: flex;
@@ -49,9 +41,44 @@ body{
 
 }
 
+#overallListMenuContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#currentListsFlexContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
 
-#popoutBox{
+
+/* right hand tasks display and interactions menu*/
+#taskAndListContainer{
+    height: 100%;
+    width: 85%;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Tiny_Babbling_Brook.jpg/2560px-Tiny_Babbling_Brook.jpg');
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items:flex-end;
+}
+
+
+
+#taskPopoutBoxContainer{
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+    width: 30%;
+    margin-left: 50pt;
+    justify-content: end;
+}
+
+#taskPopoutBox{
     height: 500pt;
     width: 300pt;
     background-color: white;
@@ -63,8 +90,7 @@ body{
     flex-direction: column;
 }
 
-
-#listDisplayTaskbar{
+.listDisplayTaskbar{
     width: 100%;
     height: 10%;
     display: flex;
@@ -72,7 +98,7 @@ body{
     margin: 0;
 }
 
-#listExitBtn{
+.listExitBtn{
     height: fit-content;
 }
 
@@ -116,3 +142,27 @@ body{
     margin: 0;
     margin-right: 3pt;
 }
+
+
+/*Add List popout Box*/
+#addListPopoutBoxContainer{
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+    width: 30%;
+    margin-left: 50pt;
+    align-items: flex-start;
+    justify-content: start;
+}
+
+#addListPopoutBox{
+    height: 300pt;
+    width: 400pt;
+    background-color: white;
+    margin-left: 7%;
+    margin-bottom: 4%;
+    border: 1pt grey inset;
+    border-radius: 4%;
+    display: flex;
+    flex-direction: column;
+} 

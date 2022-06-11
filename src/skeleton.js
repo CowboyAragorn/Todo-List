@@ -6,6 +6,8 @@ export default function skeleton (){
         base.id = 'base';
     document.body.append(base);
 
+
+//Left hand menu bar//
     let menuBarContainer = document.createElement('div'); //This is the menu/nav bar on left side of screen
         menuBarContainer.id = 'menuBarContainer';
 
@@ -18,13 +20,13 @@ export default function skeleton (){
                 newTodo.innerHTML = 'New Task'
                 newTodoContainer.append(newTodo);
 
-        let listContainer = document.createElement('div');
-            listContainer.id = 'listContainer';
-            menuBarContainer.append(listContainer);
+        let overallListMenuContainer = document.createElement('div');
+            overallListMenuContainer.id = 'overallListMenuContainer';
+            menuBarContainer.append(overallListMenuContainer);
 
             let listHeaderContainer = document.createElement('div');
                 listHeaderContainer.id = 'listHeaderContainer';
-                listContainer.append(listHeaderContainer);
+                overallListMenuContainer.append(listHeaderContainer);
                 let currentListsHeader = document.createElement('div');
                     currentListsHeader.classList = 'listHeaders'
                     currentListsHeader.innerHTML = 'Lists'
@@ -34,18 +36,20 @@ export default function skeleton (){
                     addListBtn.innerHTML = '+';
                     listHeaderContainer.append(addListBtn);
 
-                
+        let currentListsFlexContainer = document.createElement('div');
+            currentListsFlexContainer.id = 'currentListsFlexContainer'
+            overallListMenuContainer.append(currentListsFlexContainer);
             let groceryList = document.createElement('button');
                 groceryList.classList = 'list';
                 groceryList.innerHTML = 'Grocery List'
                 groceryList.id = '0';
-                listContainer.append(groceryList)
+                currentListsFlexContainer.append(groceryList)
 
             let houseList = document.createElement('button');
                 houseList.classList = 'list';
                 houseList.innerHTML = 'Housework List'
                 houseList.id = '1';
-                listContainer.append(houseList)
+                currentListsFlexContainer.append(houseList)
             
             
 
@@ -53,34 +57,40 @@ export default function skeleton (){
 
 
 
-
+//Right hand display for tasks and interactions includes popout boxes//
     let taskAndListContainer = document.createElement('div');
         taskAndListContainer.id = 'taskAndListContainer';
-        let popoutBox = document.createElement('div');
-            popoutBox.id = 'popoutBox';
-            taskAndListContainer.append(popoutBox);
+
+    //Task popout box//
+    let taskPopoutBoxContainer = document.createElement('div');
+        taskPopoutBoxContainer.id = 'taskPopoutBoxContainer';
+        taskAndListContainer.append(taskPopoutBoxContainer)
+        let taskPopoutBox = document.createElement('div');
+            taskPopoutBox.id = 'taskPopoutBox';
+            taskPopoutBoxContainer.append(taskPopoutBox);
 
             let listDisplayTaskbar = document.createElement('div');
                 listDisplayTaskbar.id = 'listDisplayTaskbar';
-                popoutBox.append(listDisplayTaskbar);
+                listDisplayTaskbar.classList = 'listDisplayTaskbar';
+                taskPopoutBox.append(listDisplayTaskbar);
                 let listNameDisplay = document.createElement('div');
                     listNameDisplay.id = 'listNameDisplay';
                     listNameDisplay.classList = 'listHeaders';
-                    //listNameDisplay.innerHTML = 'Grocery List'; //testing
                     listDisplayTaskbar.append(listNameDisplay);
                 let listExitBtn = document.createElement('button');
                     listExitBtn.id = 'listExitBtn';
+                    listExitBtn.classList = 'listExitBtn';
                     listExitBtn.innerHTML = 'x'
                     listDisplayTaskbar.append(listExitBtn);
 
             let taskDisplayContainer = document.createElement('div');
                 taskDisplayContainer.id = 'taskDisplayContainer'
-                popoutBox.append(taskDisplayContainer)
+                taskPopoutBox.append(taskDisplayContainer)
 
             //where user types new tasks into popup/
             let inputContainer = document.createElement('div');
                 inputContainer.id = 'inputContainer';
-                popoutBox.append(inputContainer)
+                taskPopoutBox.append(inputContainer)
                 let userTaskInput = document.createElement('input');
                     userTaskInput.type = 'text';
                     userTaskInput.id = 'userTaskInput';
@@ -89,7 +99,29 @@ export default function skeleton (){
                     addTaskBtn.id = 'addTaskBtn';
                     addTaskBtn.innerHTML = '+';
                     inputContainer.append(addTaskBtn);
- 
+
+
+    //addList popout box//
+    let addListPopoutBoxContainer = document.createElement('div');
+        addListPopoutBoxContainer.id = 'addListPopoutBoxContainer';
+        taskAndListContainer.append(addListPopoutBoxContainer)
+    let addListPopoutBox = document.createElement('div');
+            addListPopoutBox.id = 'addListPopoutBox';
+            addListPopoutBoxContainer.append(addListPopoutBox);
+
+        let addListDisplayTaskbar = document.createElement('div');
+                addListDisplayTaskbar.id = 'addListDisplayTaskbar';
+                addListDisplayTaskbar.classList = 'listDisplayTaskbar';
+                addListPopoutBox.append(addListDisplayTaskbar);
+            let addListNameDisplay = document.createElement('div');
+                    addListNameDisplay.id = 'addListNameDisplay';
+                    addListNameDisplay.classList = 'listHeaders';
+                    addListDisplayTaskbar.append(addListNameDisplay);
+            let addListExitBtn = document.createElement('button');
+                    addListExitBtn.id = 'addListExitBtn';
+                    addListExitBtn.classList = 'listExitBtn';
+                    addListExitBtn.innerHTML = 'x'
+                    addListDisplayTaskbar.append(addListExitBtn);
     
     base.append(menuBarContainer);
     base.append(taskAndListContainer);
