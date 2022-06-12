@@ -1,8 +1,9 @@
 import { btnArray } from "./menuDisplay";
 
-function addNewList (){
-    let getListBtn = document.getElementById('addListBtn');
-    getListBtn.addEventListener('click', () =>{
-        
+/*
+export default function addNewList (){
+    addListBtn.addEventListener('click', () =>{
+        addListPopoutBoxContainer.style.display = 'block'
     })
 }
+*/

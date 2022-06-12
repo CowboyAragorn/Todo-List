@@ -101,13 +101,16 @@ export default function skeleton (){
                     inputContainer.append(addTaskBtn);
 
 
-    //addList popout box//
+    //addList popout box - created so that it disallows clicking outside the box//
     let addListPopoutBoxContainer = document.createElement('div');
         addListPopoutBoxContainer.id = 'addListPopoutBoxContainer';
         taskAndListContainer.append(addListPopoutBoxContainer)
+    let addListPopoutBoxFlexContainer = document.createElement('div');
+        addListPopoutBoxFlexContainer.id = 'addListPopoutBoxFlexContainer';
+        addListPopoutBoxContainer.append(addListPopoutBoxFlexContainer);
     let addListPopoutBox = document.createElement('div');
             addListPopoutBox.id = 'addListPopoutBox';
-            addListPopoutBoxContainer.append(addListPopoutBox);
+            addListPopoutBoxFlexContainer.append(addListPopoutBox);
 
         let addListDisplayTaskbar = document.createElement('div');
                 addListDisplayTaskbar.id = 'addListDisplayTaskbar';
