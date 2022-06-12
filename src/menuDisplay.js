@@ -102,7 +102,7 @@ function openLists (){
                 taskPopoutBox.style.display = 'block'; //makes the popout list box appear when clicking the list button on side menu
                 let listNameDisplay = document.getElementById('listNameDisplay');
                     listNameDisplay.innerHTML = btnArray[i].innerHTML;
-                     //selects the number in the listArray equivalent with the position in the buttonArray, allowing selection of the correct list//
+                    //selects the number in the listArray equivalent with the position in the buttonArray, allowing selection of the correct list//
                     //Button array cycles through at start of function & assigns the i valueto select the correct item in the array. This is PRE-DONE at beginning of function.
                     listArrayCurrent = listArray[i];    //sets variable to be used so in nested loop so that nested loop doesn't move through to different part of the array through accidental incrementing//
         
