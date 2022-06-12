@@ -193,6 +193,7 @@ body{
     background-color: white;
     border: 1pt black solid;
     width: 10%;
+    height: 100%;
     margin: 0;
     margin-right: 3pt;
 }

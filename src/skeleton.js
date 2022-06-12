@@ -44,12 +44,14 @@ export default function skeleton (){
                 groceryList.classList = 'list';
                 groceryList.innerHTML = 'Grocery List'
                 groceryList.id = '0';
+                groceryList.classList = 'Btn';
                 currentListsFlexContainer.append(groceryList)
 
             let houseList = document.createElement('button');
                 houseList.classList = 'list';
                 houseList.innerHTML = 'Housework List'
                 houseList.id = '1';
+                houseList.classList = 'Btn';
                 currentListsFlexContainer.append(houseList)
             
             
@@ -120,6 +122,7 @@ export default function skeleton (){
                 addListPopoutBox.append(addListDisplayTaskbar);
             let addListNameDisplay = document.createElement('div');
                     addListNameDisplay.id = 'addListNameDisplay';
+                    addListNameDisplay.innerHTML = 'Name This List';
                     addListNameDisplay.classList = 'listHeaders';
                     addListDisplayTaskbar.append(addListNameDisplay);
             let addListExitBtn = document.createElement('button');
