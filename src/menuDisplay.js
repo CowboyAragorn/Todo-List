@@ -7,13 +7,12 @@ let listArrayCurrent;
 
 //This function controls display on the popup. This includes clicks from the side menu, additions from the popup//
 function openLists (){
-
+    //taskPopoutBox.style.display = 'none'; //Defaults popup to invisible before a list is clicked
     //Displays the addToList popup when clicked in menu
     addListBtn.addEventListener('click', () =>{
         addListPopoutBoxContainer.style.display = 'block'
     })
 
-    
         //Preset lists//
             const mondayGrocery = new addTask(
                 'Oranges',
@@ -75,8 +74,6 @@ function openLists (){
         btnArray = [groceryBtn, houseBtn,] 
         listArray = [groceryListArray, houseListArray,]
 
-
-
      //This prototype is being called to display the categories from the lists on to the popup//
      addTask.prototype.displayList = function(){
         let taskDisplayElement = document.createElement('p');
@@ -85,27 +82,20 @@ function openLists (){
         let taskDisplayContainer = document.getElementById('taskDisplayContainer');
         taskDisplayContainer.append(taskDisplayElement);
      }
-
-        //taskPopoutBox.style.display = 'none'; //Defaults popup to invisible before a list is clicked
-    let taskDisplayContainerSignal = false;
     
     //Pin lists uses the prototype and current position in the array to pin to popup
     function pinList(){
             const elements = document.getElementsByClassName('task');
             while(elements.length > 0){
                 taskDisplayContainer.removeChild(elements[0]);
-                taskDisplayContainerSignal = false;
             }
-
             for(let p = 0; p < listArrayCurrent.length; p++){ //FOR the length of the currently selected item in the Array, display each listed item//
                 console.log(listArrayCurrent);
                 listArrayCurrent[p].displayList();
-                taskDisplayContainerSignal = true;
             } 
     }
-
+//for loop here assigns event listener to menu list buttons to display task information from storage arrays - IIFE//
     (function assignButtons(){
-    //for loop here assigns event listener to menu list buttons to display task information from storage arrays - IIFE//
         for(let i=0; i < btnArray.length;i++){ //Goes through each item in button array and assigns said event listener
             btnArray[i].addEventListener('click', () =>{
                 let taskPopoutBox = document.getElementById('taskPopoutBox');
@@ -115,11 +105,8 @@ function openLists (){
                      //selects the number in the listArray equivalent with the position in the buttonArray, allowing selection of the correct list//
                     //Button array cycles through at start of function & assigns the i valueto select the correct item in the array. This is PRE-DONE at beginning of function.
                     listArrayCurrent = listArray[i];    //sets variable to be used so in nested loop so that nested loop doesn't move through to different part of the array through accidental incrementing//
-            //If statement here checks to see if there are currently any tasks displayed. If there are, it unappends them prior to appending new list//
-                if(taskDisplayContainerSignal = true){
-
+        
                 pinList();
-            }
         })
         }
     })();
@@ -151,7 +138,5 @@ function openLists (){
                   }
             addTaskButton.addEventListener('click', addTaskWhenClickBtn);
          }) ();
-
 }
-
 export {listArray, btnArray, listArrayCurrent, openLists}
