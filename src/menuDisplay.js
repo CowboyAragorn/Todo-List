@@ -73,6 +73,7 @@ function openLists (){
 
         btnArray = [groceryBtn, houseBtn,] 
         listArray = [groceryListArray, houseListArray,]
+        console.log(btnArray);
 
      //This prototype is being called to display the categories from the lists on to the popup//
      addTask.prototype.displayList = function(){
@@ -111,16 +112,18 @@ function openLists (){
         }
     })();
 
-    //This controls the built in adding of tasks by user input located on the tasks display popup --IIFE//
+  
+  //This controls the built in adding of tasks by user input located on the tasks display popup --IIFE//
+  //Located here because of pinList//
         (function addTaskToList () {
             let addTaskButton = document.getElementById('addTaskBtn');
-            //would this be cleaner just put into to event listener?//
+            //would this be cleaner just put into to event listener rather than calling function at end?//
             function addTaskWhenClickBtn (){
                 let userTaskInput = document.getElementById('userTaskInput');
                 let userTaskInputValue = userTaskInput.value
                 //If statement catches edge case of not having a value or only putting in spaces//
                     if(userTaskInputValue.trim().length === 0){
-                        userTaskInput.value = ''
+                        userTaskInputValue = ''
                         return
                     }
                     else{
@@ -138,5 +141,7 @@ function openLists (){
                   }
             addTaskButton.addEventListener('click', addTaskWhenClickBtn);
          }) ();
+
+console.log(btnArray);
 }
 export {listArray, btnArray, listArrayCurrent, openLists}

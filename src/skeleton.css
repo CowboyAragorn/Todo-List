@@ -14,9 +14,11 @@ body{
     height: 100%;
     width: 100%;
 }
-.Btn{
+.btn{
     height: fit-content;
 }
+
+
 
 #menuBarContainer{
     width: 15%;

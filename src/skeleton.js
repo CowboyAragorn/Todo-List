@@ -33,7 +33,7 @@ export default function skeleton (){
                     listHeaderContainer.append(currentListsHeader);
                 let addListBtn = document.createElement('button');
                     addListBtn.id = 'addListBtn';
-                    addListBtn.classList = 'Btn';
+                    addListBtn.classList = 'btn';
                     addListBtn.innerHTML = '+';
                     listHeaderContainer.append(addListBtn);
 
@@ -44,14 +44,14 @@ export default function skeleton (){
                 groceryList.classList = 'list';
                 groceryList.innerHTML = 'Grocery List'
                 groceryList.id = '0';
-                groceryList.classList = 'Btn';
+                groceryList.classList.add('btn', 'listBtn')
                 currentListsFlexContainer.append(groceryList)
 
             let houseList = document.createElement('button');
                 houseList.classList = 'list';
                 houseList.innerHTML = 'Housework List'
                 houseList.id = '1';
-                houseList.classList = 'Btn';
+                houseList.classList.add('btn', 'listBtn')
                 currentListsFlexContainer.append(houseList)
             
             
@@ -82,7 +82,7 @@ export default function skeleton (){
                     listDisplayTaskbar.append(listNameDisplay);
                 let listExitBtn = document.createElement('button');
                     listExitBtn.id = 'listExitBtn';
-                    listExitBtn.classList = 'Btn';
+                    listExitBtn.classList = 'btn';
                     listExitBtn.innerHTML = 'x'
                     listDisplayTaskbar.append(listExitBtn);
 
@@ -100,7 +100,7 @@ export default function skeleton (){
                     inputContainer.append(userTaskInput);
                 let addTaskBtn = document.createElement('button');
                     addTaskBtn.id = 'addTaskBtn';
-                    addTaskBtn.classList = 'Btn';
+                    addTaskBtn.classList = 'btn';
                     addTaskBtn.innerHTML = '+';
                     inputContainer.append(addTaskBtn);
 
@@ -127,7 +127,7 @@ export default function skeleton (){
                     addListDisplayTaskbar.append(addListNameDisplay);
             let addListExitBtn = document.createElement('button');
                     addListExitBtn.id = 'addListExitBtn';
-                    addListExitBtn.classList = 'Btn';
+                    addListExitBtn.classList = 'btn';
                     addListExitBtn.innerHTML = 'x'
                     addListDisplayTaskbar.append(addListExitBtn);
         //addList input box//
@@ -140,7 +140,7 @@ export default function skeleton (){
                     addListInputContainer.append(userListInput);
                 let addListPopupBtn = document.createElement('button');
                     addListPopupBtn.id = 'addListPopupBtn';
-                    addListPopupBtn.classList = 'Btn';
+                    addListPopupBtn.classList = 'btn';
                     addListPopupBtn.innerHTML = '+';
                     addListInputContainer.append(addListPopupBtn);
     
