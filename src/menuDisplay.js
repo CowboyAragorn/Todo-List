@@ -72,7 +72,6 @@ function openLists (){
 
         btnArray = [groceryBtn, houseBtn,] 
         listArray = [groceryListArray, houseListArray,]
-        console.log(btnArray);
 }
 
    //This prototype is being called to display the categories from the lists on to the popup//
@@ -84,8 +83,7 @@ function openLists (){
     taskDisplayContainer.append(taskDisplayElement);
  }
 
-
- function pinList(){
+function pinList(){
     const elements = document.getElementsByClassName('task');
     while(elements.length > 0){
         taskDisplayContainer.removeChild(elements[0]);
@@ -99,6 +97,7 @@ function openLists (){
 
 //for loop here assigns event listener to menu list buttons to display task information from storage arrays - IIFE//
 function assignButtons(){
+    console.log(btnArray)
     for(let i=0; i < btnArray.length;i++){ //Goes through each item in button array and assigns said event listener
         btnArray[i].addEventListener('click', () =>{
             let taskPopoutBox = document.getElementById('taskPopoutBox');
@@ -114,10 +113,10 @@ function assignButtons(){
     }
 };
 
-  
-  //This controls the built in adding of tasks by user input located on the tasks display popup --IIFE//
-  //Located here because of pinList//
-  function addTaskToList () {
+
+//This controls the built in adding of tasks by user input located on the tasks display popup --IIFE//
+//Located here because of pinList//
+function addTaskToList () {
     let addTaskButton = document.getElementById('addTaskBtn');
     //would this be cleaner just put into to event listener rather than calling function at end?//
     function addTaskWhenClickBtn (){
@@ -140,9 +139,9 @@ function assignButtons(){
         pinList();
         userTaskInput.value = ''
                 }
-          }
-   addTaskButton.addEventListener('click', addTaskWhenClickBtn);
- };
+            }
+    addTaskButton.addEventListener('click', addTaskWhenClickBtn);
+    };
 
 
 function easyExport(){
@@ -150,7 +149,6 @@ function easyExport(){
     assignButtons();
     addTaskToList();
 }
-
 
 
 export {listArray, btnArray, listArrayCurrent, openLists, easyExport, assignButtons}

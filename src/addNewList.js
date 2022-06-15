@@ -1,6 +1,5 @@
 import addTask from "./addTask";
-import { listArray, openLists } from "./menuDisplay";
-import { btnArray } from "./menuDisplay";
+import { listArray, assignButtons, btnArray } from "./menuDisplay";
 
 
 export default function addNewList (){
@@ -11,38 +10,41 @@ export default function addNewList (){
             currentListsFlexContainer.removeChild(elements[0]);
         }
         for(let i=0; i<btnArray.length;i++){
-            let listBtnDisplayElement = document.createElement('button');
-            listBtnDisplayElement.innerHTML = btnArray[i].innerHTML;
-            listBtnDisplayElement.classList.add('btn', 'listBtn');
-            listBtnDisplayElement.id = i;
+            btnArray[i].classList.add('btn', 'listBtn');
+            btnArray[i].id = i;
             let currentListsFlexContainer = document.getElementById('currentListsFlexContainer')
-            currentListsFlexContainer.append(listBtnDisplayElement);
+            currentListsFlexContainer.append(btnArray[i]);
         }
+
     }
 
-
-
-            let addListPopupBtn = document.getElementById('addListPopupBtn');
+    let addListPopupBtn = document.getElementById('addListPopupBtn');
             
             //would this be cleaner just put into to event listener rather than calling function at end?//
-            function clickBtnAddToBtnArray (){
-                let userListInput = document.getElementById('userListInput');
-                let userListInputValue = userListInput.value
-                //If statement catches edge case of not having a value or only putting in spaces//
-                    if(userListInputValue.trim().length === 0){
-                        userListInputValue = ''
-                        return
-                    }
-                let userListNewArray = [];
-                userListNewArray.innerHTML = userListInputValue;
-                btnArray.push(userListNewArray);
-                createNewButtons();
-                console.log(btnArray);
-                listArray.push(userListInputValue);
-                userListInput.value = '';
-                
-                        
-                  }
-                  addListPopupBtn.addEventListener('click', clickBtnAddToBtnArray);
-    } 
+    function clickBtnAddToBtnArray (){
+        let userListInput = document.getElementById('userListInput');
+        let userListInputValue = userListInput.value
+        //If statement catches edge case of not having a value or only putting in spaces//
+            if(userListInputValue.trim().length === 0){
+                userListInputValue = ''
+                return
+            }
+        let userListNewBtn = document.createElement('button');
+        userListNewBtn.innerHTML = userListInputValue;
+        btnArray.push(userListNewBtn);
+        createNewButtons();
+        console.log(btnArray)
+        assignButtons();
+
+
+        console.log(btnArray);
+        let userListNewArray = [];
+        userListNewArray.innerHTML = userListInputValue;
+        listArray.push(userListInputValue);
+        userListInput.value = '';
+        addListPopoutBoxContainer.style.display = 'none';   
+
+            }
+            addListPopupBtn.addEventListener('click', clickBtnAddToBtnArray);
+} 
 
