@@ -12,7 +12,6 @@ function openLists (){
     addListBtn.addEventListener('click', () =>{
         addListPopoutBoxContainer.style.display = 'block'
     })
-
         //Preset lists//
             const mondayGrocery = new addTask(
                 'Oranges',
@@ -74,74 +73,84 @@ function openLists (){
         btnArray = [groceryBtn, houseBtn,] 
         listArray = [groceryListArray, houseListArray,]
         console.log(btnArray);
+}
 
-     //This prototype is being called to display the categories from the lists on to the popup//
-     addTask.prototype.displayList = function(){
-        let taskDisplayElement = document.createElement('p');
-            taskDisplayElement.innerHTML = this.taskName;
-            taskDisplayElement.classList = 'task';
-        let taskDisplayContainer = document.getElementById('taskDisplayContainer');
-        taskDisplayContainer.append(taskDisplayElement);
-     }
-    
-    //Pin lists uses the prototype and current position in the array to pin to popup
-    function pinList(){
-            const elements = document.getElementsByClassName('task');
-            while(elements.length > 0){
-                taskDisplayContainer.removeChild(elements[0]);
-            }
-            for(let p = 0; p < listArrayCurrent.length; p++){ //FOR the length of the currently selected item in the Array, display each listed item//
-                console.log(listArrayCurrent);
-                listArrayCurrent[p].displayList();
-            } 
+   //This prototype is being called to display the categories from the lists on to the popup//
+   addTask.prototype.displayList = function(){
+    let taskDisplayElement = document.createElement('p');
+        taskDisplayElement.innerHTML = this.taskName;
+        taskDisplayElement.classList = 'task';
+    let taskDisplayContainer = document.getElementById('taskDisplayContainer');
+    taskDisplayContainer.append(taskDisplayElement);
+ }
+
+
+ function pinList(){
+    const elements = document.getElementsByClassName('task');
+    while(elements.length > 0){
+        taskDisplayContainer.removeChild(elements[0]);
     }
+    for(let p = 0; p < listArrayCurrent.length; p++){ //FOR the length of the currently selected item in the Array, display each listed item//
+        console.log(listArrayCurrent);
+        listArrayCurrent[p].displayList();
+    } 
+}
+
+
 //for loop here assigns event listener to menu list buttons to display task information from storage arrays - IIFE//
-    (function assignButtons(){
-        for(let i=0; i < btnArray.length;i++){ //Goes through each item in button array and assigns said event listener
-            btnArray[i].addEventListener('click', () =>{
-                let taskPopoutBox = document.getElementById('taskPopoutBox');
-                taskPopoutBox.style.display = 'block'; //makes the popout list box appear when clicking the list button on side menu
-                let listNameDisplay = document.getElementById('listNameDisplay');
-                    listNameDisplay.innerHTML = btnArray[i].innerHTML;
-                    //selects the number in the listArray equivalent with the position in the buttonArray, allowing selection of the correct list//
-                    //Button array cycles through at start of function & assigns the i valueto select the correct item in the array. This is PRE-DONE at beginning of function.
-                    listArrayCurrent = listArray[i];    //sets variable to be used so in nested loop so that nested loop doesn't move through to different part of the array through accidental incrementing//
-        
-                pinList();
-        })
-        }
-    })();
+function assignButtons(){
+    for(let i=0; i < btnArray.length;i++){ //Goes through each item in button array and assigns said event listener
+        btnArray[i].addEventListener('click', () =>{
+            let taskPopoutBox = document.getElementById('taskPopoutBox');
+            taskPopoutBox.style.display = 'block'; //makes the popout list box appear when clicking the list button on side menu
+            let listNameDisplay = document.getElementById('listNameDisplay');
+                listNameDisplay.innerHTML = btnArray[i].innerHTML;
+                //selects the number in the listArray equivalent with the position in the buttonArray, allowing selection of the correct list//
+                //Button array cycles through at start of function & assigns the i valueto select the correct item in the array. This is PRE-DONE at beginning of function.
+                listArrayCurrent = listArray[i];    //sets variable to be used so in nested loop so that nested loop doesn't move through to different part of the array through accidental incrementing//
+    
+            pinList();
+    })
+    }
+};
 
   
   //This controls the built in adding of tasks by user input located on the tasks display popup --IIFE//
   //Located here because of pinList//
-        (function addTaskToList () {
-            let addTaskButton = document.getElementById('addTaskBtn');
-            //would this be cleaner just put into to event listener rather than calling function at end?//
-            function addTaskWhenClickBtn (){
-                let userTaskInput = document.getElementById('userTaskInput');
-                let userTaskInputValue = userTaskInput.value
-                //If statement catches edge case of not having a value or only putting in spaces//
-                    if(userTaskInputValue.trim().length === 0){
-                        userTaskInputValue = ''
-                        return
-                    }
-                    else{
-                    //creates new addtask, pushes it to current array, pins it to board, erases what is typed//
-                    let userAddTask = new addTask(
-                        userTaskInputValue,
-                        'List for Week 4/4',
-                        '4/10',
-                        'High'
-                    )
-                listArrayCurrent.push(userAddTask);
-                pinList();
-                userTaskInput.value = ''
-                        }
-                  }
-            addTaskButton.addEventListener('click', addTaskWhenClickBtn);
-         }) ();
+  function addTaskToList () {
+    let addTaskButton = document.getElementById('addTaskBtn');
+    //would this be cleaner just put into to event listener rather than calling function at end?//
+    function addTaskWhenClickBtn (){
+        let userTaskInput = document.getElementById('userTaskInput');
+        let userTaskInputValue = userTaskInput.value
+        //If statement catches edge case of not having a value or only putting in spaces//
+            if(userTaskInputValue.trim().length === 0){
+                userTaskInputValue = ''
+                return
+            }
+            else{
+            //creates new addtask, pushes it to current array, pins it to board, erases what is typed//
+            let userAddTask = new addTask(
+                userTaskInputValue,
+                'List for Week 4/4',
+                '4/10',
+                'High'
+            )
+        listArrayCurrent.push(userAddTask);
+        pinList();
+        userTaskInput.value = ''
+                }
+          }
+   addTaskButton.addEventListener('click', addTaskWhenClickBtn);
+ };
 
-console.log(btnArray);
+
+function easyExport(){
+    openLists();
+    assignButtons();
+    addTaskToList();
 }
-export {listArray, btnArray, listArrayCurrent, openLists}
+
+
+
+export {listArray, btnArray, listArrayCurrent, openLists, easyExport, assignButtons}
