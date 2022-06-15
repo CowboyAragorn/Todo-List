@@ -1,9 +1,12 @@
-import addTask from './addTask'
+import addTask from './addTask';
+import {deleteTasks, crossedTasks} from './deleteTasks';
 
 //declare listArray here for export later
 let listArray = [];
 let btnArray = [];
 let listArrayCurrent;
+let currentExitTaskArray = [];
+
 
 //This function controls display on the popup. This includes clicks from the side menu, additions from the popup//
 function openLists (){
@@ -76,29 +79,37 @@ function openLists (){
 
    //This prototype is being called to display the categories from the lists on to the popup//
    addTask.prototype.displayList = function(){
-    let taskFlexContainer = document.createElement('div');
-    taskFlexContainer.id = 'taskFlexContainer';
-    taskFlexContainer.classList = 'taskFlex'
-    let taskDisplayElement = document.createElement('p');
-        taskDisplayElement.innerHTML = this.taskName;
-        taskDisplayElement.classList = 'task';
-    let taskExitBtn = document.createElement('button');
-        taskExitBtn.classList.add('taskExitBtn', 'btn');
-    let taskDisplayContainer = document.getElementById('taskDisplayContainer');
-    taskDisplayContainer.append(taskFlexContainer);
-    taskFlexContainer.append(taskExitBtn);
-    taskFlexContainer.append(taskDisplayElement);
+        let taskFlexContainer = document.createElement('div');
+        taskFlexContainer.id = 'taskFlexContainer';
+        taskFlexContainer.classList = 'taskFlex'
+        taskFlexContainer.classList.add(taskExitBtnTracker);
+        let taskDisplayElement = document.createElement('p');
+            taskDisplayElement.innerHTML = this.taskName;
+            taskDisplayElement.classList = 'task';
+        let taskExitBtn = document.createElement('button');
+            taskExitBtn.classList.add('taskExitBtn', 'btn');
+            currentExitTaskArray.push(taskExitBtn);
+        let taskDisplayContainer = document.getElementById('taskDisplayContainer');
+        taskDisplayContainer.append(taskFlexContainer);
+        taskFlexContainer.append(taskExitBtn);
+        taskFlexContainer.append(taskDisplayElement);
  }
-
+ let taskExitBtnTracker
+ //pin list and assign buttons are fundmanetally connected because of listArrayCurrent, which is the array within the array//
 function pinList(){
+    taskExitBtnTracker = 0; //for setting ID
     const elements = document.getElementsByClassName('taskFlex');
     while(elements.length > 0){
         taskDisplayContainer.removeChild(elements[0]);
+        taskExitBtnTracker = 0;
+        currentExitTaskArray = []; //Need to reset this array so that the i in deleteTasks doesn't continually count. Perhaps a bit too entertwined//
     }
     for(let p = 0; p < listArrayCurrent.length; p++){ //FOR the length of the currently selected item in the Array, display each listed item//
         console.log(listArrayCurrent);
         listArrayCurrent[p].displayList();
+        taskExitBtnTracker++;
     } 
+    deleteTasks();
 }
 
 
@@ -151,6 +162,7 @@ function addTaskToList () {
     };
 
 
+
 function easyExport(){
     openLists();
     assignButtons();
@@ -158,4 +170,4 @@ function easyExport(){
 }
 
 
-export {listArray, btnArray, listArrayCurrent, openLists, easyExport, assignButtons}
+export {listArray, btnArray, listArrayCurrent, currentExitTaskArray, openLists, easyExport, assignButtons, pinList}

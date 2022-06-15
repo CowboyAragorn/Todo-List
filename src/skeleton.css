@@ -131,6 +131,10 @@ body{
     
 }
 
+.crossed{
+    text-decoration: line-through;
+}
+
 
 #inputContainer{
     display: flex;

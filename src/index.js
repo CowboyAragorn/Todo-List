@@ -5,7 +5,6 @@ import skeleton from './skeleton'
 import {easyExport} from './menuDisplay'
 //import addTaskToList from './addTaskToList'
 import addNewList from './addNewList';
-
 import closePopups from './closePopups'
 
 skeleton ();
