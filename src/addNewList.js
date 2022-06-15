@@ -29,19 +29,20 @@ export default function addNewList (){
                 userListInputValue = ''
                 return
             }
+        //creates new button and puts it in the button array//
         let userListNewBtn = document.createElement('button');
-        userListNewBtn.innerHTML = userListInputValue;
-        btnArray.push(userListNewBtn);
-        createNewButtons();
+            userListNewBtn.innerHTML = userListInputValue;
+            btnArray.push(userListNewBtn);
+            createNewButtons();
         console.log(btnArray)
         assignButtons();
 
-
+        //puts it in the list array
         console.log(btnArray);
-        let userListNewArray = [];
-        userListNewArray.innerHTML = userListInputValue;
-        listArray.push(userListInputValue);
-        userListInput.value = '';
+            let userListNewArray = [];
+            userListNewArray.innerHTML = userListInputValue;
+            listArray.push(userListNewArray);
+            userListInput.value = '';
         addListPopoutBoxContainer.style.display = 'none';   
 
             }

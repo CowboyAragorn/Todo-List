@@ -108,6 +108,7 @@ export default function skeleton (){
     //addList popout box - created so that it disallows clicking outside the box//
     let addListPopoutBoxContainer = document.createElement('div');
         addListPopoutBoxContainer.id = 'addListPopoutBoxContainer';
+        addListPopoutBoxContainer.style.display = 'none';
         taskAndListContainer.append(addListPopoutBoxContainer)
     let addListPopoutBoxFlexContainer = document.createElement('div');
         addListPopoutBoxFlexContainer.id = 'addListPopoutBoxFlexContainer';
