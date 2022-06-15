@@ -86,6 +86,9 @@ function openLists (){
         let taskDisplayElement = document.createElement('p');
             taskDisplayElement.innerHTML = this.taskName;
             taskDisplayElement.classList = 'task';
+            if(this.completeStatus == 'crossed'){ //tracks complete status modified in deleteTasks//
+                taskDisplayElement.classList.add('crossed');
+            }
         let taskExitBtn = document.createElement('button');
             taskExitBtn.classList.add('taskExitBtn', 'btn');
             currentExitTaskArray.push(taskExitBtn);
@@ -105,7 +108,6 @@ function pinList(){
         currentExitTaskArray = []; //Need to reset this array so that the i in deleteTasks doesn't continually count. Perhaps a bit too entertwined//
     }
     for(let p = 0; p < listArrayCurrent.length; p++){ //FOR the length of the currently selected item in the Array, display each listed item//
-        console.log(listArrayCurrent);
         listArrayCurrent[p].displayList();
         taskExitBtnTracker++;
     } 
@@ -115,7 +117,6 @@ function pinList(){
 
 //for loop here assigns event listener to menu list buttons to display task information from storage arrays - IIFE//
 function assignButtons(){
-    console.log(btnArray)
     for(let i=0; i < btnArray.length;i++){ //Goes through each item in button array and assigns said event listener
         btnArray[i].addEventListener('click', () =>{
             let taskPopoutBox = document.getElementById('taskPopoutBox');
