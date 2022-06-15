@@ -76,15 +76,22 @@ function openLists (){
 
    //This prototype is being called to display the categories from the lists on to the popup//
    addTask.prototype.displayList = function(){
+    let taskFlexContainer = document.createElement('div');
+    taskFlexContainer.id = 'taskFlexContainer';
+    taskFlexContainer.classList = 'taskFlex'
     let taskDisplayElement = document.createElement('p');
         taskDisplayElement.innerHTML = this.taskName;
         taskDisplayElement.classList = 'task';
+    let taskExitBtn = document.createElement('button');
+        taskExitBtn.classList.add('taskExitBtn', 'btn');
     let taskDisplayContainer = document.getElementById('taskDisplayContainer');
-    taskDisplayContainer.append(taskDisplayElement);
+    taskDisplayContainer.append(taskFlexContainer);
+    taskFlexContainer.append(taskExitBtn);
+    taskFlexContainer.append(taskDisplayElement);
  }
 
 function pinList(){
-    const elements = document.getElementsByClassName('task');
+    const elements = document.getElementsByClassName('taskFlex');
     while(elements.length > 0){
         taskDisplayContainer.removeChild(elements[0]);
     }
@@ -101,7 +108,7 @@ function assignButtons(){
     for(let i=0; i < btnArray.length;i++){ //Goes through each item in button array and assigns said event listener
         btnArray[i].addEventListener('click', () =>{
             let taskPopoutBox = document.getElementById('taskPopoutBox');
-            taskPopoutBox.style.display = 'block'; //makes the popout list box appear when clicking the list button on side menu
+            taskPopoutBox.style.display = 'flex'; //makes the popout list box appear when clicking the list button on side menu
             let listNameDisplay = document.getElementById('listNameDisplay');
                 listNameDisplay.innerHTML = btnArray[i].innerHTML;
                 //selects the number in the listArray equivalent with the position in the buttonArray, allowing selection of the correct list//

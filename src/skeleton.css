@@ -60,7 +60,7 @@ body{
 
 
 
-/* right hand tasks display and interactions menu*/
+/* right hand tasks display and interactions popup*/
 #taskAndListContainer{
     height: 100%;
     width: 85%;
@@ -75,24 +75,24 @@ body{
 
 
 #taskPopoutBoxContainer{
-    display: flex;
-    flex-direction: column;
-    height: 90%;
-    width: 30%;
+    height: 500pt;
+    width: 300pt;
+    border-radius: 4%;
     margin-left: 50pt;
     justify-content: end;
+    align-items: center;
+    margin-bottom: 3%;;
 }
 
 #taskPopoutBox{
-    height: 500pt;
-    width: 300pt;
+   height: 100%;
+   width: 100%;
     background-color: white;
-    margin-left: 7%;
-    margin-bottom: 4%;
     border: 1pt grey inset;
     border-radius: 4%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 .listDisplayTaskbar{
@@ -107,13 +107,28 @@ body{
     display: flex;
     flex-direction: column;
     background-color: whitesmoke;
-    height: 80%;
+    height: 70%;
     width: 100%;
     gap: 10pt;
+    padding-top: 10%
+    
+}
+
+#taskFlexContainer{
+    display: flex;
+    height: fit-content;
+    gap: 10%;
+    height: fit-content;
+}
+.taskExitBtn{
+    height: 100%;
+    border-radius: 15px;
+    margin-left: 5%;
 }
 
 .task{
     margin: 0;
+    
 }
 
 
