@@ -1,12 +1,13 @@
 import addTask from './addTask';
-import {deleteTasks} from './deleteTasks';
+import {deleteTasks, crossedTasks} from './deleteTasks';
 
 //declare listArray here for export later
 let listArray = [];
 let btnArray = [];
 let listArrayCurrent;
 let listArrayCurrentName
-let currentExitTaskArray = [];
+let currentExitTaskButtonsArray = [];
+let taskDisplayArray = [];
 
 
 //This function controls display on the popup. This includes clicks from the side menu, additions from the popup//
@@ -92,7 +93,7 @@ function openLists (){
             }
         let taskExitBtn = document.createElement('button');
             taskExitBtn.classList.add('taskExitBtn', 'btn');
-            currentExitTaskArray.push(taskExitBtn);
+            currentExitTaskButtonsArray.push(taskExitBtn); //array of buttons for crossing tasks//
         let taskDisplayContainer = document.getElementById('taskDisplayContainer');
         taskDisplayContainer.append(taskFlexContainer);
         taskFlexContainer.append(taskExitBtn);
@@ -101,18 +102,34 @@ function openLists (){
  let taskExitBtnTracker
  //pin list and assign buttons are fundmanetally connected because of listArrayCurrent, which is the array within the array//
 function pinList(){
+    taskDisplayArray = [] //Empty toe taskDisplay array from last run so that it doesn't overflow with old values
     taskExitBtnTracker = 0; //for setting ID
     const elements = document.getElementsByClassName('taskFlex');
-    while(elements.length > 0){
+    while(elements.length > 0){ //Emptys the visual display for repinning
         taskDisplayContainer.removeChild(elements[0]);
         taskExitBtnTracker = 0;
-        currentExitTaskArray = []; //Need to reset this array so that the i in deleteTasks doesn't continually count. Perhaps a bit too entertwined//
+        currentExitTaskButtonsArray = []; //Need to reset this array so that the i in deleteTasks doesn't continually count. Perhaps a bit too entertwined//
     }
-    for(let p = 0; p < listArrayCurrent.length; p++){ //FOR the length of the currently selected item in the Array, display each listed item//
-        listArrayCurrent[p].displayList();
+    for(let p = 0; p < listArrayCurrent.length; p++){ //push the current listArray to the taskDisplay array
+        taskDisplayArray.push(listArrayCurrent[p])
+    } 
+    listArrayCurrent = [] //empty listArray for refill at bottom of function
+
+    for(let p = 0; p < crossedTasks.length; p++){ //push crossed tasks array from deleteTasks to display array. This will make them appear at the bottom.
+        taskDisplayArray.push(crossedTasks[p])
+    }
+    for(let p = 0; p < taskDisplayArray.length; p++){  //display the taskDisplayArray
+        taskDisplayArray[p].displayList();
         taskExitBtnTracker++;
     } 
-    deleteTasks();
+    console.log('taskDisplayArray')
+    console.log(taskDisplayArray)
+    deleteTasks(); //run delete tasks to assign event listener to buttons
+    //
+    for(let p = 0; p < taskDisplayArray.length; p++){//push all the display array to the previously emptied current list array for display if changing lists//
+        listArrayCurrent.push(taskDisplayArray[p])
+     } 
+   
 }
 
 
@@ -174,4 +191,4 @@ function easyExport(){
 }
 
 
-export {listArray, btnArray, listArrayCurrent, listArrayCurrentName, currentExitTaskArray, openLists, easyExport, assignButtons, pinList}
+export {listArray, btnArray, listArrayCurrent, taskDisplayArray, listArrayCurrentName, currentExitTaskButtonsArray, openLists, easyExport, assignButtons, pinList}
