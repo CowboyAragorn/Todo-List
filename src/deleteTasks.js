@@ -4,7 +4,7 @@ import {currentExitTaskButtonsArray, listArrayCurrent, taskDisplayArray, listArr
 let crossedTasks = [];
 function deleteTasks(){
 
-let formerArrayPositionTracker
+
 let prototypeTrackerBecauseIIsOutOfScope
     
 addTask.prototype.makeCrossed = function(){
@@ -21,8 +21,7 @@ addTask.prototype.makeCrossed = function(){
         console.log(taskDisplayArray)
     
         this.completeStatus = 'crossed'; //changes to crossed out & moves to bottom array//
-        this.formerArrayPosition = formerArrayPositionTracker;
-        console.log(this.formerArrayPosition)
+
     }
     else if(this.completeStatus == 'crossed'){ //if crossed
         this.completeStatus = 'incomplete';

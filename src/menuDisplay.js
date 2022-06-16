@@ -8,6 +8,10 @@ let listArrayCurrent;
 let listArrayCurrentName
 let currentExitTaskButtonsArray = [];
 let taskDisplayArray = [];
+let taskExitBtnTracker;
+let sortTracker;
+let iTracker //itracker here connects directly above to pinLists. Lets me change the original array in
+let formerArrayPositionTracker;
 
 
 //This function controls display on the popup. This includes clicks from the side menu, additions from the popup//
@@ -100,10 +104,13 @@ function openLists (){
         taskFlexContainer.append(taskDisplayElement);
  }
 
-
+//These two prototypes work with pinList to sort the displayed by checked/unchecked
     addTask.prototype.sortUncheckedDisplayArray = function(){
         if(this.completeStatus == undefined || this.completeStatus == 'incomplete'){ //if uncrossed
             taskDisplayArray.push(sortTracker)
+            taskDisplayArray.sort((a,b) => {
+                return a.formerArrayPosition - b.formerArrayPosition;
+            });
         }
         else{
             return
@@ -119,9 +126,12 @@ function openLists (){
         }
     }
 
+    addTask.prototype.saveFormerArrayPosition = function(){
+        this.formerArrayPosition = formerArrayPositionTracker;
+    }
 
- let taskExitBtnTracker
- let sortTracker
+
+
  //pin list and assign buttons are fundmanetally connected because of listArrayCurrent, which is the array within the array//
 function pinList(){
     taskDisplayArray = [] //Empty toe taskDisplay array from last run so that it doesn't overflow with old values
@@ -132,7 +142,9 @@ function pinList(){
         taskExitBtnTracker = 0;
         currentExitTaskButtonsArray = []; //Need to reset this array so that the i in deleteTasks doesn't continually count. Perhaps a bit too entertwined//
     }
+
     for(let p = 0; p < listArrayCurrent.length; p++){ //push the current listArray to the taskDisplay array
+        console.log(taskDisplayArray);
         sortTracker = listArrayCurrent[p]
         listArrayCurrent[p].sortUncheckedDisplayArray();
     } 
@@ -161,7 +173,6 @@ function pinList(){
      listArray[iTracker] = listArrayCurrent; //changes original array
 }
 
-let iTracker //itracker here connects directly above to pinLists. Lets me change the original array in
 //listArrays directly so that it doesn't reset when hitting the list button
 //for loop here assigns event listener to menu list buttons to display task information from storage arrays - IIFE//
 function assignButtons(){
@@ -179,10 +190,23 @@ function assignButtons(){
                 console.log(listArrayCurrent)
                 listArrayCurrentName = listNameDisplay.innerHTML;
                 console.log(listArrayCurrentName)
+            assignFormerPositions();
             pinList();
     })
     }
 };
+
+    //Assigns former array position for sorting
+function assignFormerPositions(){
+    for(let p = 0; p < listArrayCurrent.length; p++){ //push the current listArray to the taskDisplay array
+        formerArrayPositionTracker = p;
+        listArrayCurrent[p].saveFormerArrayPosition();
+        taskDisplayArray.push(listArrayCurrent[p])
+        console.log(taskDisplayArray);
+    } 
+    //then dumps
+    taskDisplayArray = []
+}
 
 
 //This controls the built in adding of tasks by user input located on the tasks display popup --IIFE//
@@ -208,6 +232,7 @@ function addTaskToList () {
                 'incomplete'
             )
         listArrayCurrent.push(userAddTask);
+        
         pinList();
         userTaskInput.value = ''
                 }
