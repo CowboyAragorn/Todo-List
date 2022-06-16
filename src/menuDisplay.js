@@ -99,7 +99,29 @@ function openLists (){
         taskFlexContainer.append(taskExitBtn);
         taskFlexContainer.append(taskDisplayElement);
  }
+
+
+    addTask.prototype.sortUncheckedDisplayArray = function(){
+        if(this.completeStatus == undefined || this.completeStatus == 'incomplete'){ //if uncrossed
+            taskDisplayArray.push(sortTracker)
+        }
+        else{
+            return
+        }
+    }
+
+    addTask.prototype.sortCheckedDisplayArray = function(){
+        if(this.completeStatus == 'crossed'){
+            taskDisplayArray.push(sortTracker);
+        }
+        else{
+            return
+        }
+    }
+
+
  let taskExitBtnTracker
+ let sortTracker
  //pin list and assign buttons are fundmanetally connected because of listArrayCurrent, which is the array within the array//
 function pinList(){
     taskDisplayArray = [] //Empty toe taskDisplay array from last run so that it doesn't overflow with old values
@@ -111,7 +133,12 @@ function pinList(){
         currentExitTaskButtonsArray = []; //Need to reset this array so that the i in deleteTasks doesn't continually count. Perhaps a bit too entertwined//
     }
     for(let p = 0; p < listArrayCurrent.length; p++){ //push the current listArray to the taskDisplay array
-        taskDisplayArray.push(listArrayCurrent[p])
+        sortTracker = listArrayCurrent[p]
+        listArrayCurrent[p].sortUncheckedDisplayArray();
+    } 
+    for(let p = 0; p < listArrayCurrent.length; p++){ //push the current listArray to the taskDisplay array
+        sortTracker = listArrayCurrent[p]
+        listArrayCurrent[p].sortCheckedDisplayArray();
     } 
     listArrayCurrent = [] //empty listArray for refill at bottom of function
 
@@ -119,6 +146,7 @@ function pinList(){
         taskDisplayArray.push(crossedTasks[p])
     }
     for(let p = 0; p < taskDisplayArray.length; p++){  //display the taskDisplayArray
+        
         taskDisplayArray[p].displayList();
         taskExitBtnTracker++;
     } 
@@ -127,12 +155,14 @@ function pinList(){
     deleteTasks(); //run delete tasks to assign event listener to buttons
     //
     for(let p = 0; p < taskDisplayArray.length; p++){//push all the display array to the previously emptied current list array for display if changing lists//
-        listArrayCurrent.push(taskDisplayArray[p])
+        listArrayCurrent.push(taskDisplayArray[p]) //saves temporary copy for when list is selected
      } 
-   
+     console.log(listArrayCurrent)
+     listArray[iTracker] = listArrayCurrent; //changes original array
 }
 
-
+let iTracker //itracker here connects directly above to pinLists. Lets me change the original array in
+//listArrays directly so that it doesn't reset when hitting the list button
 //for loop here assigns event listener to menu list buttons to display task information from storage arrays - IIFE//
 function assignButtons(){
     for(let i=0; i < btnArray.length;i++){ //Goes through each item in button array and assigns said event listener
@@ -143,7 +173,10 @@ function assignButtons(){
                 listNameDisplay.innerHTML = btnArray[i].innerHTML;
                 //selects the number in the listArray equivalent with the position in the buttonArray, allowing selection of the correct list//
                 //Button array cycles through at start of function & assigns the i valueto select the correct item in the array. This is PRE-DONE at beginning of function.
+                console.log(listArrayCurrent);
+                iTracker = i
                 listArrayCurrent = listArray[i];    //sets variable to be used so in nested loop so that nested loop doesn't move through to different part of the array through accidental incrementing//
+                console.log(listArrayCurrent)
                 listArrayCurrentName = listNameDisplay.innerHTML;
                 console.log(listArrayCurrentName)
             pinList();
