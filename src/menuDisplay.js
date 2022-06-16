@@ -44,31 +44,31 @@ function openLists (){
                 groceryListArray.innerHTML = 'Grocery List';
 
                 const laundry = new addTask(
-                    'laundry',
+                    '1',
                     'List for Week 4/4',
                     '4/10',
                     'High'
                 )
                 const laundry2 = new addTask(
-                    'laundry2',
+                    '2',
                     'List for Week 4/4',
                     '4/10',
                     'High'
                 )
                 const laundry3 = new addTask(
-                    'laundry3',
+                    '3',
                     'List for Week 4/4',
                     '4/10',
                     'High'
                 )
                 const laundry4 = new addTask(
-                    'laundry4',
+                    '4',
                     'List for Week 4/4',
                     '4/10',
                     'High'
                 )
                 const laundry5 = new addTask(
-                    'laundry5',
+                    '5',
                     'List for Week 4/4',
                     '4/10',
                     'High'
@@ -126,13 +126,12 @@ function openLists (){
         }
     }
 
-    addTask.prototype.saveFormerArrayPosition = function(){
-        this.formerArrayPosition = formerArrayPositionTracker;
-    }
 
 
 
- //pin list and assign buttons are fundmanetally connected because of listArrayCurrent, which is the array within the array//
+ //pin list and assign buttons are fundamentally connected because of listArrayCurrent, which is the array within the array//
+
+ //sorts the array between what is 
 function pinList(){
     taskDisplayArray = [] //Empty toe taskDisplay array from last run so that it doesn't overflow with old values
     taskExitBtnTracker = 0; //for setting ID
@@ -143,12 +142,12 @@ function pinList(){
         currentExitTaskButtonsArray = []; //Need to reset this array so that the i in deleteTasks doesn't continually count. Perhaps a bit too entertwined//
     }
 
-    for(let p = 0; p < listArrayCurrent.length; p++){ //push the current listArray to the taskDisplay array
+    for(let p = 0; p < listArrayCurrent.length; p++){ //push the unchecked items listArray to the taskDisplay array
         console.log(taskDisplayArray);
         sortTracker = listArrayCurrent[p]
         listArrayCurrent[p].sortUncheckedDisplayArray();
     } 
-    for(let p = 0; p < listArrayCurrent.length; p++){ //push the current listArray to the taskDisplay array
+    for(let p = 0; p < listArrayCurrent.length; p++){ //push the checked off items to the taskDisplay array so they pin below
         sortTracker = listArrayCurrent[p]
         listArrayCurrent[p].sortCheckedDisplayArray();
     } 
@@ -158,20 +157,18 @@ function pinList(){
         taskDisplayArray.push(crossedTasks[p])
     }
     for(let p = 0; p < taskDisplayArray.length; p++){  //display the taskDisplayArray
-        
         taskDisplayArray[p].displayList();
         taskExitBtnTracker++;
     } 
-    console.log('taskDisplayArray')
-    console.log(taskDisplayArray)
-    deleteTasks(); //run delete tasks to assign event listener to buttons
-    //
+    deleteTasks(); //run delete tasks to assign event listener to new checkoff buttons
+
     for(let p = 0; p < taskDisplayArray.length; p++){//push all the display array to the previously emptied current list array for display if changing lists//
         listArrayCurrent.push(taskDisplayArray[p]) //saves temporary copy for when list is selected
      } 
      console.log(listArrayCurrent)
-     listArray[iTracker] = listArrayCurrent; //changes original array
+     listArray[iTracker] = listArrayCurrent; //changes original array so that modifications save whens switching b/w lists
 }
+
 
 //listArrays directly so that it doesn't reset when hitting the list button
 //for loop here assigns event listener to menu list buttons to display task information from storage arrays - IIFE//
@@ -196,16 +193,25 @@ function assignButtons(){
     }
 };
 
+
+//this prototype saves positions for tracking
+addTask.prototype.saveFormerArrayPosition = function(){
+    this.formerArrayPosition = formerArrayPositionTracker;
+}
+
     //Assigns former array position for sorting
 function assignFormerPositions(){
-    for(let p = 0; p < listArrayCurrent.length; p++){ //push the current listArray to the taskDisplay array
+    
+    //sorts the current list to make sure everything gets its correct position number.
+    //This means crossed items retain their original position
+    listArrayCurrent.sort((a,b) => {
+        return a.formerArrayPosition - b.formerArrayPosition;
+    });
+    for(let p = 0; p < listArrayCurrent.length; p++){ //loop through current array assigning tracking number
         formerArrayPositionTracker = p;
-        listArrayCurrent[p].saveFormerArrayPosition();
-        taskDisplayArray.push(listArrayCurrent[p])
-        console.log(taskDisplayArray);
-    } 
-    //then dumps
-    taskDisplayArray = []
+        listArrayCurrent[p].saveFormerArrayPosition(); //saves current position through prototype
+        
+    }    
 }
 
 
@@ -232,7 +238,7 @@ function addTaskToList () {
                 'incomplete'
             )
         listArrayCurrent.push(userAddTask);
-        
+        assignFormerPositions();
         pinList();
         userTaskInput.value = ''
                 }
