@@ -1,10 +1,11 @@
 import addTask from './addTask';
-import {deleteTasks, crossedTasks} from './deleteTasks';
+import {deleteTasks} from './deleteTasks';
 
 //declare listArray here for export later
 let listArray = [];
 let btnArray = [];
 let listArrayCurrent;
+let listArrayCurrentName
 let currentExitTaskArray = [];
 
 
@@ -126,7 +127,8 @@ function assignButtons(){
                 //selects the number in the listArray equivalent with the position in the buttonArray, allowing selection of the correct list//
                 //Button array cycles through at start of function & assigns the i valueto select the correct item in the array. This is PRE-DONE at beginning of function.
                 listArrayCurrent = listArray[i];    //sets variable to be used so in nested loop so that nested loop doesn't move through to different part of the array through accidental incrementing//
-    
+                listArrayCurrentName = listNameDisplay.innerHTML;
+                console.log(listArrayCurrentName)
             pinList();
     })
     }
@@ -152,7 +154,8 @@ function addTaskToList () {
                 userTaskInputValue,
                 'List for Week 4/4',
                 '4/10',
-                'High'
+                'High',
+                'incomplete'
             )
         listArrayCurrent.push(userAddTask);
         pinList();
@@ -171,4 +174,4 @@ function easyExport(){
 }
 
 
-export {listArray, btnArray, listArrayCurrent, currentExitTaskArray, openLists, easyExport, assignButtons, pinList}
+export {listArray, btnArray, listArrayCurrent, listArrayCurrentName, currentExitTaskArray, openLists, easyExport, assignButtons, pinList}

@@ -1,38 +1,32 @@
 import addTask from "./addTask";
-import {currentExitTaskArray, listArrayCurrent, pinList } from "./menuDisplay"
+import {currentExitTaskArray, listArrayCurrent, listArrayCurrentName, pinList } from "./menuDisplay"
 
 let crossedTasks = [];
 function deleteTasks(){
 
+let formerArrayPositionTracker
     
 addTask.prototype.makeCrossed = function(){
-    this.completeStatus = 'crossed';
-
-   /* let taskFlexContainer = document.getElementById('taskFlexContainer');
-        let taskDisplayElement = document.createElement('p');
-            taskDisplayElement.innerHTML = this.taskName;
-            taskDisplayElement.classList.add('task','crossed');
-        let taskExitBtn = document.createElement('button');
-            taskExitBtn.classList.add('taskExitBtn', 'btn');
-            currentExitTaskArray.push(taskExitBtn);
-        let taskDisplayContainer = document.getElementById('taskDisplayContainer');
-        taskDisplayContainer.append(taskFlexContainer);
-        taskFlexContainer.append(taskExitBtn);
-        taskFlexContainer.append(taskDisplayElement);
-        */
+    if(this.completeStatus == undefined || this.completeStatus == 'incomplete'){
+    this.completeStatus = 'crossed'; //changes to crossed out & moves to bottom array//
+    this.formerArrayPosition = formerArrayPositionTracker;
+    console.log(this.formerArrayPosition)
+    }
+    else if(this.completeStatus == 'crossed'){
+        this.completeStatus = 'incomplete';
+    }
 }
 
     function moveFromTBDToComplete(){
         for(let i=0; i<currentExitTaskArray.length; i++){
             currentExitTaskArray[i].addEventListener('click', () =>{
+                formerArrayPositionTracker = i;
                 crossedTasks.push(listArrayCurrent[i]);
                 console.log('i='+i);
                 listArrayCurrent.splice(i,1);
-                
                 for (let p=0;p<crossedTasks.length;p++){
                     crossedTasks[p].makeCrossed();
                     listArrayCurrent.push(crossedTasks[p]);
-
                 }
                 //listArrayCurrent.push(crossedTasks);
                 console.log('crossedTasks')
@@ -51,4 +45,4 @@ addTask.prototype.makeCrossed = function(){
 }
 
 
-export {deleteTasks, crossedTasks}
+export {deleteTasks}
