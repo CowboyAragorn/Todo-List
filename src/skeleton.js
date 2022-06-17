@@ -82,7 +82,7 @@ export default function skeleton (){
                     listDisplayTaskbar.append(listNameDisplay);
                 let listExitBtn = document.createElement('button');
                     listExitBtn.id = 'listExitBtn';
-                    listExitBtn.classList = 'btn';
+                    listExitBtn.classList.add('btn','listExitBtn');
                     listExitBtn.innerHTML = 'x'
                     listDisplayTaskbar.append(listExitBtn);
 

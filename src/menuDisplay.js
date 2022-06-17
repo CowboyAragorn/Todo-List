@@ -87,7 +87,7 @@ function openLists (){
 
    //This prototype is being called to display the categories from the lists on to the popup, it also creates the buttons//
    addTask.prototype.displayList = function(){
-        let taskFlexContainer = document.createElement('div');
+        let taskFlexContainer = document.createElement('button'); //It being a button makes it clickable
             taskFlexContainer.id = 'taskFlexContainer';
             taskFlexContainer.classList = 'taskFlex'
         //buttons to cross a task off, moving it to bottom of the array//
@@ -99,7 +99,8 @@ function openLists (){
             taskDisplayElement.classList = 'task';
         //buttons to remove a task from the array after being crossed off
         let deleteTaskBtn = document.createElement('button');
-            deleteTaskBtn.classList.add('deleteTasktBtn', 'btn', 'taskCrossBtn');
+            deleteTaskBtn.classList.add('deleteTaskBtn', 'btn', 'taskCrossBtn');
+            deleteTaskBtn.innerHTML = 'X';
         //append everything
         let taskDisplayContainer = document.getElementById('taskDisplayContainer');
         taskDisplayContainer.append(taskFlexContainer);
@@ -108,7 +109,9 @@ function openLists (){
         //if crossed, make it look crossed and append the final delete button
         if(this.completeStatus == 'crossed'){ //tracks complete status modified in deleteTasks//
             taskDisplayElement.classList.add('crossed');
-            taskFlexContainer.classList.add('crossed');
+            taskFlexContainer.classList.add('crossedColors');
+            taskCrossBtn.classList.add('crossedTaskBtn');
+            taskCrossBtn.innerHTML = '\u2713';
             this.deleteEligible = 'eligible';//Make it eligible for deletion
             deleteTaskButtonsArray.push(deleteTaskBtn); //push to an array of buttons for deleting tasks, needs to be here so that it doesn't append invisible buttons//
             taskFlexContainer.append(deleteTaskBtn);
@@ -116,6 +119,7 @@ function openLists (){
         //Make sure something can't be deleted//
         else{
             this.deleteEligible = 'ineligible';
+            taskCrossBtn.innerHTML = '';
         }
  }
 

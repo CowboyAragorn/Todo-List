@@ -75,7 +75,7 @@ body{
 
 
 #taskPopoutBoxContainer{
-    height: 500pt;
+    height: 550pt;
     width: 300pt;
     border-radius: 4%;
     margin-left: 50pt;
@@ -88,7 +88,7 @@ body{
    height: 100%;
    width: 100%;
     background-color: white;
-    border: 1pt grey inset;
+    border: 1pt #d8d8d8 inset;
     border-radius: 4%;
     display: flex;
     flex-direction: column;
@@ -102,39 +102,81 @@ body{
     justify-content: space-between;
     margin: 0;
 }
+#listNameDisplay{
+    display: flex;
+    align-items: center;
+    padding: 5pt;
+}
+.listExitBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
 
 #taskDisplayContainer{
     display: flex;
     flex-direction: column;
+    overflow: auto;
     background-color: whitesmoke;
-    height: 70%;
+    height: 90%;
     width: 100%;
-    gap: 10pt;
-    padding-top: 10%
+    margin: 0;
     
 }
 
 #taskFlexContainer{
     display: flex;
     height: fit-content;
-    gap: 10%;
-    height: fit-content;
+    align-items: center;
+    background-color: whitesmoke;
+    border: none;
+    gap:2%;
+    font-size: 11pt;
 }
 .taskCrossBtn{
-    height: 100%;
+    height: 50%;
     border-radius: 15px;
     margin-left: 5%;
+    padding: 6pt;
+    border: 1pt, black, solid;
 }
 
 .task{
+    display: flex;
     margin: 0;
+    padding: 5pt;
+    width: 100%;
     
 }
 
+/*Crossout achieved with linear gradient, shamelessly took this*/
 .crossed{
-    text-decoration: line-through;
+    background: linear-gradient(180deg, 
+        rgba(0,0,0,0) calc(50% - 1px), 
+        rgba(192,192,192,1) calc(50%), 
+        rgba(0,0,0,0) calc(50% + 1px)
+        );
 }
 
+.crossedColors{
+    color: #d8d8d8;
+
+}
+.deleteTaskBtn, .crossedTaskBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    width: 16px;
+    height: 16px;
+    font-size: 8pt;
+    background-color: #d8d8d8;
+    color: white;
+}
+.deleteTaskBtn{
+    margin: 0;
+}
 
 #inputContainer{
     display: flex;
@@ -188,7 +230,7 @@ body{
     background-color: white;
     margin-left: 7%;
     margin-bottom: 4%;
-    border: 1pt grey inset;
+    border: 1pt #d8d8d8 inset;
     border-radius: 4%;
     display: flex;
     flex-direction: column;
@@ -240,7 +282,7 @@ Prior add list container that was not full screen popout
     background-color: white;
     margin-left: 7%;
     margin-bottom: 4%;
-    border: 1pt grey inset;
+    border: 1pt #d8d8d8 inset;
     border-radius: 4%;
     display: flex;
     flex-direction: column;
