@@ -22,13 +22,17 @@ let taskPopoutBox = document.getElementById('taskPopoutBox');
     popoutArray.push(taskPopoutBox);
 const addListPopoutBoxContainer = document.getElementById('addListPopoutBoxContainer');
     popoutArray.push(addListPopoutBoxContainer);
-   
+let taskInfoPopoutBox = document.getElementById('taskInfoPopoutBox')
+
 
 //In order, link the arrays 1 to 1 and assign the event listener to close that item of the array//
 for(let i=0; i<closePopupsArray.length;i++){
 closePopupsArray[i].addEventListener('click', () =>{
      popoutArray[i].style.display = 'none'; //Erasing popup display from sight until clicking a list//
-})
+    if (popoutArray[i] == taskPopoutBox){//not elegant//
+        taskInfoPopoutBox.style.display = 'none';
+    }
+    })
 }
 }
 

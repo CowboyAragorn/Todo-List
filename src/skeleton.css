@@ -74,7 +74,7 @@ body{
 
 
 
-#taskPopoutBoxContainer{
+#taskPopoutBoxContainer, #taskInfoPopoutContainer{
     height: 550pt;
     width: 300pt;
     border-radius: 4%;
@@ -84,7 +84,7 @@ body{
     margin-bottom: 3%;;
 }
 
-#taskPopoutBox{
+#taskPopoutBox, #taskInfoPopoutBox{
    height: 100%;
    width: 100%;
     background-color: white;
@@ -95,14 +95,14 @@ body{
     justify-content: space-between;
 }
 
-.listDisplayTaskbar{
+.listDisplayTaskbar, #taskTitleDisplayBox {
     width: 100%;
     height: 10%;
     display: flex;
     justify-content: space-between;
     margin: 0;
 }
-#listNameDisplay{
+#listNameDisplay, #taskTitleDisplay{
     display: flex;
     align-items: center;
     padding: 5pt;
@@ -114,7 +114,7 @@ body{
     
 }
 
-#taskDisplayContainer{
+#taskDisplayContainer, #taskInfoDisplayContainer{
     display: flex;
     flex-direction: column;
     overflow: auto;
@@ -132,7 +132,7 @@ body{
     background-color: whitesmoke;
     border: none;
     gap:2%;
-    font-size: 11pt;
+    font-size: 13pt;
 }
 .taskCrossBtn{
     height: 50%;
@@ -160,7 +160,7 @@ body{
 }
 
 .crossedColors{
-    color: #d8d8d8;
+    color: grey;
 
 }
 .deleteTaskBtn, .crossedTaskBtn{
@@ -168,14 +168,18 @@ body{
     justify-content: center;
     align-items: center;
     padding: 8px;
-    width: 16px;
-    height: 16px;
-    font-size: 8pt;
-    background-color: #d8d8d8;
+    width: 20px;
+    height: 20px;
+    font-size: 11pt;
+    background-color: grey;
     color: white;
+    border: none;
 }
 .deleteTaskBtn{
     margin: 0;
+}
+.crossedTaskBtn{
+    font-size: 14pt;
 }
 
 #inputContainer{

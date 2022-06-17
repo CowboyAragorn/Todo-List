@@ -27,7 +27,7 @@ function deleteTasks(){
                 prototypeTrackerBecauseIIsOutOfScope = i
                 taskDisplayArray[i].makeCrossed(); //Change the task to either crossed or uncrossed
                 pinList(); //Put everyone back on the board
-                  
+                event.stopImmediatePropagation();                  
                 })
             }
             crossedTasks = [] //empty crossed tasks since all of these gents are in listArrayCurrent back in pinList
@@ -65,6 +65,7 @@ function deleteTasks(){
                     currentArrayPositionTracker(); //Find the current position of my task
                     deleteEligibleArray[i].deleteTask();//delete that task, finding it in my array of eligible deletions
                     pinList(); //Put everyone back on the board
+                    event.stopImmediatePropagation();   //stops it from bubbling to outside button
                   })
             };
     }

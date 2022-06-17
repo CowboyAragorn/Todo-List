@@ -54,13 +54,7 @@ export default function skeleton (){
                 houseList.classList.add('btn', 'listBtn')
                 currentListsFlexContainer.append(houseList)
             
-            
-
-
-
-
-
-//Right hand display for tasks and interactions includes popout boxes//
+//Right hand popup for tasks and interactions includes popout boxes//
     let taskAndListContainer = document.createElement('div');
         taskAndListContainer.id = 'taskAndListContainer';
 
@@ -70,6 +64,7 @@ export default function skeleton (){
         taskAndListContainer.append(taskPopoutBoxContainer)
         let taskPopoutBox = document.createElement('div');
             taskPopoutBox.id = 'taskPopoutBox';
+            taskPopoutBox.classList.add('taskPopoutBox')
             taskPopoutBoxContainer.append(taskPopoutBox);
 
             let listDisplayTaskbar = document.createElement('div');
@@ -104,6 +99,62 @@ export default function skeleton (){
                     addTaskBtn.innerHTML = '+';
                     inputContainer.append(addTaskBtn);
 
+
+//Task info right next to task popout box//
+let taskInfoPopoutContainer = document.createElement('div');
+    taskInfoPopoutContainer.id = 'taskInfoPopoutContainer';
+    taskAndListContainer.append(taskInfoPopoutContainer)
+let taskInfoPopoutBox = document.createElement('div');
+    taskInfoPopoutBox.id = 'taskInfoPopoutBox';
+    taskInfoPopoutBox.classList.add('taskPopoutBox')
+    taskInfoPopoutContainer.append(taskInfoPopoutBox);
+//title display
+    let taskTitleDisplayBox = document.createElement('div');
+        taskTitleDisplayBox.id = 'taskTitleDisplayBox';
+        taskTitleDisplayBox.classList = 'listHeaders';
+        taskInfoPopoutBox.append(taskTitleDisplayBox);
+        let taskTitleDisplay = document.createElement('div');
+            taskTitleDisplay.id = 'taskTitleDisplay';
+            taskTitleDisplay.classList = 'listHeaders';
+            taskTitleDisplayBox.append(taskTitleDisplay);
+//info display with titles & boxes hardcoded in, but filled in displayTaskDetails
+    let taskInfoDisplayContainer = document.createElement('div');
+            taskInfoDisplayContainer.id = 'taskInfoDisplayContainer'
+            taskInfoPopoutBox.append(taskInfoDisplayContainer)
+        let dueDateDisplayContainer = document.createElement('div');
+            dueDateDisplayContainer.id = "dueDateDisplayContainer"
+            taskInfoDisplayContainer.append(dueDateDisplayContainer);
+                let dueDateTitle = document.createElement('div');
+                    dueDateTitle.id = 'dueDateTitle';
+                    dueDateTitle.innerHTML = 'Finish by';
+                    dueDateDisplayContainer.append(dueDateTitle);
+                let dueDateDisplay = document.createElement('div');
+                    dueDateDisplay.id = 'dueDateDisplay';
+                    dueDateDisplayContainer.append(dueDateDisplay);
+
+        let priorityDisplayContainer = document.createElement('div');
+            priorityDisplayContainer.id = "priorityDisplayContainer"
+            taskInfoDisplayContainer.append(priorityDisplayContainer);
+                let priorityTitle = document.createElement('div');
+                    priorityTitle.id = 'priorityTitle';
+                    priorityTitle.innerHTML = 'Priority Level';
+                    priorityDisplayContainer.append(priorityTitle);
+                let priorityDisplay = document.createElement('div');
+                    priorityDisplay.id = 'priorityDisplay';
+                    priorityDisplayContainer.append(priorityDisplay);
+        let descriptionDisplayContainer = document.createElement('div');
+            descriptionDisplayContainer.id = "descriptionDisplayContainer"
+            taskInfoDisplayContainer.append(descriptionDisplayContainer);
+                let descriptionTitle = document.createElement('div');
+                    descriptionTitle.id = 'descriptionTitle';
+                    descriptionTitle.innerHTML = 'Notes';
+                    descriptionDisplayContainer.append(descriptionTitle);
+                let descriptionDisplay = document.createElement('div');
+                    descriptionDisplay.id = 'descriptionDisplay';
+                    descriptionDisplayContainer.append(descriptionDisplay);
+            
+
+    
 
     //addList popout box - created so that it disallows clicking outside the box//
     let addListPopoutBoxContainer = document.createElement('div');

@@ -1,5 +1,6 @@
 import addTask from './addTask';
 import {deleteTasks, crossedTasks} from './deleteTasks';
+import displayTaskDetails from './displayTaskDetails';
 
 //declare listArray here for export later
 let listArray = []
@@ -19,6 +20,7 @@ let formerArrayPositionTracker
 //This function controls display on the popup. This includes clicks from the side menu, additions from the popup//
 function openLists (){
     //taskPopoutBox.style.display = 'none'; //Defaults popup to invisible before a list is clicked
+    //taskInfoPopoutBox.style.display = 'none';
     //Displays the addToList popup when clicked in menu
     addListBtn.addEventListener('click', () =>{
         addListPopoutBoxContainer.style.display = 'block'
@@ -33,14 +35,14 @@ function openLists (){
             const wedGrocery = new addTask(
                 'Pears',
                 'List for Week 4/4',
-                '4/10',
-                'High'
+                '4/11',
+                'Medium'
             )
             const fridayGrocery = new addTask(
                 'Grapes',
                 'List for Week 4/4',
-                '4/10',
-                'High'
+                '4/12',
+                'Low'
             )
             let groceryListArray = [mondayGrocery, wedGrocery, fridayGrocery,];
                 groceryListArray.innerHTML = 'Grocery List';
@@ -186,7 +188,8 @@ function pinList(){
      console.log('listArrayCurrentAtEndOfPinning')
      console.log(listArrayCurrent)
      listArray[iTracker] = listArrayCurrent; //changes original array so that modifications save whens switching b/w lists
-}
+     displayTaskDetails();
+    }
 
 
 //listArrays directly so that it doesn't reset when hitting the list button
@@ -195,14 +198,22 @@ function assignButtons(){
     for(let i=0; i < btnArray.length;i++){ //Goes through each item in button array and assigns said event listener
         btnArray[i].addEventListener('click', () =>{
             let taskPopoutBox = document.getElementById('taskPopoutBox');
-            taskPopoutBox.style.display = 'flex'; //makes the popout list box appear when clicking the list button on side menu
+            let taskInfoPopoutBox = document.getElementById('taskInfoPopoutBox')
+            console.log('listArrayCurrentAssignBtn')
+            console.log(listArrayCurrent)
             let listNameDisplay = document.getElementById('listNameDisplay');
                 listNameDisplay.innerHTML = btnArray[i].innerHTML;
                 //selects the number in the listArray equivalent with the position in the buttonArray, allowing selection of the correct list//
                 //Button array cycles through at start of function & assigns the i valueto select the correct item in the array. This is PRE-DONE at beginning of function.
-                console.log(listArrayCurrent);
                 iTracker = i
                 listArrayCurrent = listArray[i];    //sets variable to be used so in nested loop so that nested loop doesn't move through to different part of the array through accidental incrementing//
+                taskPopoutBox.style.display = 'flex'; //makes the popout list box appear when clicking the list button on side menu
+                if(listArrayCurrent.length > 0){ //determines if the details screen shows up. Won't show if no tasks to display details for//
+                    taskInfoPopoutBox.style.display = 'flex';
+                }
+                else if (listArrayCurrent.length <= 0){
+                    taskInfoPopoutBox.style.display = 'none';
+                }
                 console.log(listArrayCurrent)
                 listArrayCurrentName = listNameDisplay.innerHTML;
                 console.log(listArrayCurrentName)

@@ -10,3 +10,4 @@ export default function addTask(taskName, description, dueDate,
     this.formerArrayPosition = formerArrayPosition
     this.currentArrayPosition = currentArrayPosition
 }
+
