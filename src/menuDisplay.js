@@ -7,6 +7,7 @@ let btnArray = [];
 let listArrayCurrent;
 let listArrayCurrentName
 let currentExitTaskButtonsArray = [];
+let deleteTaskButtonsArray = [];
 let taskDisplayArray = [];
 let taskExitBtnTracker;
 let sortTracker;
@@ -83,25 +84,33 @@ function openLists (){
         listArray = [groceryListArray, houseListArray,]
 }
 
-   //This prototype is being called to display the categories from the lists on to the popup//
+   //This prototype is being called to display the categories from the lists on to the popup, it also creates the buttons//
    addTask.prototype.displayList = function(){
         let taskFlexContainer = document.createElement('div');
-        taskFlexContainer.id = 'taskFlexContainer';
-        taskFlexContainer.classList = 'taskFlex'
-        taskFlexContainer.classList.add(taskExitBtnTracker);
+            taskFlexContainer.id = 'taskFlexContainer';
+            taskFlexContainer.classList = 'taskFlex'
+            taskFlexContainer.classList.add(taskExitBtnTracker);
+        //buttons to cross a task off, moving it to bottom of the array//
+        let taskCrossBtn = document.createElement('button');
+            taskCrossBtn.classList.add('taskCrossBtn', 'btn');
+            currentExitTaskButtonsArray.push(taskCrossBtn); //array of buttons for crossing tasks//
         let taskDisplayElement = document.createElement('p');
             taskDisplayElement.innerHTML = this.taskName;
             taskDisplayElement.classList = 'task';
-            if(this.completeStatus == 'crossed'){ //tracks complete status modified in deleteTasks//
-                taskDisplayElement.classList.add('crossed');
-            }
-        let taskExitBtn = document.createElement('button');
-            taskExitBtn.classList.add('taskExitBtn', 'btn');
-            currentExitTaskButtonsArray.push(taskExitBtn); //array of buttons for crossing tasks//
+        //buttons to remove a task from the array after being crossed off
+        let deleteTaskBtn = document.createElement('button');
+            deleteTaskBtn.classList.add('deleteTasktBtn', 'btn', 'taskCrossBtn');
+            deleteTaskButtonsArray.push(deleteTaskBtn); //array of buttons for deleting tasks//
         let taskDisplayContainer = document.getElementById('taskDisplayContainer');
         taskDisplayContainer.append(taskFlexContainer);
-        taskFlexContainer.append(taskExitBtn);
+        taskFlexContainer.append(taskCrossBtn);
         taskFlexContainer.append(taskDisplayElement);
+        //if crossed, make it look crossed and append the final delete button
+        if(this.completeStatus == 'crossed'){ //tracks complete status modified in deleteTasks//
+            taskDisplayElement.classList.add('crossed');
+            taskFlexContainer.classList.add('crossed');
+            taskFlexContainer.append(deleteTaskBtn);
+        }
  }
 
 //These two prototypes work with pinList to sort the displayed by checked/unchecked

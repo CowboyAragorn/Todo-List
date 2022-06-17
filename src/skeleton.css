@@ -120,7 +120,7 @@ body{
     gap: 10%;
     height: fit-content;
 }
-.taskExitBtn{
+.taskCrossBtn{
     height: 100%;
     border-radius: 15px;
     margin-left: 5%;

@@ -6,22 +6,13 @@ function deleteTasks(){
 
 
 let prototypeTrackerBecauseIIsOutOfScope
-    
+
+//allows switching between crossed & uncrossed
 addTask.prototype.makeCrossed = function(){
     if(this.completeStatus == undefined || this.completeStatus == 'incomplete'){ //if uncrossed
-        console.log(prototypeTrackerBecauseIIsOutOfScope)
         crossedTasks.push(listArrayCurrent[prototypeTrackerBecauseIIsOutOfScope]); //Move my corresponding listArrayCurrent member into crossedTasks
-        console.log('crossedTasks')
-        console.log(crossedTasks);
         listArrayCurrent.splice(prototypeTrackerBecauseIIsOutOfScope,1); //Remove him from the list array
-        console.log('listArrayCurrent');
-        console.log(listArrayCurrent);
-    
-        console.log('taskDisplayArrayinDelete')
-        console.log(taskDisplayArray)
-    
         this.completeStatus = 'crossed'; //changes to crossed out & moves to bottom array//
-
     }
     else if(this.completeStatus == 'crossed'){ //if crossed
         this.completeStatus = 'incomplete';
