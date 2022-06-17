@@ -2,17 +2,18 @@ import addTask from './addTask';
 import {deleteTasks, crossedTasks} from './deleteTasks';
 
 //declare listArray here for export later
-let listArray = [];
-let btnArray = [];
-let listArrayCurrent;
+let listArray = []
+let btnArray = []
+let listArrayCurrent
 let listArrayCurrentName
-let currentExitTaskButtonsArray = [];
-let deleteTaskButtonsArray = [];
-let taskDisplayArray = [];
-let taskExitBtnTracker;
-let sortTracker;
-let iTracker //itracker here connects directly above to pinLists. Lets me change the original array in
-let formerArrayPositionTracker;
+let currentCrossTaskButtonsArray = []
+let deleteTaskButtonsArray = []
+let taskDisplayArray = []
+let sortTracker
+let iTracker//itracker here connects directly above to pinLists. Lets me change the original array in
+let formerArrayPositionTracker
+
+
 
 
 //This function controls display on the popup. This includes clicks from the side menu, additions from the popup//
@@ -89,18 +90,18 @@ function openLists (){
         let taskFlexContainer = document.createElement('div');
             taskFlexContainer.id = 'taskFlexContainer';
             taskFlexContainer.classList = 'taskFlex'
-            taskFlexContainer.classList.add(taskExitBtnTracker);
         //buttons to cross a task off, moving it to bottom of the array//
         let taskCrossBtn = document.createElement('button');
             taskCrossBtn.classList.add('taskCrossBtn', 'btn');
-            currentExitTaskButtonsArray.push(taskCrossBtn); //array of buttons for crossing tasks//
+            currentCrossTaskButtonsArray.push(taskCrossBtn); //array of buttons for crossing tasks//
         let taskDisplayElement = document.createElement('p');
             taskDisplayElement.innerHTML = this.taskName;
             taskDisplayElement.classList = 'task';
         //buttons to remove a task from the array after being crossed off
         let deleteTaskBtn = document.createElement('button');
             deleteTaskBtn.classList.add('deleteTasktBtn', 'btn', 'taskCrossBtn');
-            deleteTaskButtonsArray.push(deleteTaskBtn); //array of buttons for deleting tasks//
+            deleteTaskButtonsArray.push(deleteTaskBtn); //push to an array of buttons for deleting tasks//
+        //append everything
         let taskDisplayContainer = document.getElementById('taskDisplayContainer');
         taskDisplayContainer.append(taskFlexContainer);
         taskFlexContainer.append(taskCrossBtn);
@@ -142,13 +143,14 @@ function openLists (){
 
  //sorts the array between what is 
 function pinList(){
-    taskDisplayArray = [] //Empty toe taskDisplay array from last run so that it doesn't overflow with old values
-    taskExitBtnTracker = 0; //for setting ID
+    taskDisplayArray = [] //Empty the taskDisplay array from last run so that it doesn't overflow with old values
     const elements = document.getElementsByClassName('taskFlex');
-    while(elements.length > 0){ //Emptys the visual display for repinning
+    //Empties the visual display for repinning
+    while(elements.length > 0){ 
         taskDisplayContainer.removeChild(elements[0]);
-        taskExitBtnTracker = 0;
-        currentExitTaskButtonsArray = []; //Need to reset this array so that the i in deleteTasks doesn't continually count. Perhaps a bit too entertwined//
+      
+        currentCrossTaskButtonsArray = []; //Need to reset this array so that the i in deleteTasks doesn't continually count. Perhaps a bit too entertwined//
+        deleteTaskButtonsArray = []; //same
     }
 
     for(let p = 0; p < listArrayCurrent.length; p++){ //push the unchecked items listArray to the taskDisplay array
@@ -167,7 +169,6 @@ function pinList(){
     }
     for(let p = 0; p < taskDisplayArray.length; p++){  //display the taskDisplayArray
         taskDisplayArray[p].displayList();
-        taskExitBtnTracker++;
     } 
     deleteTasks(); //run delete tasks to assign event listener to new checkoff buttons
 
@@ -264,4 +265,7 @@ function easyExport(){
 }
 
 
-export {listArray, btnArray, listArrayCurrent, taskDisplayArray, listArrayCurrentName, currentExitTaskButtonsArray, openLists, easyExport, assignButtons, pinList}
+export {listArray, btnArray, listArrayCurrent, taskDisplayArray, listArrayCurrentName, 
+        currentCrossTaskButtonsArray, deleteTaskButtonsArray}
+
+export {openLists, easyExport,assignButtons, pinList} 
