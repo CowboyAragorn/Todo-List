@@ -5,6 +5,10 @@ import { listArrayCurrent, taskDisplayArray,
 let crossedTasks = [];
 function deleteTasks(){
     let prototypeTrackerBecauseIIsOutOfScope
+    let corralEligibiltyTracker
+    let deleteEligibleArray = []
+    //let deleteTaskTracker
+
     //allows switching between crossed & uncrossed
     addTask.prototype.makeCrossed = function(){
         if(this.completeStatus == undefined || this.completeStatus == 'incomplete'){ //if uncrossed
@@ -28,17 +32,50 @@ function deleteTasks(){
             }
             crossedTasks = [] //empty crossed tasks since all of these gents are in listArrayCurrent back in pinList
     }
+
+    //Following functions are for deleting already crossed tasks
+    //Puts all the eligible for delete tasks into an array//
+     function corralDeleteEligibleIntoArray(){
+        for(let i=0; i<taskDisplayArray.length; i++){
+            corralEligibiltyTracker = i;//Track i to be used in prototype
+            taskDisplayArray[i].deleteEligibleHerder();
+        }
+    }
+    addTask.prototype.deleteEligibleHerder = function(){
+        if(this.deleteEligible == 'eligible'){ //If eligbile for deletion
+            deleteEligibleArray.push(taskDisplayArray[corralEligibiltyTracker])//Put into the delete array
+        }
+    }
+
+    //Saves tasks current position in the listArray so they can be accurately deleted when crossed//
+    function currentArrayPositionTracker (){
+        for(let p = 0; p < listArrayCurrent.length; p++){ //loop through current array assigning tracking number
+            currentArrayPositionTracker = p;//tracker for i
+            listArrayCurrent[p].saveCurrentArrayPosition(); //saves current position through prototype
+            
+        }    
+    }
+    addTask.prototype.saveCurrentArrayPosition = function(){
+        this.currentArrayPosition = currentArrayPositionTracker;//current position is tracker position
+    }
+    //Assigns event listeners to the delete buttons for deletion//
     function assignDeleteTasksEventListeners(){
         for(let i=0; i<deleteTaskButtonsArray.length; i++){
                 deleteTaskButtonsArray[i].addEventListener('click', () =>{ //for every button on the list, when I am clicked
-                pinList(); //Put everyone back on the board
-                  
-                        })
+                    currentArrayPositionTracker(); //Find the current position of my task
+                    deleteEligibleArray[i].deleteTask();//delete that task, finding it in my array of eligible deletions
+                    pinList(); //Put everyone back on the board
+                  })
             };
     }
+    addTask.prototype.deleteTask = function(){
+        let currentPositionTracker = this.currentArrayPosition//find current position
+        listArrayCurrent.splice(currentPositionTracker,1)//remove it from the currentListArray
+    }
 
-    assignCrossedTasksEventListeners();
-    assignDeleteTasksEventListeners();
+    assignCrossedTasksEventListeners();//assign event listeners for cross buttons
+    corralDeleteEligibleIntoArray(); //corral all my eligible deletions
+    assignDeleteTasksEventListeners(); //assign event listeners for deletions
 }
 
 

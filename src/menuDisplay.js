@@ -100,7 +100,6 @@ function openLists (){
         //buttons to remove a task from the array after being crossed off
         let deleteTaskBtn = document.createElement('button');
             deleteTaskBtn.classList.add('deleteTasktBtn', 'btn', 'taskCrossBtn');
-            deleteTaskButtonsArray.push(deleteTaskBtn); //push to an array of buttons for deleting tasks//
         //append everything
         let taskDisplayContainer = document.getElementById('taskDisplayContainer');
         taskDisplayContainer.append(taskFlexContainer);
@@ -110,14 +109,20 @@ function openLists (){
         if(this.completeStatus == 'crossed'){ //tracks complete status modified in deleteTasks//
             taskDisplayElement.classList.add('crossed');
             taskFlexContainer.classList.add('crossed');
+            this.deleteEligible = 'eligible';//Make it eligible for deletion
+            deleteTaskButtonsArray.push(deleteTaskBtn); //push to an array of buttons for deleting tasks, needs to be here so that it doesn't append invisible buttons//
             taskFlexContainer.append(deleteTaskBtn);
+        }
+        //Make sure something can't be deleted//
+        else{
+            this.deleteEligible = 'ineligible';
         }
  }
 
 //These two prototypes work with pinList to sort the displayed by checked/unchecked
     addTask.prototype.sortUncheckedDisplayArray = function(){
         if(this.completeStatus == undefined || this.completeStatus == 'incomplete'){ //if uncrossed
-            taskDisplayArray.push(sortTracker)
+            taskDisplayArray.push(sortTracker) //sortTracker is listArrayCurrent
             taskDisplayArray.sort((a,b) => {
                 return a.formerArrayPosition - b.formerArrayPosition;
             });
@@ -154,7 +159,6 @@ function pinList(){
     }
 
     for(let p = 0; p < listArrayCurrent.length; p++){ //push the unchecked items listArray to the taskDisplay array
-        console.log(taskDisplayArray);
         sortTracker = listArrayCurrent[p]
         listArrayCurrent[p].sortUncheckedDisplayArray();
     } 
@@ -175,6 +179,7 @@ function pinList(){
     for(let p = 0; p < taskDisplayArray.length; p++){//push all the display array to the previously emptied current list array for display if changing lists//
         listArrayCurrent.push(taskDisplayArray[p]) //saves temporary copy for when list is selected
      } 
+     console.log('listArrayCurrentAtEndOfPinning')
      console.log(listArrayCurrent)
      listArray[iTracker] = listArrayCurrent; //changes original array so that modifications save whens switching b/w lists
 }
