@@ -2,6 +2,7 @@ import addTask from './addTask';
 import {deleteTasks, crossedTasks} from './deleteTasks';
 import displayTaskDetails from './displayTaskDetails';
 
+
 //declare listArray here for export later
 let listArray = []
 let btnArray = []
@@ -21,10 +22,9 @@ let formerArrayPositionTracker
 function openLists (){
     //taskPopoutBox.style.display = 'none'; //Defaults popup to invisible before a list is clicked
     //taskInfoPopoutBox.style.display = 'none';
+    
     //Displays the addToList popup when clicked in menu
-    addListBtn.addEventListener('click', () =>{
-        addListPopoutBoxContainer.style.display = 'block'
-    })
+   
         //Preset lists//
             const mondayGrocery = new addTask(
                 'Oranges',

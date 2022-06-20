@@ -126,17 +126,25 @@ let taskInfoPopoutBox = document.createElement('div');
             taskInfoDisplayContainer.append(dueDateDisplayContainer);
                 let dueDateTitle = document.createElement('div');
                     dueDateTitle.id = 'dueDateTitle';
+                    dueDateTitle.classList.add('infoTitle');
                     dueDateTitle.innerHTML = 'Finish by';
                     dueDateDisplayContainer.append(dueDateTitle);
                 let dueDateDisplay = document.createElement('div');
                     dueDateDisplay.id = 'dueDateDisplay';
                     dueDateDisplayContainer.append(dueDateDisplay);
+                let changeDueDateBtn = document.createElement('button');
+                    changeDueDateBtn.id = 'changeDueDateBtn';
+                    changeDueDateBtn.classList.add('btn');
+                    dueDateDisplayContainer.append(changeDueDateBtn);
+               
+                    
 
         let priorityDisplayContainer = document.createElement('div');
             priorityDisplayContainer.id = "priorityDisplayContainer"
             taskInfoDisplayContainer.append(priorityDisplayContainer);
                 let priorityTitle = document.createElement('div');
                     priorityTitle.id = 'priorityTitle';
+                    priorityTitle.classList.add('infoTitle');
                     priorityTitle.innerHTML = 'Priority Level';
                     priorityDisplayContainer.append(priorityTitle);
                 let priorityDisplay = document.createElement('div');
@@ -147,6 +155,7 @@ let taskInfoPopoutBox = document.createElement('div');
             taskInfoDisplayContainer.append(descriptionDisplayContainer);
                 let descriptionTitle = document.createElement('div');
                     descriptionTitle.id = 'descriptionTitle';
+                    descriptionTitle.classList.add('infoTitle');
                     descriptionTitle.innerHTML = 'Notes';
                     descriptionDisplayContainer.append(descriptionTitle);
                 let descriptionDisplay = document.createElement('div');
@@ -174,8 +183,7 @@ let taskInfoPopoutBox = document.createElement('div');
                 addListPopoutBox.append(addListDisplayTaskbar);
             let addListNameDisplay = document.createElement('div');
                     addListNameDisplay.id = 'addListNameDisplay';
-                    addListNameDisplay.innerHTML = 'Name This List';
-                    addListNameDisplay.classList = 'listHeaders';
+                    addListNameDisplay.classList.add('listHeaders');
                     addListDisplayTaskbar.append(addListNameDisplay);
             let addListExitBtn = document.createElement('button');
                     addListExitBtn.id = 'addListExitBtn';
@@ -186,16 +194,30 @@ let taskInfoPopoutBox = document.createElement('div');
         let addListInputContainer = document.createElement('div');
                 addListInputContainer.id = 'addListInputContainer';
                 addListPopoutBox.append(addListInputContainer)
+            /*
                 let userListInput = document.createElement('input');
                     userListInput.type = 'text';
                     userListInput.id = 'userListInput';
+                    userListInput.classList.add('popoutItem')
                     addListInputContainer.append(userListInput);
                 let addListPopupBtn = document.createElement('button');
                     addListPopupBtn.id = 'addListPopupBtn';
-                    addListPopupBtn.classList = 'btn';
+                    addListPopupBtn.classList.add('btn','popoutItem');
                     addListPopupBtn.innerHTML = '+';
                     addListInputContainer.append(addListPopupBtn);
     
+
+
+        //Add date popout items
+        let calendar = document.createElement('input');
+            calendar.type = 'datetime-local';
+            calendar.id = 'calendar';
+            calendar.classList.add('popoutItem');
+            addListInputContainer.append(calendar)
+*/
+
+
+
     base.append(menuBarContainer);
     base.append(taskAndListContainer);
 };

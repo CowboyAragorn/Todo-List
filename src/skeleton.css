@@ -61,153 +61,176 @@ body{
 
 
 /* right hand tasks display and interactions popup*/
-#taskAndListContainer{
-    height: 100%;
-    width: 85%;
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Tiny_Babbling_Brook.jpg/2560px-Tiny_Babbling_Brook.jpg');
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    align-items:flex-end;
-}
+        #taskAndListContainer{
+            height: 100%;
+            width: 85%;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Tiny_Babbling_Brook.jpg/2560px-Tiny_Babbling_Brook.jpg');
+            background-position: center top;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            align-items:flex-end;
+        }
 
 
 
-#taskPopoutBoxContainer, #taskInfoPopoutContainer{
-    height: 550pt;
-    width: 300pt;
-    border-radius: 4%;
-    margin-left: 50pt;
-    justify-content: end;
-    align-items: center;
-    margin-bottom: 3%;;
-}
+        #taskPopoutBoxContainer, #taskInfoPopoutContainer{
+            height: 550pt;
+            width: 300pt;
+            border-radius: 4%;
+            margin-left: 50pt;
+            justify-content: end;
+            align-items: center;
+            margin-bottom: 3%;;
+        }
 
-#taskPopoutBox, #taskInfoPopoutBox{
-   height: 100%;
-   width: 100%;
-    background-color: white;
-    border: 1pt #d8d8d8 inset;
-    border-radius: 4%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
+        #taskPopoutBox, #taskInfoPopoutBox{
+        height: 100%;
+        width: 100%;
+            background-color: white;
+            border: 1pt #d8d8d8 inset;
+            border-radius: 4%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
 
-.listDisplayTaskbar, #taskTitleDisplayBox {
-    width: 100%;
-    height: 10%;
-    display: flex;
-    justify-content: space-between;
-    margin: 0;
-}
-#listNameDisplay, #taskTitleDisplay{
-    display: flex;
-    align-items: center;
-    padding: 5pt;
-}
-.listExitBtn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-}
+        .listDisplayTaskbar, #taskTitleDisplayBox {
+            width: 100%;
+            height: 10%;
+            display: flex;
+            justify-content: space-between;
+            margin: 0;
+        }
+        #listNameDisplay, #taskTitleDisplay{
+            display: flex;
+            align-items: center;
+            padding: 5pt;
+        }
+        .listExitBtn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
 
-#taskDisplayContainer, #taskInfoDisplayContainer{
-    display: flex;
-    flex-direction: column;
-    overflow: auto;
-    background-color: whitesmoke;
-    height: 90%;
-    width: 100%;
-    margin: 0;
-    
-}
+        #taskDisplayContainer, #taskInfoDisplayContainer{
+            display: flex;
+            flex-direction: column;
+            overflow: auto;
+            background-color: whitesmoke;
+            height: 90%;
+            width: 100%;
+            margin: 0;
+            
+        }
 
-#taskFlexContainer{
-    display: flex;
-    height: fit-content;
-    align-items: center;
-    background-color: whitesmoke;
-    border: none;
-    gap:2%;
-    font-size: 13pt;
-}
-.taskCrossBtn{
-    height: 50%;
-    border-radius: 15px;
-    margin-left: 5%;
-    padding: 6pt;
-    border: 1pt, black, solid;
-}
+        #taskFlexContainer{
+            display: flex;
+            height: fit-content;
+            align-items: center;
+            background-color: whitesmoke;
+            border: none;
+            gap:2%;
+            font-size: 13pt;
+        }
+        .taskCrossBtn{
+            height: 50%;
+            border-radius: 15px;
+            margin-left: 5%;
+            padding: 6pt;
+            border: 1pt, black, solid;
+        }
 
-.task{
-    display: flex;
-    margin: 0;
-    padding: 5pt;
-    width: 100%;
-    
-}
+        .task{
+            display: flex;
+            margin: 0;
+            padding: 5pt;
+            width: 100%;
+            
+        }
 
-/*Crossout achieved with linear gradient, shamelessly took this*/
-.crossed{
-    background: linear-gradient(180deg, 
-        rgba(0,0,0,0) calc(50% - 1px), 
-        rgba(192,192,192,1) calc(50%), 
-        rgba(0,0,0,0) calc(50% + 1px)
-        );
-}
+        /*Crossout achieved with linear gradient, shamelessly took this*/
+        .crossed{
+            background: linear-gradient(180deg, 
+                rgba(0,0,0,0) calc(50% - 1px), 
+                rgba(192,192,192,1) calc(50%), 
+                rgba(0,0,0,0) calc(50% + 1px)
+                );
+        }
 
-.crossedColors{
-    color: grey;
+        .crossedColors{
+            color: grey;
 
-}
-.deleteTaskBtn, .crossedTaskBtn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 8px;
-    width: 20px;
-    height: 20px;
-    font-size: 11pt;
-    background-color: grey;
-    color: white;
-    border: none;
-}
-.deleteTaskBtn{
-    margin: 0;
-}
-.crossedTaskBtn{
-    font-size: 14pt;
-}
+        }
+        .deleteTaskBtn, .crossedTaskBtn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 8px;
+            width: 20px;
+            height: 20px;
+            font-size: 11pt;
+            background-color: grey;
+            color: white;
+            border: none;
+        }
+        .deleteTaskBtn{
+            margin: 0;
+        }
+        .crossedTaskBtn{
+            font-size: 14pt;
+        }
 
-#inputContainer{
-    display: flex;
-    gap: 4%;
-    padding-top: 5pt;
-    height: 10%;
-    width: 100%;
-}
+        #inputContainer{
+            display: flex;
+            gap: 4%;
+            padding-top: 5pt;
+            height: 10%;
+            width: 100%;
+        }
 
-#userTaskInput{
-    border-radius: 15px;
-    border: 1pt blue solid;
-    margin-left: 2pt;
-    height: 60%;
-    width: 85%;
-}
+        #userTaskInput{
+            border-radius: 15px;
+            border: 1pt blue solid;
+            margin-left: 2pt;
+            height: 60%;
+            width: 85%;
+        }
 
-#addTaskBtn{
-    border-radius: 15px;
-    background-color: white;
-    border: 1pt blue solid;
-    height: 70%;
-    width: 10%;
-    margin: 0;
-    margin-right: 3pt;
-}
+        #addTaskBtn{
+            border-radius: 15px;
+            background-color: white;
+            border: 1pt blue solid;
+            height: 70%;
+            width: 10%;
+            margin: 0;
+            margin-right: 3pt;
+        }
 
+/*Info and Display Box*/
+        #taskInfoDisplayContainer{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        #dueDateDisplayContainer{
+           height: 15%;
+        }
+            #changeDueDateBtn{
+                height: 30pt;
+                width: 30pt;;
+            }
+        #priorityDisplayContainer{
+            height: 33%;
+        }
+        #descriptionDisplayContainer{
+            height: 50%;
+        }
+        .infoTitle{
+            font-size: 15pt;
+            font-weight: bold;
+        }
 
 /*Add List popout Box*/
 #addListPopoutBoxContainer{
@@ -219,6 +242,7 @@ body{
     left: 0;
     z-index: 1;
 }
+
 
 #addListPopoutBoxFlexContainer{
     display: flex;
@@ -266,29 +290,3 @@ body{
 }
 
 
-/*
-Prior add list container that was not full screen popout
-
-#addListPopoutBoxContainer{
-    display: flex;
-    flex-direction: column;
-    height: 90%;
-    width: 30%;
-    margin-left: 50pt;
-    align-items: flex-start;
-    justify-content: start;
-}
-
-
-#addListPopoutBox{
-    height: 300pt;
-    width: 400pt;
-    background-color: white;
-    margin-left: 7%;
-    margin-bottom: 4%;
-    border: 1pt #d8d8d8 inset;
-    border-radius: 4%;
-    display: flex;
-    flex-direction: column;
-} 
-*/

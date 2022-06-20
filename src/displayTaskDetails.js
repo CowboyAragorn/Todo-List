@@ -18,5 +18,24 @@ export default function displayTaskDetails(){
         descriptionDisplay.innerHTML = this.description;
     }
 
+    changeDueDateBtn.addEventListener('click', () =>{
+        let calendar = document.createElement('input');
+            calendar.type = 'datetime-local';
+            calendar.id = 'calendar';
+            calendar.classList.add('popoutItem');
+            addListInputContainer.append(calendar)
+        addListPopoutBoxContainer.style.display = 'block'; //this is now just the main popout;
+        addListNameDisplay.innerHTML = 'Pick Date';
+        //Have to put these here so it can grab the ID before emptying;
+        //Empty the popup
+        const elements = document.getElementsByClassName('popoutItem');
+        while(elements.length > 0){ 
+            addListInputContainer.removeChild(elements[0]);
+        }
+        //Add the addList materials//
+        addListInputContainer.append(calendar);
+        //addListInputContainer.append(addListPopupBtn);
+    })
+
 
 }
