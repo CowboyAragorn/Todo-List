@@ -2,8 +2,7 @@ import { listArray, assignButtons, btnArray } from "./menuDisplay";
 
 //Controls the function of the addListPopout. Also controls the addList button on side menu
 export default function addNewList (){
-
-    
+    //This function creates & pins the new lsit buttons on the lefthand menu//
     function createNewButtons(){
         const elements = document.getElementsByClassName('listBtn');
         while(elements.length > 0){
@@ -15,11 +14,8 @@ export default function addNewList (){
             let currentListsFlexContainer = document.getElementById('currentListsFlexContainer')
             currentListsFlexContainer.append(btnArray[i]);
         }
-
-    }
-
-            
-            //would this be cleaner just put into to event listener rather than calling function at end?//
+     }    
+    //This function alters the btnArray, adding the new input into that array and generating it again//
     function clickBtnAddToBtnArray (){
         let userListInput = document.getElementById('userListInput');
         let userListInputValue = userListInput.value
@@ -45,20 +41,20 @@ export default function addNewList (){
         addListPopoutBoxContainer.style.display = 'none';   
 
     }
+    //Event listener to the menu button adding lists, makes sure everything populates in 
+    //popup, then calls above function
     addListBtn.addEventListener('click', () =>{
         addListPopoutBoxContainer.style.display = 'block'; //this is now just the main popout;
         addListNameDisplay.innerHTML = 'Name This List';
         //define these here so they can always be accessed, even when editing the popup elsewhere//
         let userListInput = document.createElement('input');
-                    userListInput.type = 'text';
-                    userListInput.id = 'userListInput';
-                    userListInput.classList.add('popoutItem')
-                    addListInputContainer.append(userListInput);
+            userListInput.type = 'text';
+            userListInput.id = 'userListInput';
+            userListInput.classList.add('popoutItem')
         let addListPopupBtn = document.createElement('button');
             addListPopupBtn.id = 'addListPopupBtn';
             addListPopupBtn.classList.add('btn','popoutItem');
             addListPopupBtn.innerHTML = '+';
-            addListInputContainer.append(addListPopupBtn);
         //Have to put these here so it can grab the ID before emptying;
         //let userListInput = document.getElementById('userListInput');
         //let addListPopupBtn = document.getElementById('addListPopupBtn');
@@ -70,33 +66,7 @@ export default function addNewList (){
         //Add the addList materials//
         addListInputContainer.append(userListInput);
         addListInputContainer.append(addListPopupBtn);
-    })
-    addListBtn.addEventListener('click', () =>{
-        addListPopoutBoxContainer.style.display = 'block'; //this is now just the main popout;
-        addListNameDisplay.innerHTML = 'Name This List';
-        //define these here so they can always be accessed, even when editing the popup elsewhere//
-        let userListInput = document.createElement('input');
-                    userListInput.type = 'text';
-                    userListInput.id = 'userListInput';
-                    userListInput.classList.add('popoutItem')
-                    addListInputContainer.append(userListInput);
-        let addListPopupBtn = document.createElement('button');
-            addListPopupBtn.id = 'addListPopupBtn';
-            addListPopupBtn.classList.add('btn','popoutItem');
-            addListPopupBtn.innerHTML = '+';
-            addListInputContainer.append(addListPopupBtn);
-        //Have to put these here so it can grab the ID before emptying;
-        //let userListInput = document.getElementById('userListInput');
-        //let addListPopupBtn = document.getElementById('addListPopupBtn');
-        //Empty the popup
-        const elements = document.getElementsByClassName('popoutItem');
-        while(elements.length > 0){ 
-            addListInputContainer.removeChild(elements[0]);
-        }
-        //Add the addList materials//
-        addListInputContainer.append(userListInput);
-        addListInputContainer.append(addListPopupBtn);
-        addListPopupBtn.addEventListener('click', clickBtnAddToBtnArray);
+        addListPopupBtn.addEventListener('click', clickBtnAddToBtnArray); //calls the above function to make sure that lists get appended//
     })
             //addListPopupBtn.addEventListener('click', clickBtnAddToBtnArray);
 } 
