@@ -136,10 +136,7 @@ let taskInfoPopoutBox = document.createElement('div');
                     changeDueDateBtn.id = 'changeDueDateBtn';
                     changeDueDateBtn.classList.add('btn');
                     dueDateDisplayContainer.append(changeDueDateBtn);
-               
-                    
-
-        let priorityDisplayContainer = document.createElement('div');
+       /* let priorityDisplayContainer = document.createElement('div');
             priorityDisplayContainer.id = "priorityDisplayContainer"
             taskInfoDisplayContainer.append(priorityDisplayContainer);
                 let priorityTitle = document.createElement('div');
@@ -150,6 +147,7 @@ let taskInfoPopoutBox = document.createElement('div');
                 let priorityDisplay = document.createElement('div');
                     priorityDisplay.id = 'priorityDisplay';
                     priorityDisplayContainer.append(priorityDisplay);
+                    */
         let descriptionDisplayContainer = document.createElement('div');
             descriptionDisplayContainer.id = "descriptionDisplayContainer"
             taskInfoDisplayContainer.append(descriptionDisplayContainer);
@@ -158,7 +156,8 @@ let taskInfoPopoutBox = document.createElement('div');
                     descriptionTitle.classList.add('infoTitle');
                     descriptionTitle.innerHTML = 'Notes';
                     descriptionDisplayContainer.append(descriptionTitle);
-                let descriptionDisplay = document.createElement('div');
+                //let descriptionDisplay = document.createElement('button');
+                let descriptionDisplay = document.createElement('textarea')
                     descriptionDisplay.id = 'descriptionDisplay';
                     descriptionDisplayContainer.append(descriptionDisplay);
             

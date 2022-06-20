@@ -16,8 +16,6 @@ let iTracker//itracker here connects directly above to pinLists. Lets me change 
 let formerArrayPositionTracker
 
 
-
-
 //This function controls display on the popup. This includes clicks from the side menu, additions from the popup//
 function openLists (){
     //taskPopoutBox.style.display = 'none'; //Defaults popup to invisible before a list is clicked
@@ -29,19 +27,19 @@ function openLists (){
             const mondayGrocery = new addTask(
                 'Oranges',
                 'List for Week 4/4',
-                '4/10',
+                'Set Time',
                 'High'
             )
             const wedGrocery = new addTask(
                 'Pears',
                 'List for Week 4/4',
-                '4/11',
+                'Set Time',
                 'Medium'
             )
             const fridayGrocery = new addTask(
                 'Grapes',
                 'List for Week 4/4',
-                '4/12',
+                'Set Time',
                 'Low'
             )
             let groceryListArray = [mondayGrocery, wedGrocery, fridayGrocery,];
@@ -50,31 +48,31 @@ function openLists (){
                 const laundry = new addTask(
                     '1',
                     'List for Week 4/4',
-                    '4/10',
+                    'Set Time',
                     'High'
                 )
                 const laundry2 = new addTask(
                     '2',
                     'List for Week 4/4',
-                    '4/10',
+                    'Set Time',
                     'High'
                 )
                 const laundry3 = new addTask(
                     '3',
                     'List for Week 4/4',
-                    '4/10',
+                    'Set Time',
                     'High'
                 )
                 const laundry4 = new addTask(
                     '4',
                     'List for Week 4/4',
-                    '4/10',
+                    'Set Time',
                     'High'
                 )
                 const laundry5 = new addTask(
                     '5',
                     'List for Week 4/4',
-                    '4/10',
+                    'Set Time',
                     'High'
                 )
             let houseListArray = [laundry, laundry2, laundry3, laundry4, laundry5,];
@@ -263,7 +261,7 @@ function addTaskToList () {
             let userAddTask = new addTask(
                 userTaskInputValue,
                 'List for Week 4/4',
-                '4/10',
+                'Set Time',
                 'High',
                 'incomplete'
             )

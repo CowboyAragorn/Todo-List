@@ -3,12 +3,12 @@ import {easyExport} from './menuDisplay'
 //import addTaskToList from './addTaskToList'
 import addNewList from './addNewList';
 import closePopups from './closePopups'
-import displayTaskDetails from './displayTaskDetails';
+//import displayTaskDetails from './displayTaskDetails';
 
 
 skeleton ();
 easyExport();
-displayTaskDetails();
+//displayTaskDetails();
 addNewList();
 closePopups();
 

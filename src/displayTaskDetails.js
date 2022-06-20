@@ -1,7 +1,7 @@
 //let currentDisplayedTasksArray = []
 import { listArrayCurrent } from "./menuDisplay";
 import addTask from "./addTask";
-import { format } from "date-fns";
+import { endOfMinute, endOfToday, format, endOfTomorrow, addMinutes } from "date-fns";
 export default function displayTaskDetails(){
 
     let allTaskFlexContainers = document.querySelectorAll('.taskFlex');
@@ -18,9 +18,9 @@ export default function displayTaskDetails(){
 //Posts the decriptions to those saved in the object
     addTask.prototype.postTaskDetails = function(){
         taskTitleDisplay.innerHTML = this.taskName;
-        dueDateDisplay.innerHTML = this.dueDate;
-        priorityDisplay.innerHTML = this.priority;
-        descriptionDisplay.innerHTML = this.description;
+        changeDueDateBtn.innerHTML = this.dueDate;
+        //priorityDisplay.innerHTML = this.priority;
+        descriptionDisplay.value = this.description;
     }
     
     function changeDueDate(){
@@ -28,18 +28,26 @@ export default function displayTaskDetails(){
         calendarValue = calendar.value;
         calendarValue = format(new Date(calendarValue), "PPPp")
         currentTask.changeDueDateProperty();
-        console.log('hey')
+        console.log('hey');
+        addListPopoutBoxContainer.style.display = 'none';
+
     }
     addTask.prototype.changeDueDateProperty = function(){
         this.dueDate = calendarValue;
-        dueDateDisplay.innerHTML = this.dueDate;
+        changeDueDateBtn.innerHTML = this.dueDate;
     }
 
+   
     //Due date Btn displays popup and edits it to display due date edit info//
     changeDueDateBtn.addEventListener('click', () =>{
         let calendar = document.createElement('input');
             calendar.type = 'datetime-local';
             calendar.id = 'calendar';
+            //default time stuff
+                let now = new Date(); //new date
+                now.setMinutes(now.getMinutes() - now.getTimezoneOffset()); //calc current time
+                let intermediateTime = addMinutes(now, 5); //add 5 minutes
+                calendar.value = intermediateTime.toISOString().slice(0,16); //convert to ISO and set as default
             calendar.classList.add('popoutItem');
         let addDatePopoutBtn = document.createElement('button');
             addDatePopoutBtn.id = 'addDatePopoutBtn';
@@ -60,4 +68,58 @@ export default function displayTaskDetails(){
     })
 
 
+
+
+
+    function editingDescription (){
+        
+    }
+
+//Old code for switching between button and textarea - thinking too linearly
+    /*
+let descriptionDisplayContainer = document.getElementById('descriptionDisplayContainer')
+let descriptionDisplay = document.getElementById('descriptionDisplay')
+let descriptionDisplayInput
+    function writeNote(){
+        console.log('hi')
+        let currentDescriptionValue = descriptionDisplay.innerHTML;
+        descriptionDisplayContainer.removeChild(descriptionDisplay);
+        let descriptionDisplayInput = document.createElement('textarea');
+            descriptionDisplayInput.id = 'descriptionDisplayInput';
+            descriptionDisplayInput.value = currentDescriptionValue;
+            descriptionDisplayContainer.append(descriptionDisplayInput);
+                
+    }
+
+    function noteToButton(){  
+        console.log('I am quick') 
+        descriptionDisplayInput = document.getElementById('descriptionDisplayInput');
+        let currentDescriptionValue2 = descriptionDisplayInput.value;
+        descriptionDisplayContainer.removeChild(descriptionDisplayInput);
+         descriptionDisplay = document.createElement('button');
+            descriptionDisplay.id = 'descriptionDisplay';
+            descriptionDisplay.value = currentDescriptionValue2;
+            descriptionDisplay.innerHTML = descriptionDisplay.value;
+            descriptionDisplayContainer.append(descriptionDisplay);
+        descriptionDisplay.addEventListener('click', collaborator);
+        base.removeEventListener('mousedown', noteToButton)
+    }
+    
+    
+    
+    descriptionDisplay.addEventListener('click', collaborator);
+    
+    
+    function collaborator (){
+        writeNote();
+        descriptionDisplayInput = document.getElementById('descriptionDisplayInput');
+        descriptionDisplayInput.addEventListener('mousedown', () =>{ //this needs to be mousedown so base doesn't fire before it//
+            event.stopImmediatePropagation();   
+        })
+        base.addEventListener('mousedown', noteToButton)
+
+    }
+
+    */
+    
 }
