@@ -13,6 +13,7 @@ export default function displayTaskDetails(){
         allTaskFlexContainers[i].addEventListener('click', () =>{
             listArrayCurrent[i].postTaskDetails();
             currentTask = listArrayCurrent[i];//Make the clicked task the current task for editing throughout
+            console.log(currentTask)
         })
     }
 //Posts the decriptions to those saved in the object
@@ -69,10 +70,21 @@ export default function displayTaskDetails(){
 
 
 
+    descriptionDisplay.addEventListener('click', editingDescription)
+    
+    addTask.prototype.saveDescriptionPrototype = function(){
+        this.description = descriptionDisplay.value;
+    }
 
+    function saveDescription(){
+        console.log(currentTask)
+        currentTask.saveDescriptionPrototype();
+        base.removeEventListener('click', saveDescription);
+    }
 
     function editingDescription (){
-        
+        base.addEventListener('click', saveDescription, true ); //Catch on capture phase so that it saves value even when switching to another list/task//
+        //event.stopImmediatePropagation();   
     }
 
 //Old code for switching between button and textarea - thinking too linearly
