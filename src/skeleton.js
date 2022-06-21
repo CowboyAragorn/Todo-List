@@ -118,49 +118,50 @@ let taskInfoPopoutBox = document.createElement('div');
             taskTitleDisplay.classList = 'listHeaders';
             taskTitleDisplayBox.append(taskTitleDisplay);
 //info display with titles & boxes hardcoded in, but filled in displayTaskDetails
-    let taskInfoDisplayContainer = document.createElement('div');
+/* 
+let taskInfoDisplayContainer = document.createElement('div');
             taskInfoDisplayContainer.id = 'taskInfoDisplayContainer'
-            taskInfoPopoutBox.append(taskInfoDisplayContainer)
+            //taskInfoPopoutBox.append(taskInfoDisplayContainer)
         let dueDateDisplayContainer = document.createElement('div');
             dueDateDisplayContainer.id = "dueDateDisplayContainer"
-            taskInfoDisplayContainer.append(dueDateDisplayContainer);
+            //taskInfoDisplayContainer.append(dueDateDisplayContainer);
                 let dueDateTitle = document.createElement('div');
                     dueDateTitle.id = 'dueDateTitle';
                     dueDateTitle.classList.add('infoTitle');
                     dueDateTitle.innerHTML = 'Finish by';
-                    dueDateDisplayContainer.append(dueDateTitle);
+                    //dueDateDisplayContainer.append(dueDateTitle);
                 let dueDateDisplay = document.createElement('div');
                     dueDateDisplay.id = 'dueDateDisplay';
-                    dueDateDisplayContainer.append(dueDateDisplay);
+                    //dueDateDisplayContainer.append(dueDateDisplay);
                 let changeDueDateBtn = document.createElement('button');
                     changeDueDateBtn.id = 'changeDueDateBtn';
                     changeDueDateBtn.classList.add('btn');
-                    dueDateDisplayContainer.append(changeDueDateBtn);
-       /* let priorityDisplayContainer = document.createElement('div');
-            priorityDisplayContainer.id = "priorityDisplayContainer"
-            taskInfoDisplayContainer.append(priorityDisplayContainer);
-                let priorityTitle = document.createElement('div');
-                    priorityTitle.id = 'priorityTitle';
-                    priorityTitle.classList.add('infoTitle');
-                    priorityTitle.innerHTML = 'Priority Level';
-                    priorityDisplayContainer.append(priorityTitle);
-                let priorityDisplay = document.createElement('div');
-                    priorityDisplay.id = 'priorityDisplay';
-                    priorityDisplayContainer.append(priorityDisplay);
-                    */
+                    //dueDateDisplayContainer.append(changeDueDateBtn);
+                                            /* let priorityDisplayContainer = document.createElement('div');
+                                                    priorityDisplayContainer.id = "priorityDisplayContainer"
+                                                    taskInfoDisplayContainer.append(priorityDisplayContainer);
+                                                        let priorityTitle = document.createElement('div');
+                                                            priorityTitle.id = 'priorityTitle';
+                                                            priorityTitle.classList.add('infoTitle');
+                                                            priorityTitle.innerHTML = 'Priority Level';
+                                                            priorityDisplayContainer.append(priorityTitle);
+                                                        let priorityDisplay = document.createElement('div');
+                                                            priorityDisplay.id = 'priorityDisplay';
+                                                            priorityDisplayContainer.append(priorityDisplay);
+                                                            
         let descriptionDisplayContainer = document.createElement('div');
             descriptionDisplayContainer.id = "descriptionDisplayContainer"
-            taskInfoDisplayContainer.append(descriptionDisplayContainer);
+            //taskInfoDisplayContainer.append(descriptionDisplayContainer);
                 let descriptionTitle = document.createElement('div');
                     descriptionTitle.id = 'descriptionTitle';
                     descriptionTitle.classList.add('infoTitle');
                     descriptionTitle.innerHTML = 'Notes';
-                    descriptionDisplayContainer.append(descriptionTitle);
+                    //descriptionDisplayContainer.append(descriptionTitle);
                 //let descriptionDisplay = document.createElement('button');
                 let descriptionDisplay = document.createElement('textarea')
                     descriptionDisplay.id = 'descriptionDisplay';
-                    descriptionDisplayContainer.append(descriptionDisplay);
-            
+                    //descriptionDisplayContainer.append(descriptionDisplay);
+*/
 
     
 
