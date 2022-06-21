@@ -5,26 +5,26 @@ import { listArrayCurrent, btnArray, listArray } from "./menuDisplay";
 import addTask from "./addTask";
 import { format,addMinutes } from "date-fns";
 
-
+//Display flag must be declared up here so it can be edited safely
 let displayedFlag
 let changeDueDateBtn
+let currentTask //Define here so we can edit throughout
 export default function displayTaskDetails(){
 
     
-    let currentTask //Define here so we can edit throughout
+    //let currentTask
     let calendarValue
-    let taskInfoDisplayContainer
-    let dueDateDisplayContainer
+    let taskInfoDisplayContainer 
+    let dueDateDisplayContainer 
     let dueDateTitle
-    let dueDateDisplay
-    
-    let descriptionDisplayContainer
-    let descriptionTitle
-    let descriptionDisplay
-    
-
+    let dueDateDisplay 
+    let changeDueDateBtn 
+    let descriptionDisplayContainer 
+    let descriptionTitle 
+    let descriptionDisplay 
 
     function putEverythingOnInfoBoard(){
+        let taskInfoPopoutBox = document.getElementById('taskInfoPopoutBox');
          taskInfoDisplayContainer = document.createElement('div');
             taskInfoDisplayContainer.id = 'taskInfoDisplayContainer'
             taskInfoPopoutBox.append(taskInfoDisplayContainer)
@@ -58,7 +58,18 @@ export default function displayTaskDetails(){
     }
 
     function takeEverythingOffInfoBoard(){
-        taskInfoPopoutBox.removeChild(taskInfoDisplayContainer)
+        let taskInfoPopoutBox = document.getElementById('taskInfoPopoutBox');
+        let taskInfoDisplayContainer = document.getElementById('taskInfoDisplayContainer')
+        let dueDateDisplayContainer = document.getElementById('dueDateDisplayContainer')
+        let dueDateTitle = document.getElementById('dueDateTitle')
+        let dueDateDisplay = document.getElementById('dueDateDisplay')
+        let changeDueDateBtn = document.getElementById('changeDueDateBtn')
+        let descriptionDisplayContainer = document.getElementById('descriptionDisplayContainer')
+        let descriptionTitle = document.getElementById('descriptionTitle')
+        let descriptionDisplay = document.getElementById('descriptionDisplay')
+        
+    
+        taskInfoPopoutBox.removeChild(taskInfoDisplayContainer);
         taskInfoDisplayContainer.removeChild(dueDateDisplayContainer);
         dueDateDisplayContainer.removeChild(dueDateTitle);
         dueDateDisplayContainer.removeChild(dueDateDisplay);
@@ -79,6 +90,7 @@ export default function displayTaskDetails(){
         descriptionDisplay.value = this.description;
     }
 
+    //puts event listeners on the clickable tasks
     function taskButtonDisplayAssigner(){
         let allTaskFlexContainers = document.querySelectorAll('.taskFlex');
         for(let i=0;i<allTaskFlexContainers.length;i++){
@@ -94,12 +106,12 @@ export default function displayTaskDetails(){
     }
 
     function removeAndReAdd(){
-         //saveDescription();
          takeEverythingOffInfoBoard();
          putEverythingOnInfoBoard();
          changeDueDateBtnEventListener();
     }
 
+    //event listeners for changing lists
     function listButtonDisplayAssigner(){
         for(let i=0;i<btnArray.length;i++){ 
             btnArray[i].addEventListener('click', ()=>{
@@ -121,43 +133,33 @@ export default function displayTaskDetails(){
             currentTask.saveDescriptionPrototype();
             console.log('I saved!')
         }
-
+        //lets you click off anywhere to save
         function baseEventListenerAdder(){
             base.addEventListener('click',saveDescription, true);
         }
-
+    //controls this whole thing, only function called
     function infoDisplayController(){
+        //This is for keeping persistence when crossing items. Info display stays on crossed item
         if(displayedFlag == true){
             removeAndReAdd();
+            currentTask.postTaskDetails();
             base.removeEventListener('click',saveDescription, true);
         }
+        //If there is nothng on board IE first time opening a list, then default it to 0
         else{
             putEverythingOnInfoBoard();
+            listArrayCurrent[0].postTaskDetails(); //auto displays first task in list//
+            currentTask = listArrayCurrent[0];
         }
         changeDueDateBtnEventListener();
         console.log(listArray[0])
-        listArrayCurrent[0].postTaskDetails(); //auto displays first task in list//
-        currentTask = listArrayCurrent[0];
         taskButtonDisplayAssigner();
         listButtonDisplayAssigner();
         baseEventListenerAdder();
     }
     
-   
-
-    infoDisplayController();
-
-
-
-
-
-    
-        
-   // listArrayCurrent[0].postTaskDetails(); //auto displays first task in list//
-    //currentTask = listArrayCurrent[0];
-    
-    
-        function changeDueDate(){
+    //These three control updating calendar
+    function changeDueDate(){
             let calendar = document.getElementById('calendar')
             calendarValue = calendar.value;
             calendarValue = format(new Date(calendarValue), "PPPp")
@@ -202,4 +204,6 @@ export default function displayTaskDetails(){
             addDatePopoutBtn.addEventListener('click', changeDueDate);
         })
     }
+
+    infoDisplayController();
 }
