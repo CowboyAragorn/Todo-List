@@ -1,44 +1,51 @@
 //let currentDisplayedTasksArray = []
+
+//called from pinlist
 import { listArrayCurrent } from "./menuDisplay";
 import addTask from "./addTask";
-import { endOfMinute, endOfToday, format, endOfTomorrow, addMinutes } from "date-fns";
+import { format,addMinutes } from "date-fns";
 export default function displayTaskDetails(){
 
     let allTaskFlexContainers = document.querySelectorAll('.taskFlex');
     let currentTask //Define here so we can edit throughout
     let calendarValue
-//Goes through all the posted flexContainer boxes and puts an event listenere
-//To post task details to detail panel when clicked
+    //Goes through all the posted flexContainer boxes and puts an event listenere
+    //To post task details to detail panel when clicked
     for(let i=0;i<allTaskFlexContainers.length;i++){
         allTaskFlexContainers[i].addEventListener('click', () =>{
-            listArrayCurrent[i].postTaskDetails();
             currentTask = listArrayCurrent[i];//Make the clicked task the current task for editing throughout
+            listArrayCurrent[i].postTaskDetails();
+            console.log('currentTaskTop')
             console.log(currentTask)
         })
     }
-//Posts the decriptions to those saved in the object
-    addTask.prototype.postTaskDetails = function(){
-        taskTitleDisplay.innerHTML = this.taskName;
-        changeDueDateBtn.innerHTML = this.dueDate;
-        //priorityDisplay.innerHTML = this.priority;
-        descriptionDisplay.value = this.description;
-    }
+        //Posts the decriptions to those saved in the object
+        addTask.prototype.postTaskDetails = function(){
+            taskTitleDisplay.innerHTML = this.taskName;
+            changeDueDateBtn.innerHTML = this.dueDate;
+            //priorityDisplay.innerHTML = this.priority;
+            descriptionDisplay.value = this.description;
+        }
+        
+    listArrayCurrent[0].postTaskDetails(); //auto displays first task in list//
+    currentTask = listArrayCurrent[0];
     
-    function changeDueDate(){
-        let calendar = document.getElementById('calendar')
-        calendarValue = calendar.value;
-        calendarValue = format(new Date(calendarValue), "PPPp")
-        currentTask.changeDueDateProperty();
-        console.log('hey');
-        addListPopoutBoxContainer.style.display = 'none';
+    
+        function changeDueDate(){
+            let calendar = document.getElementById('calendar')
+            calendarValue = calendar.value;
+            calendarValue = format(new Date(calendarValue), "PPPp")
+            currentTask.changeDueDateProperty();
+            console.log('hey');
+            addListPopoutBoxContainer.style.display = 'none';
 
-    }
-    addTask.prototype.changeDueDateProperty = function(){
-        this.dueDate = calendarValue;
-        changeDueDateBtn.innerHTML = this.dueDate;
-    }
+        }
+        addTask.prototype.changeDueDateProperty = function(){
+            this.dueDate = calendarValue;
+            changeDueDateBtn.innerHTML = this.dueDate;
+        }
 
-   
+    
     //Due date Btn displays popup and edits it to display due date edit info//
     changeDueDateBtn.addEventListener('click', () =>{
         let calendar = document.createElement('input');
@@ -69,23 +76,41 @@ export default function displayTaskDetails(){
     })
 
 
-
+    descriptionDisplay.removeEventListener('click', editingDescription)
     descriptionDisplay.addEventListener('click', editingDescription)
     
-    addTask.prototype.saveDescriptionPrototype = function(){
-        this.description = descriptionDisplay.value;
-    }
+        addTask.prototype.saveDescriptionPrototype = function(){
+            this.description = descriptionDisplay.value;
+           // console.log(currentTask)
+        }
+    let baseFlag = false
+    //let currentTaskTracker  
+        function saveDescription(){
+            console.log('currentTaskb4')
+            console.log(currentTask)
+            currentTask.saveDescriptionPrototype();
+            console.log('currentTaskAfter')
+            console.log(currentTask)
+            console.log('listCurrent')
+            console.log(listArrayCurrent);
+            base.removeEventListener('click', saveDescription, true);
+            baseFlag = false
+        }
+        function editingDescription (){
+            if (baseFlag == true){
+                return
+            }
+            else{
 
-    function saveDescription(){
-        console.log(currentTask)
-        currentTask.saveDescriptionPrototype();
-        base.removeEventListener('click', saveDescription);
-    }
-
-    function editingDescription (){
-        base.addEventListener('click', saveDescription, true ); //Catch on capture phase so that it saves value even when switching to another list/task//
-        //event.stopImmediatePropagation();   
-    }
+            console.log('currentTask')
+            console.log(currentTask)
+           // console.log('currentTaskTracker')
+            //console.log(currentTaskTracker)
+            base.addEventListener('click', saveDescription, true ); //Catch on capture phase so that it saves value even when switching to another list/task//
+            baseFlag = true;
+            }
+            //event.stopImmediatePropagation();   
+        }
 
 //Old code for switching between button and textarea - thinking too linearly
     /*
