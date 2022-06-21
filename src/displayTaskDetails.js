@@ -1,25 +1,28 @@
 //let currentDisplayedTasksArray = []
 
 //called from pinlist
-import { listArrayCurrent, btnArray } from "./menuDisplay";
+import { listArrayCurrent, btnArray, listArray } from "./menuDisplay";
 import addTask from "./addTask";
 import { format,addMinutes } from "date-fns";
+
+
+let displayedFlag
+let changeDueDateBtn
 export default function displayTaskDetails(){
 
-    let allTaskFlexContainers = document.querySelectorAll('.taskFlex');
+    
     let currentTask //Define here so we can edit throughout
     let calendarValue
-    //Goes through all the posted flexContainer boxes and puts an event listenere
-    //To post task details to detail panel when clicked
     let taskInfoDisplayContainer
     let dueDateDisplayContainer
     let dueDateTitle
     let dueDateDisplay
-    let changeDueDateBtn
+    
     let descriptionDisplayContainer
     let descriptionTitle
     let descriptionDisplay
-    let displayedFlag
+    
+
 
     function putEverythingOnInfoBoard(){
          taskInfoDisplayContainer = document.createElement('div');
@@ -51,7 +54,7 @@ export default function displayTaskDetails(){
                  descriptionDisplay = document.createElement('textarea')
                     descriptionDisplay.id = 'descriptionDisplay';
                     descriptionDisplayContainer.append(descriptionDisplay);
-        displayedFlag = true;
+         displayedFlag = true;
     }
 
     function takeEverythingOffInfoBoard(){
@@ -65,9 +68,11 @@ export default function displayTaskDetails(){
         descriptionDisplayContainer.removeChild(descriptionDisplay);
         displayedFlag = false;
     }
-
+   
     //Posts the decriptions to those saved in the object
     addTask.prototype.postTaskDetails = function(){
+        let changeDueDateBtn = document.getElementById('changeDueDateBtn');
+        let descriptionDisplay = document.getElementById('descriptionDisplay');
         taskTitleDisplay.innerHTML = this.taskName;
         changeDueDateBtn.innerHTML = this.dueDate;
         //priorityDisplay.innerHTML = this.priority;
@@ -75,9 +80,11 @@ export default function displayTaskDetails(){
     }
 
     function taskButtonDisplayAssigner(){
+        let allTaskFlexContainers = document.querySelectorAll('.taskFlex');
         for(let i=0;i<allTaskFlexContainers.length;i++){
             allTaskFlexContainers[i].addEventListener('click', ()=>{
                 removeAndReAdd();
+                console.log(listArray[i])
                 listArrayCurrent[i].postTaskDetails();
                 currentTask = listArrayCurrent[i];//Make the clicked task the current task for editing throughout
                 console.log('currentTaskTop')
@@ -97,6 +104,8 @@ export default function displayTaskDetails(){
         for(let i=0;i<btnArray.length;i++){ 
             btnArray[i].addEventListener('click', ()=>{
                 removeAndReAdd();
+                taskButtonDisplayAssigner();
+                console.log(listArrayCurrent[0])
                 listArrayCurrent[0].postTaskDetails(); //auto displays first task in list//
                 currentTask = listArrayCurrent[0];
             })
@@ -104,6 +113,7 @@ export default function displayTaskDetails(){
     }
 
         addTask.prototype.saveDescriptionPrototype = function(){
+            let descriptionDisplay = document.getElementById('descriptionDisplay');
             this.description = descriptionDisplay.value;
         }
 
@@ -115,8 +125,7 @@ export default function displayTaskDetails(){
         function baseEventListenerAdder(){
             base.addEventListener('click',saveDescription, true);
         }
-    
-    
+
     function infoDisplayController(){
         if(displayedFlag == true){
             removeAndReAdd();
@@ -126,12 +135,15 @@ export default function displayTaskDetails(){
             putEverythingOnInfoBoard();
         }
         changeDueDateBtnEventListener();
+        console.log(listArray[0])
         listArrayCurrent[0].postTaskDetails(); //auto displays first task in list//
         currentTask = listArrayCurrent[0];
         taskButtonDisplayAssigner();
         listButtonDisplayAssigner();
         baseEventListenerAdder();
     }
+    
+   
 
     infoDisplayController();
 
@@ -155,11 +167,13 @@ export default function displayTaskDetails(){
 
         }
         addTask.prototype.changeDueDateProperty = function(){
+            let changeDueDateBtn = document.getElementById('changeDueDateBtn')
             this.dueDate = calendarValue;
             changeDueDateBtn.innerHTML = this.dueDate;
         }
     function changeDueDateBtnEventListener(){
         //Due date Btn displays popup and edits it to display due date edit info//
+        let changeDueDateBtn = document.getElementById('changeDueDateBtn')
         changeDueDateBtn.addEventListener('click', () =>{
             let calendar = document.createElement('input');
                 calendar.type = 'datetime-local';
@@ -188,101 +202,4 @@ export default function displayTaskDetails(){
             addDatePopoutBtn.addEventListener('click', changeDueDate);
         })
     }
-
-
-
-
-   // descriptionDisplay.removeEventListener('click', editingDescription)
-    //descriptionDisplay.addEventListener('click', editingDescription)
-    
-       
-    //let baseFlag = false
-    //let currentTaskTracker  
-       
-    
-   // function saveDescription(){
-
-
-
-
-            /*console.log('currentTaskb4')
-            console.log(currentTask)
-            currentTask.saveDescriptionPrototype();
-            console.log('currentTaskAfter')
-            console.log(currentTask)
-            console.log('listCurrent')
-            console.log(listArrayCurrent);
-            base.removeEventListener('click', saveDescription, true);
-            baseFlag = false
-            */
-        //}
-
-        /*
-        function editingDescription (){
-            if (baseFlag == true){
-                return
-            }
-            else{
-
-            console.log('currentTask')
-            console.log(currentTask)
-           // console.log('currentTaskTracker')
-            //console.log(currentTaskTracker)
-            base.addEventListener('click', saveDescription, true ); //Catch on capture phase so that it saves value even when switching to another list/task//
-            baseFlag = true;
-            }
-            //event.stopImmediatePropagation();   
-        }
-        */
-   
-
-
-
-//Old code for switching between button and textarea - thinking too linearly
-    /*
-let descriptionDisplayContainer = document.getElementById('descriptionDisplayContainer')
-let descriptionDisplay = document.getElementById('descriptionDisplay')
-let descriptionDisplayInput
-    function writeNote(){
-        console.log('hi')
-        let currentDescriptionValue = descriptionDisplay.innerHTML;
-        descriptionDisplayContainer.removeChild(descriptionDisplay);
-        let descriptionDisplayInput = document.createElement('textarea');
-            descriptionDisplayInput.id = 'descriptionDisplayInput';
-            descriptionDisplayInput.value = currentDescriptionValue;
-            descriptionDisplayContainer.append(descriptionDisplayInput);
-                
-    }
-
-    function noteToButton(){  
-        console.log('I am quick') 
-        descriptionDisplayInput = document.getElementById('descriptionDisplayInput');
-        let currentDescriptionValue2 = descriptionDisplayInput.value;
-        descriptionDisplayContainer.removeChild(descriptionDisplayInput);
-         descriptionDisplay = document.createElement('button');
-            descriptionDisplay.id = 'descriptionDisplay';
-            descriptionDisplay.value = currentDescriptionValue2;
-            descriptionDisplay.innerHTML = descriptionDisplay.value;
-            descriptionDisplayContainer.append(descriptionDisplay);
-        descriptionDisplay.addEventListener('click', collaborator);
-        base.removeEventListener('mousedown', noteToButton)
-    }
-    
-    
-    
-    descriptionDisplay.addEventListener('click', collaborator);
-    
-    
-    function collaborator (){
-        writeNote();
-        descriptionDisplayInput = document.getElementById('descriptionDisplayInput');
-        descriptionDisplayInput.addEventListener('mousedown', () =>{ //this needs to be mousedown so base doesn't fire before it//
-            event.stopImmediatePropagation();   
-        })
-        base.addEventListener('mousedown', noteToButton)
-
-    }
-
-    */
-    
 }
