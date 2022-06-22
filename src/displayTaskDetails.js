@@ -9,7 +9,34 @@ import { format,addMinutes } from "date-fns";
 let displayedFlag
 let changeDueDateBtn
 let currentTask //Define here so we can edit throughout
-export default function displayTaskDetails(){
+
+
+//separated from the other larger function so that it can be exported and called when creating new lists//
+function takeEverythingOffInfoBoard(){
+    let taskInfoPopoutBox = document.getElementById('taskInfoPopoutBox');
+    let taskInfoDisplayContainer = document.getElementById('taskInfoDisplayContainer')
+    let dueDateDisplayContainer = document.getElementById('dueDateDisplayContainer')
+    let dueDateTitle = document.getElementById('dueDateTitle')
+    let dueDateDisplay = document.getElementById('dueDateDisplay')
+    let changeDueDateBtn = document.getElementById('changeDueDateBtn')
+    let descriptionDisplayContainer = document.getElementById('descriptionDisplayContainer')
+    let descriptionTitle = document.getElementById('descriptionTitle')
+    let descriptionDisplay = document.getElementById('descriptionDisplay')
+    
+
+    taskInfoPopoutBox.removeChild(taskInfoDisplayContainer);
+    taskInfoDisplayContainer.removeChild(dueDateDisplayContainer);
+    dueDateDisplayContainer.removeChild(dueDateTitle);
+    dueDateDisplayContainer.removeChild(dueDateDisplay);
+    dueDateDisplayContainer.removeChild(changeDueDateBtn);
+    taskInfoDisplayContainer.removeChild(descriptionDisplayContainer);
+    descriptionDisplayContainer.removeChild(descriptionTitle);
+    descriptionDisplayContainer.removeChild(descriptionDisplay);
+    displayedFlag = false;
+}
+
+
+function displayTaskDetails(){
 
     
     //let currentTask
@@ -57,28 +84,7 @@ export default function displayTaskDetails(){
          displayedFlag = true;
     }
 
-    function takeEverythingOffInfoBoard(){
-        let taskInfoPopoutBox = document.getElementById('taskInfoPopoutBox');
-        let taskInfoDisplayContainer = document.getElementById('taskInfoDisplayContainer')
-        let dueDateDisplayContainer = document.getElementById('dueDateDisplayContainer')
-        let dueDateTitle = document.getElementById('dueDateTitle')
-        let dueDateDisplay = document.getElementById('dueDateDisplay')
-        let changeDueDateBtn = document.getElementById('changeDueDateBtn')
-        let descriptionDisplayContainer = document.getElementById('descriptionDisplayContainer')
-        let descriptionTitle = document.getElementById('descriptionTitle')
-        let descriptionDisplay = document.getElementById('descriptionDisplay')
-        
-    
-        taskInfoPopoutBox.removeChild(taskInfoDisplayContainer);
-        taskInfoDisplayContainer.removeChild(dueDateDisplayContainer);
-        dueDateDisplayContainer.removeChild(dueDateTitle);
-        dueDateDisplayContainer.removeChild(dueDateDisplay);
-        dueDateDisplayContainer.removeChild(changeDueDateBtn);
-        taskInfoDisplayContainer.removeChild(descriptionDisplayContainer);
-        descriptionDisplayContainer.removeChild(descriptionTitle);
-        descriptionDisplayContainer.removeChild(descriptionDisplay);
-        displayedFlag = false;
-    }
+   
    
     //Posts the decriptions to those saved in the object
     addTask.prototype.postTaskDetails = function(){
@@ -207,3 +213,4 @@ export default function displayTaskDetails(){
 
     infoDisplayController();
 }
+export {takeEverythingOffInfoBoard, displayTaskDetails}

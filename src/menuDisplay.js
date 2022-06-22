@@ -1,6 +1,6 @@
 import addTask from './addTask';
 import {deleteTasks, crossedTasks} from './deleteTasks';
-import displayTaskDetails from './displayTaskDetails';
+import {displayTaskDetails, takeEverythingOffInfoBoard} from './displayTaskDetails';
 
 
 //declare listArray here for export later
@@ -211,6 +211,7 @@ function assignButtons(){
                 }
                 else if (listArrayCurrent.length <= 0){
                     taskInfoPopoutBox.style.display = 'none';
+                
                 }
                 console.log(listArrayCurrent)
                 listArrayCurrentName = listNameDisplay.innerHTML;
@@ -265,11 +266,25 @@ function addTaskToList () {
                 'High',
                 'incomplete'
             )
+            
         listArrayCurrent.push(userAddTask);
         assignFormerPositions();
         pinList();
+        //dis displays info box when hitting the + button
+        if(listArrayCurrent.length > 0){ //If the new list is empty, make it show up, take everything off it, then pin the newly added task
+            taskInfoPopoutBox.style.display = 'flex';
+            takeEverythingOffInfoBoard();
+            displayTaskDetails();
+            
+            
+        }
+        else if (listArrayCurrent.length <= 0){
+            taskInfoPopoutBox.style.display = 'none';
+        }
         userTaskInput.value = ''
                 }
+       
+
             }
     addTaskButton.addEventListener('click', addTaskWhenClickBtn);
     };
