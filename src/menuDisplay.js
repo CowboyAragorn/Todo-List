@@ -186,6 +186,10 @@ function pinList(){
      console.log('listArrayCurrentAtEndOfPinning')
      console.log(listArrayCurrent)
      listArray[iTracker] = listArrayCurrent; //changes original array so that modifications save whens switching b/w lists
+     if(listArrayCurrent.length == 0){
+        taskInfoPopoutBox.style.display = "none";
+        return
+    }
      displayTaskDetails();
     }
 

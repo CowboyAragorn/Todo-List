@@ -67,6 +67,8 @@ function deleteTasks(){
                     deleteEligibleArray[i].deleteTask();//delete that task, finding it in my array of eligible deletions
                     takeEverythingOffInfoBoard(); //Delete info board, setting flag to false and pinning first item on list//
                     pinList(); //Put everyone back on the board
+                    //let taskInfoPopoutBox = document.getElementById('taskInfoPopoutBox')
+                    
                     event.stopImmediatePropagation();   //stops it from bubbling to outside button
                   })
             };

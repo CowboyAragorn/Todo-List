@@ -1,4 +1,4 @@
-import { de } from "date-fns/locale";
+
 import { listArray, assignButtons, btnArray } from "./menuDisplay";
 
 //Controls the function of the addListPopout. Also controls the addList button on side menu
@@ -11,8 +11,6 @@ export default function addNewList (){
         while(elements.length > 0){
             currentListsFlexContainer.removeChild(elements[0]);
         }
-        
-        
         //for the list menu buttons on left side//
         for(let i=0; i<btnArray.length;i++){
             btnArray[i].classList.add('btn', 'listBtn');
@@ -26,7 +24,7 @@ export default function addNewList (){
             listFlexContainer.append(editListBtn);
             currentListsFlexContainer.append(listFlexContainer);
               
-        //Event listener for the edit buttons, iterating off of i so as to save the correct btnArray.innerHTML
+        //Event listener for the listedit buttons, iterating off of i so as to save the correct btnArray.innerHTML
             editListBtn.addEventListener('click', ()=>{
                 addListPopoutBoxContainer.style.display = 'block'; //this is now just the main popout;
                 addListNameDisplay.innerHTML = 'Name List';
@@ -58,22 +56,21 @@ export default function addNewList (){
                     const elements2 = document.getElementsByClassName('editListBtnContainer');
                         while(elements2.length > 0){ 
                             addListPopoutBox.removeChild(elements2[0]);
-        }                            
-                     
-                //Delete the text input container
-                const elements = document.getElementsByClassName('popoutItem');
-                while(elements.length > 0){ 
-                    addListInputContainer.removeChild(elements[0]);
-                }
-                //Add the addList materials//
-                addListPopoutBox.append(editListBtnContainer);
-                    editListBtnContainer.append(deleteListBtnFlexContainer);
-                        deleteListBtnFlexContainer.append(deleteListBtn)
-                    editListBtnContainer.append(saveEditedListBtnFlexContainer)
-                        saveEditedListBtnFlexContainer.append(saveEditedListBtn)
-                addListInputContainer.append(userListInput);
-                //addListInputContainer.append(saveEditedListBtn);
-            })
+                        }
+            //Delete the text input container
+            const elements = document.getElementsByClassName('popoutItem');
+            while(elements.length > 0){ 
+                addListInputContainer.removeChild(elements[0]);
+            }
+            //Add the addList materials//
+            addListPopoutBox.append(editListBtnContainer);
+                editListBtnContainer.append(deleteListBtnFlexContainer);
+                    deleteListBtnFlexContainer.append(deleteListBtn)
+                editListBtnContainer.append(saveEditedListBtnFlexContainer)
+                    saveEditedListBtnFlexContainer.append(saveEditedListBtn)
+            addListInputContainer.append(userListInput);
+            //addListInputContainer.append(saveEditedListBtn);
+        })
         }
      }    
     //This function alters the btnArray, adding the new input into that array and generating it again//
@@ -118,9 +115,7 @@ export default function addNewList (){
             addListPopupBtn.id = 'addListPopupBtn';
             addListPopupBtn.classList.add('btn','popoutItem');
             addListPopupBtn.innerHTML = '+';
-        //Have to put these here so it can grab the ID before emptying;
-        //let userListInput = document.getElementById('userListInput');
-        //let addListPopupBtn = document.getElementById('addListPopupBtn');
+
         //Empty the popup
         const elements = document.getElementsByClassName('popoutItem');
         while(elements.length > 0){ 
