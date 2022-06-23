@@ -11,7 +11,9 @@ let changeDueDateBtn
 let currentTask //Define here so we can edit throughout
 
 
-//separated from the other larger function so that it can be exported and called when creating new lists//
+//separated from the other larger function so that it can be exported
+// and called when creating new lists or in deleting tasks to display the correct 
+//task
 function takeEverythingOffInfoBoard(){
     let taskInfoPopoutBox = document.getElementById('taskInfoPopoutBox');
     let taskInfoDisplayContainer = document.getElementById('taskInfoDisplayContainer')
@@ -129,6 +131,7 @@ function displayTaskDetails(){
             })
         }
     }
+       
 
         addTask.prototype.saveDescriptionPrototype = function(){
             let descriptionDisplay = document.getElementById('descriptionDisplay');
