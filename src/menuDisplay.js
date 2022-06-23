@@ -100,7 +100,7 @@ function openLists (){
         //buttons to remove a task from the array after being crossed off
         let deleteTaskBtn = document.createElement('button');
             deleteTaskBtn.classList.add('deleteTaskBtn', 'btn', 'taskCrossBtn');
-            deleteTaskBtn.innerHTML = 'X';
+            deleteTaskBtn.innerHTML = '&#10006;';
         //append everything
         let taskDisplayContainer = document.getElementById('taskDisplayContainer');
         taskDisplayContainer.append(taskFlexContainer);

@@ -49,14 +49,27 @@ body{
 #overallListMenuContainer{
     display: flex;
     flex-direction: column;
+    height: 80%;
+    width: 100%;
     gap: 5px;
 }
 
 #currentListsFlexContainer{
     display: flex;
     flex-direction: column;
+    height: 100%;
+    width: 100%;
     gap: 10px;
 }
+    .listBtn{
+        font-size: 15pt;
+        height: 5%;
+        border: none;
+        cursor: pointer;
+        width: 60%;
+        width: fit-content;
+        cursor: pointer;
+    }
 
 
 
@@ -286,7 +299,7 @@ body{
     margin-left: 2pt;
     width: 85%;
 }
-#addListPopupBtn{
+#addListPopupBtn, #saveEditedListBtn{
     border-radius: 15px;
     background-color: white;
     border: 1pt black solid;
@@ -296,4 +309,21 @@ body{
     margin-right: 3pt;
 }
 
+/*Editing List Name Popup*/
+#editListBtnContainer{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 
+}
+#deleteListBtnFlexContainer, #saveEditedListBtnFlexContainer{
+    display: flex;
+    width: 50%;
+    justify-content: center;
+}
+#deleteListBtnFlexContainer{
+    
+}
+#saveEditedListBtnFlexContainer{
+  
+}
