@@ -144,7 +144,6 @@ function displayTaskDetails(){
         }
         //lets you click off anywhere to save
         function baseEventListenerAdder(){
-            base.removeEventListener('click',saveDescription, true);
             base.addEventListener('click',saveDescription, true);
         }
     //controls this whole thing, only function called
@@ -153,14 +152,12 @@ function displayTaskDetails(){
         if(displayedFlag == true){
             removeAndReAdd();
             currentTask.postTaskDetails();
-            base.removeEventListener('click',saveDescription, true);
         }
         //If there is nothng on board IE first time opening a list, then default it to 0
         else{
             putEverythingOnInfoBoard();
             listArrayCurrent[0].postTaskDetails(); //auto displays first task in list//
             currentTask = listArrayCurrent[0];
-            base.removeEventListener('click',saveDescription, true);//
         }
         changeDueDateBtnEventListener();
         console.log(listArray[0])

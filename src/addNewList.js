@@ -74,7 +74,7 @@ export default function addNewList() {
                     listArray.splice(i, 1);
                     takeEverythingOffInfoBoard();
                     createNewButtons();
-                    assignButtons();
+                    //assignButtons();
                     closePopups();
                     removeDeleteAndSave();
                 })
@@ -89,7 +89,7 @@ export default function addNewList() {
                     btnArray[i].innerHTML = userListInput.value;
                     addListPopoutBoxContainer.style.display = 'none';
                     createNewButtons();
-                    assignButtons();
+                    //assignButtons();
                     removeDeleteAndSave();
 
                 })
