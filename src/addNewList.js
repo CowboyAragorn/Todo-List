@@ -41,7 +41,8 @@ export default function addNewList() {
                 listFlexContainer.classList.add('listFlexContainer');
                 removerArray.push(listFlexContainer)
             let editListBtn = document.createElement('button');
-                editListBtn.id = i+'e'
+                editListBtn.id = i+'e';
+                editListBtn.innerHTML = '&#9881'
             editListBtn.classList.add('editListBtn', 'btn');
             listFlexContainer.append(btnArray[i]);
             listFlexContainer.append(editListBtn);
@@ -66,6 +67,7 @@ export default function addNewList() {
                 deleteListBtn.id = 'deleteListBtn';
                 deleteListBtn.classList.add('btn', 'deleteListBtn');
                 deleteListBtn.innerHTML = 'Delete';
+                //adds event listeners to the delete button in the popup, buts it out of btn and list array and resets everything//
                 deleteListBtn.addEventListener('click', () => {
                     addListPopoutBoxContainer.style.display = 'none';
                     taskPopoutBox.style.display = 'none';

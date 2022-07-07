@@ -19,7 +19,7 @@ body{
 }
 
 
-
+/*Left hand menu bar*/
 #menuBarContainer{
     width: 15%;
     border: 2pt black solid;
@@ -30,6 +30,7 @@ body{
 #menuBarContainer{
     display: flex;
     flex-direction: column;
+    background-color: whitesmoke;
     gap: 10%;
 }
 
@@ -61,14 +62,21 @@ body{
     width: 100%;
     gap: 10px;
 }
-    .listBtn{
-        font-size: 15pt;
-        height: 5%;
+
+.listFlexContainer{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+    .listBtn, .editListBtn{
+        font-size: 12pt;
+       /* height: 5%;
+ */        height: fit-content;
         border: none;
+        background-color: whitesmoke;
         cursor: pointer;
         width: 60%;
         width: fit-content;
-        cursor: pointer;
     }
 
 
@@ -251,6 +259,8 @@ body{
             font-size: 15pt;
             font-weight: bold;
         }
+
+
 
 /*Add List popout Box*/
 #addListPopoutBoxContainer{
