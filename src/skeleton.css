@@ -16,6 +16,7 @@ body{
 }
 .btn{
     height: fit-content;
+    cursor: pointer;
 }
 
 
@@ -163,8 +164,8 @@ body{
             margin: 0;
             
         }
-
-        #taskFlexContainer{
+        /*taskFlexContainer*/
+        .taskFlex{
             display: flex;
             height: fit-content;
             align-items: center;
@@ -172,6 +173,12 @@ body{
             border: none;
             gap:2%;
             font-size: 13pt;
+            cursor: pointer;
+        }
+
+        .taskFlex:hover{
+            border: 1pt blue inset;
+            border-radius: 15px;
         }
         .taskCrossBtn{
             height: 50%;
@@ -179,6 +186,7 @@ body{
             margin-left: 5%;
             padding: 6pt;
             border: 1pt, black, solid;
+            cursor: pointer;
         }
 
         .task{
@@ -188,6 +196,8 @@ body{
             width: 100%;
             
         }
+
+        
 
         /*Crossout achieved with linear gradient, shamelessly took this*/
         .crossed{
@@ -213,6 +223,8 @@ body{
             background-color: grey;
             color: white;
             border: none;
+            cursor: pointer;
+            
         }
         .deleteTaskBtn{
             margin: 0;

@@ -90,6 +90,7 @@ function displayTaskDetails(){
                     descriptionTitle.innerHTML = 'Notes';
                     descriptionDisplayContainer.append(descriptionTitle);
                  descriptionDisplay = document.createElement('textarea')
+                    descriptionDisplay.placeholder = 'Type your notes here'
                     descriptionDisplay.id = 'descriptionDisplay';
                     descriptionDisplayContainer.append(descriptionDisplay);
          displayedFlag = true;
@@ -155,25 +156,6 @@ function displayTaskDetails(){
         function baseEventListenerAdder(){
             base.addEventListener('click',saveDescription, true);
         }
-    //controls this whole thing, only function called
-    function infoDisplayController(){
-        //This is for keeping persistence when crossing items. Info display stays on crossed item
-        if(displayedFlag == true){
-            removeAndReAdd();
-            currentTask.postTaskDetails();
-        }
-        //If there is nothng on board IE first time opening a list, then default it to 0
-        else{
-            putEverythingOnInfoBoard();
-            listArrayCurrent[0].postTaskDetails(); //auto displays first task in list//
-            currentTask = listArrayCurrent[0];
-        }
-        changeDueDateBtnEventListener();
-        console.log(listArray[0])
-        taskButtonDisplayAssigner();
-        listButtonDisplayAssigner();
-        baseEventListenerAdder();
-    }
     
     //These three control updating calendar
     function changeDueDate(){
@@ -220,6 +202,25 @@ function displayTaskDetails(){
             addListInputContainer.append(addDatePopoutBtn);
             addDatePopoutBtn.addEventListener('click', changeDueDate);
         })
+    }
+     //controls this whole thing, only function called
+     function infoDisplayController(){
+        //This is for keeping persistence when crossing items. Info display stays on crossed item
+        if(displayedFlag == true){
+            removeAndReAdd();
+            currentTask.postTaskDetails();
+        }
+        //If there is nothng on board IE first time opening a list, then default it to 0
+        else{
+            putEverythingOnInfoBoard();
+            listArrayCurrent[0].postTaskDetails(); //auto displays first task in list//
+            currentTask = listArrayCurrent[0];
+        }
+        changeDueDateBtnEventListener();
+        console.log(listArray[0])
+        taskButtonDisplayAssigner();
+        listButtonDisplayAssigner();
+        baseEventListenerAdder();
     }
     //InfoDisplay is the only thing that fires//
     infoDisplayController();

@@ -88,8 +88,9 @@ function openLists (){
 
    //This prototype is being called to display the categories from the lists on to the popup, it also creates the buttons//
    addTask.prototype.displayList = function(){
+       //the taskFlexContainers really should be objects//
         let taskFlexContainer = document.createElement('button'); //It being a button makes it clickable
-            taskFlexContainer.id = 'taskFlexContainer';
+            //taskFlexContainer.id = 'taskFlexContainer';
             taskFlexContainer.classList = 'taskFlex'
         //buttons to cross a task off, moving it to bottom of the array//
         let taskCrossBtn = document.createElement('button');
@@ -269,7 +270,7 @@ function addTaskToList () {
             //creates new addtask, pushes it to current array, pins it to board, erases what is typed//
             let userAddTask = new addTask(
                 userTaskInputValue,
-                'List for Week 4/4',
+                '',
                 'Set Time',
                 'High',
                 'incomplete'
