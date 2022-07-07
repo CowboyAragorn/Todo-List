@@ -1,6 +1,6 @@
 
 import closePopups from "./closePopups";
-import { takeEverythingOffInfoBoard, displayTaskDetails } from "./displayTaskDetails";
+import { takeEverythingOffInfoBoard, displayTaskDetails, displayFlagFalseForDeletingLists } from "./displayTaskDetails";
 import { listArray, assignButtons, btnArray, pinList, listArrayCurrent } from "./menuDisplay";
 
 //Controls the function of the addListPopout. Also controls the addList button on side menu
@@ -74,7 +74,7 @@ export default function addNewList() {
                     taskInfoPopoutBox.style.display = 'none';
                     btnArray.splice(i, 1);
                     listArray.splice(i, 1);
-                    //displayTaskDetails();
+                    displayFlagFalseForDeletingLists(); //change the display flag to avoid an error if nothing is currently displayed
                     takeEverythingOffInfoBoard();
                     createNewButtons();
                     //assignButtons();

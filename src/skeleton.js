@@ -11,15 +11,21 @@ export default function skeleton (){
     let menuBarContainer = document.createElement('div'); //This is the menu/nav bar on left side of screen
         menuBarContainer.id = 'menuBarContainer';
 
-        let newTodoContainer = document.createElement('div');
-            newTodoContainer.id = 'newTodoContainer'
-            menuBarContainer.append(newTodoContainer)
-
+        let todoListLogoContainer = document.createElement('div');
+            todoListLogoContainer.id = 'todoListLogoContainer'
+            menuBarContainer.append(todoListLogoContainer)
+            /* Add a list from one button
             let newTodo = document.createElement('button');
                 newTodo.id = 'newTodo';
                 newTodo.innerHTML = 'New Task'
-                newTodoContainer.append(newTodo);
+                todoListLogoContainer.append(newTodo);
+    
 
+    let todoListLogo = document.createElement('div');
+        todoListLogo.id = 'todoListLogo';
+        todoListLogo.innerHTML = 'Todo Lists'
+        todoListLogoContainer.append(todoListLogo);
+*/
         let overallListMenuContainer = document.createElement('div');
             overallListMenuContainer.id = 'overallListMenuContainer';
             menuBarContainer.append(overallListMenuContainer);
@@ -155,7 +161,7 @@ let taskInfoPopoutBox = document.createElement('div');
         let addListInputContainer = document.createElement('div');
                 addListInputContainer.id = 'addListInputContainer';
                 addListPopoutBox.append(addListInputContainer)
-
+        
     base.append(menuBarContainer);
     base.append(taskAndListContainer);
 };

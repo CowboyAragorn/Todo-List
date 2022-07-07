@@ -6,7 +6,7 @@ import addTask from "./addTask";
 import { format,addMinutes } from "date-fns";
 
 //Display flag must be declared up here so it can be edited safely
-let displayedFlag = false;
+let displayedFlag
 let changeDueDateBtn
 let currentTask //Define here so we can edit throughout
 
@@ -40,6 +40,10 @@ function takeEverythingOffInfoBoard(){
         descriptionDisplayContainer.removeChild(descriptionDisplay);
         displayedFlag = false;
     }
+}
+//solely for deleting lists if no tasks are displayed//
+function displayFlagFalseForDeletingLists(){
+   displayedFlag = false;
 }
 
 
@@ -217,7 +221,7 @@ function displayTaskDetails(){
             addDatePopoutBtn.addEventListener('click', changeDueDate);
         })
     }
-
+    //InfoDisplay is the only thing that fires//
     infoDisplayController();
 }
-export {takeEverythingOffInfoBoard, displayTaskDetails,}
+export {takeEverythingOffInfoBoard, displayTaskDetails, displayFlagFalseForDeletingLists}

@@ -19,10 +19,11 @@ body{
 }
 
 
+
 /*Left hand menu bar*/
 #menuBarContainer{
     width: 15%;
-    border: 2pt black solid;
+    border-right: 1pt black solid;
     
 }
 
@@ -31,15 +32,30 @@ body{
     display: flex;
     flex-direction: column;
     background-color: whitesmoke;
-    gap: 10%;
+   
 }
-
-
+/*logo*/
+/*
+#todoListLogoContainer{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 5%;
+    background-color: lightskyblue;
+    width: 100%;
+    border: none;
+}
+#todoListLogo{
+    font-size: 15pt;
+    margin-left: 2%;
+}
+*/
 
 #listHeaderContainer{
     display: flex;
     justify-content: space-between;
     padding: 5pt;
+    background-color: lightskyblue;
 }
 
 .listHeaders{
@@ -68,6 +84,8 @@ body{
     justify-content: space-between;
     width: 90%;
 }
+
+
     .listBtn, .editListBtn{
         font-size: 12pt;
        /* height: 5%;
