@@ -143,6 +143,7 @@ export default function addNewList() {
         listArray.push(userListNewArray);
         userListInput.value = '';
         addListPopoutBoxContainer.style.display = 'none';
+        userListNewBtn.click(); //Clicks the new button, opening the new list//
 
     }
 

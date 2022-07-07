@@ -286,9 +286,10 @@ function addTaskToList () {
         //dis displays info box when hitting the + button
         if(listArrayCurrent.length > 0){ //If the new list is empty, make it show up, take everything off it, then pin the newly added task
             taskInfoPopoutBox.style.display = 'flex';
+            console.log(newlyAddedTask)
             takeEverythingOffInfoBoard();
            displayTaskDetails();
-           newlyAddedTask = undefined
+           newlyAddedTask = undefined;
             
         }
         else if (listArrayCurrent.length <= 0){

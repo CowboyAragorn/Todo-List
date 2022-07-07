@@ -213,9 +213,11 @@ function displayTaskDetails(){
             removeAndReAdd();
             currentTask.postTaskDetails();
         }
+        //This is for adding new tasks, makes them the displayed task//
         else if(newlyAddedTask != undefined){
-                removeAndReAdd();
-                newlyAddedTask.postTaskDetails();
+                currentTask = newlyAddedTask; //need to make current task this, otherwise value gets messed up down pipe//
+                putEverythingOnInfoBoard(); // don't need to remove and readd bc everything already taken off//
+                currentTask.postTaskDetails();
             }
         //If there is nothng on board IE first time opening a list, then default it to 0
         else{
