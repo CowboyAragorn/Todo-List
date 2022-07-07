@@ -15,6 +15,7 @@ let sortTracker
 let iTracker//itracker here connects directly above to pinLists. Lets me change the original array in
 let iSaver
 let formerArrayPositionTracker
+let newlyAddedTask
 
 
 //This function controls display on the popup. This includes clicks from the side menu, additions from the popup//
@@ -204,6 +205,8 @@ function assignButtons(){
     }
 };
 
+
+//event instead of event listener?
 function assignButtonsEventListener(event){
     let taskPopoutBox = document.getElementById('taskPopoutBox');
     const clickedBtn = event.target;
@@ -257,9 +260,10 @@ function assignFormerPositions(){
 //Located here because of pinList//
 function addTaskToList () {
     let addTaskButton = document.getElementById('addTaskBtn');
+    let userTaskInput = document.getElementById('userTaskInput');
     //would this be cleaner just put into to event listener rather than calling function at end?//
     function addTaskWhenClickBtn (){
-        let userTaskInput = document.getElementById('userTaskInput');
+      //  let userTaskInput = document.getElementById('userTaskInput');
         let userTaskInputValue = userTaskInput.value
         //If statement catches edge case of not having a value or only putting in spaces//
             if(userTaskInputValue.trim().length === 0){
@@ -275,7 +279,7 @@ function addTaskToList () {
                 'High',
                 'incomplete'
             )
-            
+        newlyAddedTask = userAddTask; //assigns value so that it may be displayed to info panel//
         listArrayCurrent.push(userAddTask);
         assignFormerPositions();
         pinList();
@@ -283,8 +287,8 @@ function addTaskToList () {
         if(listArrayCurrent.length > 0){ //If the new list is empty, make it show up, take everything off it, then pin the newly added task
             taskInfoPopoutBox.style.display = 'flex';
             takeEverythingOffInfoBoard();
-            displayTaskDetails();
-            
+           displayTaskDetails();
+           newlyAddedTask = undefined
             
         }
         else if (listArrayCurrent.length <= 0){
@@ -296,6 +300,13 @@ function addTaskToList () {
 
             }
     addTaskButton.addEventListener('click', addTaskWhenClickBtn);
+    //enter key functionality//
+    userTaskInput.addEventListener('keypress', function(e){
+        if (e.key === 'Enter'){
+            addTaskButton.click();
+        }
+        
+    })
     };
 
 
@@ -308,6 +319,6 @@ function easyExport(){
 
 
 export {listArray, btnArray, listArrayCurrent, taskDisplayArray, listArrayCurrentName, 
-        currentCrossTaskButtonsArray, deleteTaskButtonsArray}
+        currentCrossTaskButtonsArray, deleteTaskButtonsArray, newlyAddedTask}
 
 export {openLists, easyExport,assignButtons, pinList} 

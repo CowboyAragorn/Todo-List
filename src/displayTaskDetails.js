@@ -1,7 +1,7 @@
 //let currentDisplayedTasksArray = []
 
 //called from pinlist
-import { listArrayCurrent, btnArray, listArray } from "./menuDisplay";
+import { listArrayCurrent, btnArray, listArray, newlyAddedTask } from "./menuDisplay";
 import addTask from "./addTask";
 import { format,addMinutes } from "date-fns";
 
@@ -44,6 +44,8 @@ function takeEverythingOffInfoBoard(){
 function displayFlagFalseForDeletingLists(){
    displayedFlag = false;
 }
+
+
 
 
 function displayTaskDetails(){
@@ -211,6 +213,10 @@ function displayTaskDetails(){
             removeAndReAdd();
             currentTask.postTaskDetails();
         }
+        else if(newlyAddedTask != undefined){
+                removeAndReAdd();
+                newlyAddedTask.postTaskDetails();
+            }
         //If there is nothng on board IE first time opening a list, then default it to 0
         else{
             putEverythingOnInfoBoard();
