@@ -24,7 +24,6 @@ function takeEverythingOffInfoBoard(){
     let descriptionDisplayContainer = document.getElementById('descriptionDisplayContainer')
     let descriptionTitle = document.getElementById('descriptionTitle')
     let descriptionDisplay = document.getElementById('descriptionDisplay')
-    
     //This is for deleting lists if nothing is displayed, otherwise the deleteFunction will error and exit here because there is no popupBox to remove//
     if(displayedFlag == false){
         return
@@ -38,7 +37,7 @@ function takeEverythingOffInfoBoard(){
         taskInfoDisplayContainer.removeChild(descriptionDisplayContainer);
         descriptionDisplayContainer.removeChild(descriptionTitle);
         descriptionDisplayContainer.removeChild(descriptionDisplay);
-        displayedFlag = false;
+        displayedFlag = false; //allows you to click when deleting an item//
     }
 }
 //solely for deleting lists if no tasks are displayed//
@@ -93,7 +92,7 @@ function displayTaskDetails(){
                     descriptionDisplay.placeholder = 'Type your notes here'
                     descriptionDisplay.id = 'descriptionDisplay';
                     descriptionDisplayContainer.append(descriptionDisplay);
-         displayedFlag = true;
+            displayedFlag = true;
     }
 
    
@@ -113,10 +112,11 @@ function displayTaskDetails(){
         let allTaskFlexContainers = document.querySelectorAll('.taskFlex');
         for(let i=0;i<allTaskFlexContainers.length;i++){
             allTaskFlexContainers[i].addEventListener('click', ()=>{
-                removeAndReAdd();
-                console.log(listArray[i])
-                listArrayCurrent[i].postTaskDetails();
                 currentTask = listArrayCurrent[i];//Make the clicked task the current task for editing throughout
+                removeAndReAdd();
+                console.log(listArray[i]);
+                console.log(displayedFlag)
+                listArrayCurrent[i].postTaskDetails();
                 console.log('currentTaskTop')
                 console.log(currentTask)
             })
@@ -205,6 +205,7 @@ function displayTaskDetails(){
     }
      //controls this whole thing, only function called
      function infoDisplayController(){
+         console.log(displayedFlag)
         //This is for keeping persistence when crossing items. Info display stays on crossed item
         if(displayedFlag == true){
             removeAndReAdd();
@@ -225,4 +226,4 @@ function displayTaskDetails(){
     //InfoDisplay is the only thing that fires//
     infoDisplayController();
 }
-export {takeEverythingOffInfoBoard, displayTaskDetails, displayFlagFalseForDeletingLists}
+export {takeEverythingOffInfoBoard, displayTaskDetails, currentTask, displayFlagFalseForDeletingLists}

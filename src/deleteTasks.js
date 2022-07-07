@@ -1,5 +1,5 @@
 import addTask from "./addTask";
-import { takeEverythingOffInfoBoard } from "./displayTaskDetails";
+import { takeEverythingOffInfoBoard, currentTask } from "./displayTaskDetails";
 import { listArrayCurrent, taskDisplayArray,
         currentCrossTaskButtonsArray,  deleteTaskButtonsArray, pinList} from "./menuDisplay"
 
@@ -65,7 +65,10 @@ function deleteTasks(){
                 deleteTaskButtonsArray[i].addEventListener('click', () =>{ //for every button on the list, when I am clicked
                     currentArrayPositionTracker(); //Find the current position of my task
                     deleteEligibleArray[i].deleteTask();//delete that task, finding it in my array of eligible deletions
-                    takeEverythingOffInfoBoard(); //Delete info board, setting flag to false and pinning first item on list//
+                    //If the deleted item is the current item, default the info display to the original, if not then keep it on current item//
+                    if(deleteEligibleArray[i] == currentTask){ //currentTask imported from displayTaskDetails//
+                        takeEverythingOffInfoBoard(); //Delete info board, setting flag to false and pinning first item on list//
+                        }
                     pinList(); //Put everyone back on the board
                     //let taskInfoPopoutBox = document.getElementById('taskInfoPopoutBox')
                     
