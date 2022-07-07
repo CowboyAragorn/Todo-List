@@ -6,7 +6,7 @@ import addTask from "./addTask";
 import { format,addMinutes } from "date-fns";
 
 //Display flag must be declared up here so it can be edited safely
-let displayedFlag
+let displayedFlag = false;
 let changeDueDateBtn
 let currentTask //Define here so we can edit throughout
 
@@ -25,16 +25,21 @@ function takeEverythingOffInfoBoard(){
     let descriptionTitle = document.getElementById('descriptionTitle')
     let descriptionDisplay = document.getElementById('descriptionDisplay')
     
-
-    taskInfoPopoutBox.removeChild(taskInfoDisplayContainer);
-    taskInfoDisplayContainer.removeChild(dueDateDisplayContainer);
-    dueDateDisplayContainer.removeChild(dueDateTitle);
-    dueDateDisplayContainer.removeChild(dueDateDisplay);
-    dueDateDisplayContainer.removeChild(changeDueDateBtn);
-    taskInfoDisplayContainer.removeChild(descriptionDisplayContainer);
-    descriptionDisplayContainer.removeChild(descriptionTitle);
-    descriptionDisplayContainer.removeChild(descriptionDisplay);
-    displayedFlag = false;
+    //This is for deleting lists if nothing is displayed, otherwise the deleteFunction will error and exit here because there is no popupBox to remove//
+    if(displayedFlag == false){
+        return
+    }
+    else{
+        taskInfoPopoutBox.removeChild(taskInfoDisplayContainer);
+        taskInfoDisplayContainer.removeChild(dueDateDisplayContainer);
+        dueDateDisplayContainer.removeChild(dueDateTitle);
+        dueDateDisplayContainer.removeChild(dueDateDisplay);
+        dueDateDisplayContainer.removeChild(changeDueDateBtn);
+        taskInfoDisplayContainer.removeChild(descriptionDisplayContainer);
+        descriptionDisplayContainer.removeChild(descriptionTitle);
+        descriptionDisplayContainer.removeChild(descriptionDisplay);
+        displayedFlag = false;
+    }
 }
 
 
@@ -215,4 +220,4 @@ function displayTaskDetails(){
 
     infoDisplayController();
 }
-export {takeEverythingOffInfoBoard, displayTaskDetails}
+export {takeEverythingOffInfoBoard, displayTaskDetails,}
