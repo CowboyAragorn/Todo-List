@@ -3,9 +3,11 @@ import closePopups from "./closePopups";
 import { takeEverythingOffInfoBoard, displayTaskDetails, displayFlagFalseForDeletingLists } from "./displayTaskDetails";
 import { listArray, assignButtons, btnArray, pinList, listArrayCurrent } from "./menuDisplay";
 
+
 //Controls the function of the addListPopout. Also controls the addList button on side menu
 export default function addNewList() {
     let removerArray = []
+
     //This function creates & pins the new lsit buttons on the lefthand menu//
     function createNewButtons() {
         let addListPopoutBox = document.getElementById('addListPopoutBox');
@@ -75,10 +77,9 @@ export default function addNewList() {
                         taskInfoPopoutBox.style.display = 'none';
                         btnArray.splice(i, 1);
                         listArray.splice(i, 1);
-                        displayFlagFalseForDeletingLists(); //change the display flag to avoid an error if nothing is currently displayed
+                        //displayFlagFalseForDeletingLists(); //change the display flag to avoid an error if nothing is currently displayed//
                         takeEverythingOffInfoBoard();
                         createNewButtons();
-                        //assignButtons();
                         closePopups();
                         removeDeleteAndSave();
                     })
@@ -100,7 +101,6 @@ export default function addNewList() {
                         addListPopoutBoxContainer.style.display = 'none';
                         createNewButtons();
                         btnArray[i].click(); //Calls the clicked button to display it.
-                        //assignButtons();
                         removeDeleteAndSave();
                         }
                     })

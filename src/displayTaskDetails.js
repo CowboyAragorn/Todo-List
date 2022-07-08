@@ -1,7 +1,7 @@
 //let currentDisplayedTasksArray = []
 
 //called from pinlist
-import { listArrayCurrent, btnArray, listArray, newlyAddedTask } from "./menuDisplay";
+import { listArrayCurrent, btnArray, listArray, newlyAddedTask, firstListOpenFlag } from "./menuDisplay";
 import addTask from "./addTask";
 import { format,addMinutes } from "date-fns";
 
@@ -9,6 +9,7 @@ import { format,addMinutes } from "date-fns";
 let displayedFlag
 let changeDueDateBtn
 let currentTask //Define here so we can edit throughout
+
 
 
 //separated from the other larger function so that it can be exported
@@ -25,7 +26,7 @@ function takeEverythingOffInfoBoard(){
     let descriptionTitle = document.getElementById('descriptionTitle')
     let descriptionDisplay = document.getElementById('descriptionDisplay')
     //This is for deleting lists if nothing is displayed, otherwise the deleteFunction will error and exit here because there is no popupBox to remove//
-    if(displayedFlag == false){
+    if(displayedFlag == false || firstListOpenFlag == false ){
         return
     }
     else{
@@ -61,6 +62,7 @@ function displayTaskDetails(){
     let descriptionDisplayContainer 
     let descriptionTitle 
     let descriptionDisplay 
+   
 
     function putEverythingOnInfoBoard(){
         let taskInfoPopoutBox = document.getElementById('taskInfoPopoutBox');

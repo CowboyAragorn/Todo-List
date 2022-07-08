@@ -16,6 +16,7 @@ let iTracker//itracker here connects directly above to pinLists. Lets me change 
 let iSaver
 let formerArrayPositionTracker
 let newlyAddedTask
+let firstListOpenFlag //This flag will allow for deletion of lists when none are open at start of program exported to displayTaskDetails//
 
 
 //This function controls display on the popup. This includes clicks from the side menu, additions from the popup//
@@ -85,7 +86,7 @@ function openLists (){
 
         btnArray = [groceryBtn, houseBtn,] 
         listArray = [groceryListArray, houseListArray,]
-}
+}   
 
    //This prototype is being called to display the categories from the lists on to the popup, it also creates the buttons//
    addTask.prototype.displayList = function(){
@@ -205,7 +206,7 @@ function assignButtons(){
     }
 };
 
-
+firstListOpenFlag = false;
 //event instead of event listener?
 function assignButtonsEventListener(event){
     let taskPopoutBox = document.getElementById('taskPopoutBox');
@@ -230,6 +231,7 @@ function assignButtonsEventListener(event){
                 console.log(listArrayCurrent)
                 listArrayCurrentName = listNameDisplay.innerHTML;
                 console.log(listArrayCurrentName)
+            firstListOpenFlag = true;
             assignFormerPositions();
             pinList();
 }
@@ -320,6 +322,6 @@ function easyExport(){
 
 
 export {listArray, btnArray, listArrayCurrent, taskDisplayArray, listArrayCurrentName, 
-        currentCrossTaskButtonsArray, deleteTaskButtonsArray, newlyAddedTask}
+        currentCrossTaskButtonsArray, deleteTaskButtonsArray, newlyAddedTask, firstListOpenFlag}
 
 export {openLists, easyExport,assignButtons, pinList} 
