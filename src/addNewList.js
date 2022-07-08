@@ -27,6 +27,7 @@ export default function addNewList() {
         while (elements.length > 0) {
             currentListsFlexContainer.removeChild(elements[0]);
         }
+        
         //for the list menu buttons on left side//
         for (let i = 0; i < btnArray.length; i++) {
             btnArray[i].classList.add('btn', 'listBtn');
@@ -45,6 +46,11 @@ export default function addNewList() {
 
             //Event listener for the listEdit buttons, iterating off of i so as to save the correct btnArray.innerHTML
             editListBtn.addEventListener('click', () => {
+                //lazyHiddenDiv empty//
+                const elements2 = document.getElementsByClassName('popoutItem2');
+                while (elements2.length > 0) {
+                    addListPopoutBox.removeChild(elements2[0]);
+        }
                     addListPopoutBoxContainer.style.display = 'block'; //this is now just the main popout;
                     addListNameDisplay.innerHTML = 'Name List';
                     //define these here so they can always be accessed, even when editing the popup elsewhere//
@@ -115,7 +121,8 @@ export default function addNewList() {
                     editListBtnContainer.append(saveEditedListBtnFlexContainer)
                     saveEditedListBtnFlexContainer.append(saveEditedListBtn)
                     addListInputContainer.append(userListInput);
-                
+
+                    userListInput.focus(); //auto places cursor in input
                     //Allows user to edit text field and hit enter
                     userListInput.addEventListener('keypress', function(e){
                         if (e.key === 'Enter'){
@@ -125,16 +132,6 @@ export default function addNewList() {
                         }
                     })
                 })
-            //Outside the event listener for the edit bnts
-            //allows user to hit enter immediately upon opening an edit list to exit//
-            editListBtn.addEventListener('keypress', function(e){
-                if (e.key === 'Enter'){
-                    let saveEditedListBtn = document.getElementById('saveEditedListBtn');
-                    e.preventDefault(); //prevents it from calling the whole of editListBtn again
-                    saveEditedListBtn.click();
-                    return
-                }
-            })
         }
     }
     
@@ -180,23 +177,36 @@ export default function addNewList() {
         addListPopoutBoxContainer.style.display = 'block'; //this is now just the main popout;
         addListNameDisplay.innerHTML = 'Name This List';
         //define these here so they can always be accessed, even when editing the popup elsewhere//
+       
         let userListInput = document.createElement('input');
-        userListInput.type = 'text';
-        userListInput.id = 'userListInput';
-        userListInput.classList.add('popoutItem')
+            userListInput.type = 'text';
+            userListInput.id = 'userListInput';
+            userListInput.classList.add('popoutItem');
+            userListInput.classList.add('addNewListInput');
         let addListPopupBtn = document.createElement('button');
-        addListPopupBtn.id = 'addListPopupBtn';
-        addListPopupBtn.classList.add('btn', 'popoutItem');
-        addListPopupBtn.innerHTML = '+';
+            addListPopupBtn.id = 'addListPopupBtn';
+            addListPopupBtn.classList.add('btn', 'popoutItem');
+            addListPopupBtn.innerHTML = '+';
+        //hiddenDiv is here for CSS, laziness on my part to reuse the popup made it difficult to style.//
+        let hiddenDiv = document.createElement('div');
+            hiddenDiv.id = 'hiddenDiv';
+            hiddenDiv.classList.add('popoutItem2');
 
         //Empty the popup
         const elements = document.getElementsByClassName('popoutItem');
         while (elements.length > 0) {
             addListInputContainer.removeChild(elements[0]);
         }
+        //lazyHiddenDiv empty//
+        const elements2 = document.getElementsByClassName('popoutItem2');
+        while (elements2.length > 0) {
+            addListPopoutBox.removeChild(elements2[0]);
+        }
         //Add the addList materials//
         addListInputContainer.append(userListInput);
         addListInputContainer.append(addListPopupBtn);
+        addListPopoutBox.append(hiddenDiv);
+        userListInput.focus(); //auto places cursor in box//
         addListPopupBtn.addEventListener('click', clickBtnAddToBtnArray); //calls the above function to make sure that lists get appended//
         //add enter key support
         userListInput.addEventListener('keypress', function(e){
