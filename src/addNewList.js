@@ -13,13 +13,8 @@ export default function addNewList() {
         let taskInfoPopoutBox = document.getElementById('taskInfoPopoutBox')
         //unappend the popup//
         //const listFlexContainers = document.getElementsByClassName('listFlexContainer')
-
-
-
-
         const elements = document.getElementsByClassName('listFlexContainer');
 
-        
         console.log(removerArray)
         console.log(elements);
         while (removerArray.length > 0) {
@@ -48,79 +43,101 @@ export default function addNewList() {
             listFlexContainer.append(editListBtn);
             currentListsFlexContainer.append(listFlexContainer);
 
-            //Event listener for the listedit buttons, iterating off of i so as to save the correct btnArray.innerHTML
+            //Event listener for the listEdit buttons, iterating off of i so as to save the correct btnArray.innerHTML
             editListBtn.addEventListener('click', () => {
-                addListPopoutBoxContainer.style.display = 'block'; //this is now just the main popout;
-                addListNameDisplay.innerHTML = 'Name List';
-                //define these here so they can always be accessed, even when editing the popup elsewhere//
-                let userListInput = document.createElement('input');
-                    userListInput.type = 'text';
-                    userListInput.id = 'userListInput';
-                    userListInput.value = btnArray[i].innerHTML;
-                    userListInput.classList.add('popoutItem');
-                let editListBtnContainer = document.createElement('div');
-                editListBtnContainer.id = 'editListBtnContainer';
-                editListBtnContainer.classList.add('editListBtnContainer');
-                let deleteListBtnFlexContainer = document.createElement('div');
-                deleteListBtnFlexContainer.id = 'deleteListBtnFlexContainer';
-                let deleteListBtn = document.createElement('button');
-                deleteListBtn.id = 'deleteListBtn';
-                deleteListBtn.classList.add('btn', 'deleteListBtn');
-                deleteListBtn.innerHTML = 'Delete';
-                //adds event listeners to the delete button in the popup, buts it out of btn and list array and resets everything//
-                deleteListBtn.addEventListener('click', () => {
-                    addListPopoutBoxContainer.style.display = 'none';
-                    taskPopoutBox.style.display = 'none';
-                    taskInfoPopoutBox.style.display = 'none';
-                    btnArray.splice(i, 1);
-                    listArray.splice(i, 1);
-                    displayFlagFalseForDeletingLists(); //change the display flag to avoid an error if nothing is currently displayed
-                    takeEverythingOffInfoBoard();
-                    createNewButtons();
-                    //assignButtons();
-                    closePopups();
+                    addListPopoutBoxContainer.style.display = 'block'; //this is now just the main popout;
+                    addListNameDisplay.innerHTML = 'Name List';
+                    //define these here so they can always be accessed, even when editing the popup elsewhere//
+                    let userListInput = document.createElement('input');
+                        userListInput.type = 'text';
+                        userListInput.id = 'userListInput';
+                        userListInput.value = btnArray[i].innerHTML;
+                        userListInput.classList.add('popoutItem');
+                    let editListBtnContainer = document.createElement('div');
+                        editListBtnContainer.id = 'editListBtnContainer';
+                        editListBtnContainer.classList.add('editListBtnContainer');
+                    let deleteListBtnFlexContainer = document.createElement('div');
+                        deleteListBtnFlexContainer.id = 'deleteListBtnFlexContainer';
+                    let deleteListBtn = document.createElement('button');
+                        deleteListBtn.id = 'deleteListBtn';
+                        deleteListBtn.classList.add('btn', 'deleteListBtn');
+                        deleteListBtn.innerHTML = 'Delete';
+                    //adds event listeners to the delete button in the popup, buts it out of btn and list array and resets everything//
+                    deleteListBtn.addEventListener('click', () => {
+                        addListPopoutBoxContainer.style.display = 'none';
+                        taskPopoutBox.style.display = 'none';
+                        taskInfoPopoutBox.style.display = 'none';
+                        btnArray.splice(i, 1);
+                        listArray.splice(i, 1);
+                        displayFlagFalseForDeletingLists(); //change the display flag to avoid an error if nothing is currently displayed
+                        takeEverythingOffInfoBoard();
+                        createNewButtons();
+                        //assignButtons();
+                        closePopups();
+                        removeDeleteAndSave();
+                    })
+                    let saveEditedListBtnFlexContainer = document.createElement('div');
+                        saveEditedListBtnFlexContainer.id = ('saveEditedListBtnFlexContainer')
+                    let saveEditedListBtn = document.createElement('button');
+                        saveEditedListBtn.id = 'saveEditedListBtn';
+                        saveEditedListBtn.classList.add('btn', 'saveEditedListBtn');
+                        saveEditedListBtn.innerHTML = 'Save';
+                    //allows you to change the name of the list//
+                    saveEditedListBtn.addEventListener('click', () => {
+                        let userListInputValue = userListInput.value
+                        if(userListInputValue.trim().length === 0){
+                            userListInput.value = '';
+                            return
+                        }
+                        else{
+                        btnArray[i].innerHTML = userListInputValue;
+                        addListPopoutBoxContainer.style.display = 'none';
+                        createNewButtons();
+                        btnArray[i].click(); //Calls the clicked button to display it.
+                        //assignButtons();
+                        removeDeleteAndSave();
+                        }
+                    })
+                    //Enter button defaults to saving new name
+                    
+                    //Remove old delete & save buttons
                     removeDeleteAndSave();
-                })
-                let saveEditedListBtnFlexContainer = document.createElement('div');
-                saveEditedListBtnFlexContainer.id = ('saveEditedListBtnFlexContainer')
-                let saveEditedListBtn = document.createElement('button');
-                saveEditedListBtn.id = 'saveEditedListBtn';
-                saveEditedListBtn.classList.add('btn', 'saveEditedListBtn');
-                saveEditedListBtn.innerHTML = 'Save';
-                //allows you to change the name of the list//
-                saveEditedListBtn.addEventListener('click', () => {
-                    let userListInputValue = userListInput.value
-                    if(userListInputValue.trim().length === 0){
-                        userListInput.value = '';
-                        return
+                    //Delete the text input container
+                    const elements = document.getElementsByClassName('popoutItem');
+                    while (elements.length > 0) {
+                        addListInputContainer.removeChild(elements[0]);
                     }
-                    else{
-                    let listNameDisplay = document.getElementById('listNameDisplay')
-                    btnArray[i].innerHTML = userListInputValue;
-                    addListPopoutBoxContainer.style.display = 'none';
-                    createNewButtons();
-                    btnArray[i].click(); //Calls the clicked button to display it.
-                    //assignButtons();
-                    removeDeleteAndSave();
-                    }
+
+                    //Add the addList materials//
+                    addListPopoutBox.append(editListBtnContainer);
+                    editListBtnContainer.append(deleteListBtnFlexContainer);
+                    deleteListBtnFlexContainer.append(deleteListBtn)
+                    editListBtnContainer.append(saveEditedListBtnFlexContainer)
+                    saveEditedListBtnFlexContainer.append(saveEditedListBtn)
+                    addListInputContainer.append(userListInput);
+                
+                    //Allows user to edit text field and hit enter
+                    userListInput.addEventListener('keypress', function(e){
+                        if (e.key === 'Enter'){
+                            let saveEditedListBtn = document.getElementById('saveEditedListBtn');
+                            saveEditedListBtn.click();
+                            return
+                        }
+                    })
                 })
-                //Remove old delete & save buttons
-                removeDeleteAndSave();
-                //Delete the text input container
-                const elements = document.getElementsByClassName('popoutItem');
-                while (elements.length > 0) {
-                    addListInputContainer.removeChild(elements[0]);
+            //Outside the event listener for the edit bnts
+            //allows user to hit enter immediately upon opening an edit list to exit//
+            editListBtn.addEventListener('keypress', function(e){
+                if (e.key === 'Enter'){
+                    let saveEditedListBtn = document.getElementById('saveEditedListBtn');
+                    e.preventDefault(); //prevents it from calling the whole of editListBtn again
+                    saveEditedListBtn.click();
+                    return
                 }
-                //Add the addList materials//
-                addListPopoutBox.append(editListBtnContainer);
-                editListBtnContainer.append(deleteListBtnFlexContainer);
-                deleteListBtnFlexContainer.append(deleteListBtn)
-                editListBtnContainer.append(saveEditedListBtnFlexContainer)
-                saveEditedListBtnFlexContainer.append(saveEditedListBtn)
-                addListInputContainer.append(userListInput);
             })
         }
     }
+    
     //remove redundant delete and save buttons
     function removeDeleteAndSave() {
         const elements2 = document.getElementsByClassName('editListBtnContainer');
@@ -181,9 +198,12 @@ export default function addNewList() {
         addListInputContainer.append(userListInput);
         addListInputContainer.append(addListPopupBtn);
         addListPopupBtn.addEventListener('click', clickBtnAddToBtnArray); //calls the above function to make sure that lists get appended//
-
-
-
+        //add enter key support
+        userListInput.addEventListener('keypress', function(e){
+            if (e.key === 'Enter'){
+                addListPopupBtn.click();
+            }
+        })
     })
 
 
