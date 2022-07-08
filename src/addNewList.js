@@ -89,12 +89,20 @@ export default function addNewList() {
                 saveEditedListBtn.innerHTML = 'Save';
                 //allows you to change the name of the list//
                 saveEditedListBtn.addEventListener('click', () => {
-                    btnArray[i].innerHTML = userListInput.value;
+                    let userListInputValue = userListInput.value
+                    if(userListInputValue.trim().length === 0){
+                        userListInput.value = '';
+                        return
+                    }
+                    else{
+                    let listNameDisplay = document.getElementById('listNameDisplay')
+                    btnArray[i].innerHTML = userListInputValue;
                     addListPopoutBoxContainer.style.display = 'none';
                     createNewButtons();
+                    btnArray[i].click(); //Calls the clicked button to display it.
                     //assignButtons();
                     removeDeleteAndSave();
-
+                    }
                 })
                 //Remove old delete & save buttons
                 removeDeleteAndSave();
@@ -113,6 +121,7 @@ export default function addNewList() {
             })
         }
     }
+    //remove redundant delete and save buttons
     function removeDeleteAndSave() {
         const elements2 = document.getElementsByClassName('editListBtnContainer');
         while (elements2.length > 0) {
