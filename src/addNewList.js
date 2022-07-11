@@ -155,12 +155,20 @@ export default function addNewList() {
         let userListNewBtn = document.createElement('button');
         userListNewBtn.innerHTML = userListInputValue;
         btnArray.push(userListNewBtn);
+        //if the string is too long, shorten it and add to list//
+        //btns should have been objects//
+        if (userListInputValue.length>10){
+            let shortenedInput = userListInputValue.substring(0,10)
+            let addingPlusShortened = shortenedInput + '...';
+            userListNewBtn.innerHTML = addingPlusShortened;
+        }
         createNewButtons();
+        console.log('btnArray');
         console.log(btnArray)
         assignButtons();
 
         //puts it in the list array
-        console.log(btnArray);
+       
         let userListNewArray = [];
         userListNewArray.innerHTML = userListInputValue;
         listArray.push(userListNewArray);
