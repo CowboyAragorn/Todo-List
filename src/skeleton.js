@@ -54,7 +54,7 @@ export default function skeleton (){
 
                 let groceryList = document.createElement('button');
                     groceryList.classList = 'list';
-                    groceryList.innerHTML = 'Grocery List'
+                    groceryList.innerHTML = 'Groceries'
                     groceryList.id = '0';
                     groceryList.classList.add('btn', 'listBtn')
                     listFlexContainer1.append(groceryList)
@@ -62,7 +62,7 @@ export default function skeleton (){
 
                 let houseList = document.createElement('button');
                     houseList.classList = 'list';
-                    houseList.innerHTML = 'Housework List'
+                    houseList.innerHTML = 'Weekly housework'
                     houseList.id = '1';
                     houseList.classList.add('btn', 'listBtn')
                     listFlexContainer2.append(houseList)
@@ -106,6 +106,7 @@ export default function skeleton (){
                 let userTaskInput = document.createElement('input');
                     userTaskInput.type = 'text';
                     userTaskInput.maxLength = 80;
+                    userTaskInput.placeholder = 'Add a task'
                     userTaskInput.id = 'userTaskInput';
                     inputContainer.append(userTaskInput);
                 let addTaskBtn = document.createElement('button');

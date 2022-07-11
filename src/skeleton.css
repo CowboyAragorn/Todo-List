@@ -149,9 +149,13 @@ body{
             display: flex;
             align-items: center;
             padding: 5pt;
+            overflow-wrap: anywhere; /*Really only for it someone types all capital Q or something */
         }
+
+
         .listExitBtn{
             display: flex;
+            flex-shrink: 0;
             justify-content: center;
             align-items: center;
             margin-right: 2pt;
@@ -324,6 +328,8 @@ body{
 
 #addListNameDisplay{
     margin-left: 5pt;
+    flex-shrink: 1;
+
 
 }
 #addListExitBtn{

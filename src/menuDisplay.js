@@ -1,6 +1,7 @@
 import addTask from './addTask';
 import {deleteTasks, crossedTasks} from './deleteTasks';
 import {displayTaskDetails, takeEverythingOffInfoBoard} from './displayTaskDetails';
+import rearrangeTasks from './rearrangeTasks';
 
 
 //declare listArray here for export later
@@ -13,11 +14,11 @@ let deleteTaskButtonsArray = []
 let taskDisplayArray = []
 let sortTracker
 let iTracker//itracker here connects directly above to pinLists. Lets me change the original array in
-let iSaver
 let formerArrayPositionTracker
 let newlyAddedTask
 let firstListOpenFlag //This flag will allow for deletion of lists when none are open at start of program exported to displayTaskDetails//
-
+let idCounterForTasksInPinList //these set id's available for dragging and dropping//
+let idCounterForTasksInPinList2
 
 //This function controls display on the popup. This includes clicks from the side menu, additions from the popup//
 function openLists (){
@@ -46,7 +47,7 @@ function openLists (){
                 'Low'
             )
             let groceryListArray = [mondayGrocery, wedGrocery, fridayGrocery,];
-                groceryListArray.innerHTML = 'Grocery List';
+                groceryListArray.innerHTML = 'Groceries';
 
                 const laundry = new addTask(
                     '1',
@@ -79,7 +80,7 @@ function openLists (){
                     'High'
                 )
             let houseListArray = [laundry, laundry2, laundry3, laundry4, laundry5,];
-                houseListArray.innerHTML = 'Housework List';
+                houseListArray.innerHTML = 'Weekly Housework';
         //these ID's were defined in the skeleton//
             let groceryBtn = document.getElementById('0');
             let houseBtn = document.getElementById('1');
@@ -94,6 +95,8 @@ function openLists (){
         let taskFlexContainer = document.createElement('button'); //It being a button makes it clickable
             //taskFlexContainer.id = 'taskFlexContainer';
             taskFlexContainer.classList = 'taskFlex'
+            taskFlexContainer.id = idCounterForTasksInPinList; //Giving ID to crossedITEMS
+
         //buttons to cross a task off, moving it to bottom of the array//
         let taskCrossBtn = document.createElement('button');
             taskCrossBtn.classList.add('taskCrossBtn', 'btn');
@@ -101,6 +104,7 @@ function openLists (){
         let taskDisplayElement = document.createElement('p');
             taskDisplayElement.innerHTML = this.taskName;
             taskDisplayElement.classList = 'task';
+            taskDisplayElement.id = idCounterForTasksInPinList2; //Giving ID to crossedITEMS
         //buttons to remove a task from the array after being crossed off
         let deleteTaskBtn = document.createElement('button');
             deleteTaskBtn.classList.add('deleteTaskBtn', 'btn', 'taskCrossBtn');
@@ -179,8 +183,12 @@ function pinList(){
     for(let p = 0; p < crossedTasks.length; p++){ //push crossed tasks array from deleteTasks to display array. This will make them appear at the bottom.
         taskDisplayArray.push(crossedTasks[p])
     }
+    idCounterForTasksInPinList = 0
+    idCounterForTasksInPinList2 = 0
     for(let p = 0; p < taskDisplayArray.length; p++){  //display the taskDisplayArray
         taskDisplayArray[p].displayList();
+        idCounterForTasksInPinList++ //increases to add ID's to tasks
+        idCounterForTasksInPinList2++
     } 
     deleteTasks(); //run delete tasks to assign event listener to new checkoff buttons
 
@@ -195,6 +203,7 @@ function pinList(){
         return
     }
      displayTaskDetails();
+     rearrangeTasks();
     }
 
 
@@ -212,8 +221,7 @@ function assignButtonsEventListener(event){
     let taskPopoutBox = document.getElementById('taskPopoutBox');
     const clickedBtn = event.target;
             let taskInfoPopoutBox = document.getElementById('taskInfoPopoutBox')
-            console.log('listArrayCurrentAssignBtn')
-            console.log(listArrayCurrent)
+          
                 //selects the number in the listArray equivalent with the position in the buttonArray, allowing selection of the correct list//
                 //Button array cycles through at start of function & assigns the i valueto select the correct item in the array. This is PRE-DONE at beginning of function.
                 listArrayCurrent = listArray[clickedBtn.id];    //sets variable to be used so in nested loop so that nested loop doesn't move through to different part of the array through accidental incrementing//
@@ -228,9 +236,9 @@ function assignButtonsEventListener(event){
                     taskInfoPopoutBox.style.display = 'none';
                 
                 }
-                console.log(listArrayCurrent)
+          
                 listArrayCurrentName = listNameDisplay.innerHTML;
-                console.log(listArrayCurrentName)
+        
             firstListOpenFlag = true;
             assignFormerPositions();
             pinList();
@@ -288,7 +296,6 @@ function addTaskToList () {
         //dis displays info box when hitting the + button
         if(listArrayCurrent.length > 0){ //If the new list is empty, make it show up, take everything off it, then pin the newly added task
             taskInfoPopoutBox.style.display = 'flex';
-            console.log(newlyAddedTask)
             takeEverythingOffInfoBoard();
            displayTaskDetails();
            newlyAddedTask = undefined;

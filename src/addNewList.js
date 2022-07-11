@@ -59,7 +59,7 @@ export default function addNewList() {
                     let userListInput = document.createElement('input');
                         userListInput.type = 'text';
                         userListInput.id = 'userListInput';
-                        userListInput.maxLength = 15;
+                        userListInput.maxLength = 18;
                         userListInput.value = btnArray[i].innerHTML;
                         userListInput.classList.add('popoutItem');
                     let editListBtnContainer = document.createElement('div');
@@ -188,13 +188,13 @@ export default function addNewList() {
     //popup, then calls above function
     addListBtn.addEventListener('click', () => {
         addListPopoutBoxContainer.style.display = 'block'; //this is now just the main popout;
-        addListNameDisplay.innerHTML = 'Name This List';
+        addListNameDisplay.innerHTML = 'Name New List';
         //define these here so they can always be accessed, even when editing the popup elsewhere//
        
         let userListInput = document.createElement('input');
             userListInput.type = 'text';
             userListInput.id = 'userListInput';
-            userListInput.maxLength = 15;
+            userListInput.maxLength = 18;
             userListInput.classList.add('popoutItem');
             userListInput.classList.add('addNewListInput');
         let addListPopupBtn = document.createElement('button');

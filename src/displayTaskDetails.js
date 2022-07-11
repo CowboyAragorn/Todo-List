@@ -123,11 +123,7 @@ function displayTaskDetails(){
             allTaskFlexContainers[i].addEventListener('click', ()=>{
                 currentTask = listArrayCurrent[i];//Make the clicked task the current task for editing throughout
                 removeAndReAdd();
-                console.log(listArray[i]);
-                console.log(displayedFlag)
                 listArrayCurrent[i].postTaskDetails();
-                console.log('currentTaskTop')
-                console.log(currentTask)
             })
         }
     }
@@ -144,7 +140,6 @@ function displayTaskDetails(){
             btnArray[i].addEventListener('click', ()=>{
                 removeAndReAdd();
                 taskButtonDisplayAssigner();
-                console.log(listArrayCurrent[0])
                 listArrayCurrent[0].postTaskDetails(); //auto displays first task in list//
                 currentTask = listArrayCurrent[0];
             })
@@ -159,7 +154,6 @@ function displayTaskDetails(){
 
         function saveDescription(){
             currentTask.saveDescriptionPrototype();
-            console.log('I saved!')
         }
         //lets you click off anywhere to save
         function baseEventListenerAdder(){
@@ -172,7 +166,6 @@ function displayTaskDetails(){
             calendarValue = calendar.value;
             calendarValue = format(new Date(calendarValue), "PPPp")
             currentTask.changeDueDateProperty();
-            console.log('hey');
             addListPopoutBoxContainer.style.display = 'none';
 
         }
@@ -224,7 +217,6 @@ function displayTaskDetails(){
     }
      //controls this whole thing, only function called
      function infoDisplayController(){
-         console.log(displayedFlag)
         //This is for keeping persistence when crossing items. Info display stays on crossed item
         if(displayedFlag == true){
             removeAndReAdd();
@@ -243,7 +235,6 @@ function displayTaskDetails(){
             currentTask = listArrayCurrent[0];
         }
         changeDueDateBtnEventListener();
-        console.log(listArray[0])
         taskButtonDisplayAssigner();
         listButtonDisplayAssigner();
         baseEventListenerAdder();
