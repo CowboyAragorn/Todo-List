@@ -2,11 +2,15 @@
 import closePopups from "./closePopups";
 import { takeEverythingOffInfoBoard, displayTaskDetails, displayFlagFalseForDeletingLists } from "./displayTaskDetails";
 import { listArray, assignButtons, btnArray, pinList, listArrayCurrent } from "./menuDisplay";
-
+import btnObject from "./btnObject";
 
 //Controls the function of the addListPopout. Also controls the addList button on side menu
 export default function addNewList() {
     let removerArray = []
+
+    btnObject.prototype.editNamedButton = function(){
+        userListInput.value = this.originalText;
+    }
 
     //This function creates & pins the new lsit buttons on the lefthand menu//
     function createNewButtons() {
@@ -59,7 +63,9 @@ export default function addNewList() {
                     let userListInput = document.createElement('input');
                         userListInput.type = 'text';
                         userListInput.id = 'userListInput';
-                        userListInput.value = btnArray[i].innerHTML;
+                        btnArray[i].editNamedButton();
+                        //userListInput.value = btnArray[i].innerHTML;
+                        //userListInput.value = this.originalText;
                         userListInput.classList.add('popoutItem');
                     let editListBtnContainer = document.createElement('div');
                         editListBtnContainer.id = 'editListBtnContainer';
@@ -70,26 +76,28 @@ export default function addNewList() {
                         deleteListBtn.id = 'deleteListBtn';
                         deleteListBtn.classList.add('btn', 'deleteListBtn');
                         deleteListBtn.innerHTML = 'Delete';
-                    //adds event listeners to the delete button in the popup, buts it out of btn and list array and resets everything//
+                    
+                        //adds event listeners to the delete button in the popup, buts it out of btn and list array and resets everything//
                     deleteListBtn.addEventListener('click', () => {
-                        addListPopoutBoxContainer.style.display = 'none';
-                        taskPopoutBox.style.display = 'none';
-                        taskInfoPopoutBox.style.display = 'none';
-                        btnArray.splice(i, 1);
-                        listArray.splice(i, 1);
-                        //displayFlagFalseForDeletingLists(); //change the display flag to avoid an error if nothing is currently displayed//
-                        takeEverythingOffInfoBoard();
-                        createNewButtons();
-                        closePopups();
-                        removeDeleteAndSave();
-                    })
+                            addListPopoutBoxContainer.style.display = 'none';
+                            taskPopoutBox.style.display = 'none';
+                            taskInfoPopoutBox.style.display = 'none';
+                            btnArray.splice(i, 1);
+                            listArray.splice(i, 1);
+                            //displayFlagFalseForDeletingLists(); //change the display flag to avoid an error if nothing is currently displayed//
+                            takeEverythingOffInfoBoard();
+                            createNewButtons();
+                            closePopups();
+                            removeDeleteAndSave();
+                        })
                     let saveEditedListBtnFlexContainer = document.createElement('div');
                         saveEditedListBtnFlexContainer.id = ('saveEditedListBtnFlexContainer')
                     let saveEditedListBtn = document.createElement('button');
                         saveEditedListBtn.id = 'saveEditedListBtn';
                         saveEditedListBtn.classList.add('btn', 'saveEditedListBtn');
                         saveEditedListBtn.innerHTML = 'Save';
-                    //allows you to change the name of the list//
+                   
+                //allows you to change the name of the list//
                     saveEditedListBtn.addEventListener('click', () => {
                         let userListInputValue = userListInput.value
                         if(userListInputValue.trim().length === 0){
@@ -142,26 +150,48 @@ export default function addNewList() {
             addListPopoutBox.removeChild(elements2[0]);
         }
     }
-    //This function alters the btnArray, adding the new input into that array and generating it again//
-    function clickBtnAddToBtnArray() {
-        let userListInput = document.getElementById('userListInput');
-        let userListInputValue = userListInput.value
-        //If statement catches edge case of not having a value or only putting in spaces//
-        if (userListInputValue.trim().length === 0) {
-            userListInputValue = ''
-            return
-        }
+
+
+
+
+    //object names new button and assigns to button array//
+    btnObject.prototype.nameNewButton = function(){
         //creates new button and puts it in the button array//
-        let userListNewBtn = document.createElement('button');
-        userListNewBtn.innerHTML = userListInputValue;
-        btnArray.push(userListNewBtn);
+        userListNewBtn = document.createElement('button');
+        this.originalText = userListInputValue;
         //if the string is too long, shorten it and add to list//
         //btns should have been objects//
         if (userListInputValue.length>10){
             let shortenedInput = userListInputValue.substring(0,10)
             let addingPlusShortened = shortenedInput + '...';
-            userListNewBtn.innerHTML = addingPlusShortened;
+            this.shortenedText = addingPlusShortened;
+            this.displayedText = this.shortenedText
         }
+        else{
+            this.originalText = userListInputValue;
+            this.displayedText = this.originalText
+        }
+        userListNewBtn.innerHTML = this.displayedText;
+        btnArray.push(userListNewBtn);
+    }
+
+    let userListInput
+    let userListInputValue
+    let userListNewBtn
+    //This function alters the btnArray, adding the new input into that array and generating it again//
+    function clickBtnAddToBtnArray() {
+        userListInput = document.getElementById('userListInput');
+        userListInputValue = userListInput.value
+        //If statement catches edge case of not having a value or only putting in spaces//
+        if (userListInputValue.trim().length === 0) {
+            userListInputValue = ''
+            return
+        }
+        let newBtnObj = new btnObject();
+        newBtnObj.nameNewButton();
+        //creates new button and puts it in the button array//
+        //let userListNewBtn = document.createElement('button');
+        //userListNewBtn.innerHTML = userListInputValue;
         createNewButtons();
         console.log('btnArray');
         console.log(btnArray)
