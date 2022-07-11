@@ -97,6 +97,8 @@ body{
         cursor: pointer;
         width: 60%;
         width: fit-content;
+        overflow-wrap: anywhere;
+        text-align: left;
     }
 
 
@@ -152,12 +154,18 @@ body{
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-right: 2pt;
+            margin-top: 2pt;
+            border-radius: 30px;
+            border: none;
+            font-size: 12pt;
+            background-color: white;
         }
 
         #taskDisplayContainer, #taskInfoDisplayContainer{
             display: flex;
             flex-direction: column;
-            overflow: auto;
+           
             background-color: whitesmoke;
             height: 90%;
             width: 100%;
@@ -262,6 +270,7 @@ body{
             border-radius: 15px;
             background-color: white;
             border: 1pt blue solid;
+            font-weight: bold;
             height: 70%;
             width: 10%;
             margin: 0;
@@ -280,7 +289,6 @@ body{
         }
             #changeDueDateBtn{
                 height: 30pt;
-                width: pt;;
             }
         
         #descriptionDisplayContainer{
@@ -289,10 +297,12 @@ body{
             #descriptionDisplay, #descriptionDisplayInput{
                 display: flex;
                 justify-content: top;
-                align-items: top;
+                align-items: center;
                 overflow-wrap: break-word;
-                width: 100%;
+                width: 99%;
                 height: 95%;
+                border: none;
+                border-top: 1pt black solid;
             }
         .infoTitle{
             font-size: 15pt;
@@ -373,7 +383,7 @@ body{
 .addNewListInput{
 
 }
-#addListPopupBtn{
+#addListPopupBtn, #addDatePopoutBtn{
     border-radius: 15px;
     font-weight: bold;
     background-color: white;
@@ -383,8 +393,13 @@ body{
     margin: 0;
     margin-right: 3pt;
 }
-#addListPopupBtn:hover{
+#addListPopupBtn:hover, #addTaskBtn:hover, #addDatePopoutBtn:hover{
     background-color: #4267B2;
+}
+
+#calendar{
+    width: 70%;
+    margin-left: 10pt;
 }
 
 /*Editing List Name Popup*/

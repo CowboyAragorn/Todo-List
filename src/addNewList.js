@@ -2,15 +2,11 @@
 import closePopups from "./closePopups";
 import { takeEverythingOffInfoBoard, displayTaskDetails, displayFlagFalseForDeletingLists } from "./displayTaskDetails";
 import { listArray, assignButtons, btnArray, pinList, listArrayCurrent } from "./menuDisplay";
-import btnObject from "./btnObject";
 
 //Controls the function of the addListPopout. Also controls the addList button on side menu
 export default function addNewList() {
     let removerArray = []
 
-    btnObject.prototype.editNamedButton = function(){
-        userListInput.value = this.originalText;
-    }
 
     //This function creates & pins the new lsit buttons on the lefthand menu//
     function createNewButtons() {
@@ -63,14 +59,8 @@ export default function addNewList() {
                     let userListInput = document.createElement('input');
                         userListInput.type = 'text';
                         userListInput.id = 'userListInput';
-<<<<<<< HEAD
-                        btnArray[i].editNamedButton();
-                        //userListInput.value = btnArray[i].innerHTML;
-                        //userListInput.value = this.originalText;
-=======
                         userListInput.maxLength = 15;
                         userListInput.value = btnArray[i].innerHTML;
->>>>>>> temp-branch
                         userListInput.classList.add('popoutItem');
                     let editListBtnContainer = document.createElement('div');
                         editListBtnContainer.id = 'editListBtnContainer';
@@ -159,27 +149,6 @@ export default function addNewList() {
 
 
 
-    //object names new button and assigns to button array//
-    btnObject.prototype.nameNewButton = function(){
-        //creates new button and puts it in the button array//
-        userListNewBtn = document.createElement('button');
-        this.originalText = userListInputValue;
-        //if the string is too long, shorten it and add to list//
-        //btns should have been objects//
-        if (userListInputValue.length>10){
-            let shortenedInput = userListInputValue.substring(0,10)
-            let addingPlusShortened = shortenedInput + '...';
-            this.shortenedText = addingPlusShortened;
-            this.displayedText = this.shortenedText
-        }
-        else{
-            this.originalText = userListInputValue;
-            this.displayedText = this.originalText
-        }
-        userListNewBtn.innerHTML = this.displayedText;
-        btnArray.push(userListNewBtn);
-    }
-
     let userListInput
     let userListInputValue
     let userListNewBtn
@@ -192,19 +161,12 @@ export default function addNewList() {
             userListInputValue = ''
             return
         }
-        let newBtnObj = new btnObject();
-        newBtnObj.nameNewButton();
         //creates new button and puts it in the button array//
-<<<<<<< HEAD
-        //let userListNewBtn = document.createElement('button');
-        //userListNewBtn.innerHTML = userListInputValue;
-=======
         let userListNewBtn = document.createElement('button');
         userListNewBtn.innerHTML = userListInputValue;
         btnArray.push(userListNewBtn);
         //if the string is too long, shorten it and add to list//
         //btns should have been objects//
->>>>>>> temp-branch
         createNewButtons();
         console.log('btnArray');
         console.log(btnArray)

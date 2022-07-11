@@ -200,15 +200,25 @@ function displayTaskDetails(){
                 addDatePopoutBtn.innerHTML = '+';
             addListPopoutBoxContainer.style.display = 'block'; //this is now just the main popout;
             addListNameDisplay.innerHTML = 'Pick Date';
+             //hiddenDiv is here for CSS, laziness on my part to reuse the popup made it difficult to style.//
+            let hiddenDiv = document.createElement('div');
+                hiddenDiv.id = 'hiddenDiv';
+                hiddenDiv.classList.add('popoutItem2');
             //Have to put these here so it can grab the ID before emptying;
             //Empty the popup
             const elements = document.getElementsByClassName('popoutItem');
             while(elements.length > 0){ 
                 addListInputContainer.removeChild(elements[0]);
             }
+            //lazyHiddenDiv empty//
+            const elements2 = document.getElementsByClassName('popoutItem2');
+            while (elements2.length > 0) {
+                addListPopoutBox.removeChild(elements2[0]);
+        }
             //Add the addList materials//
             addListInputContainer.append(calendar);
             addListInputContainer.append(addDatePopoutBtn);
+            addListPopoutBox.append(hiddenDiv);
             addDatePopoutBtn.addEventListener('click', changeDueDate);
         })
     }
