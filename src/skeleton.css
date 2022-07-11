@@ -169,11 +169,15 @@ body{
             display: flex;
             height: fit-content;
             align-items: center;
+            justify-content: left;
             background-color: whitesmoke;
             border: none;
             gap:2%;
-            font-size: 13pt;
+            font-size: 12pt;
             cursor: pointer;
+            overflow-wrap: anywhere;
+            text-align-last: left;
+           
         }
 
         .taskFlex:hover{
@@ -181,19 +185,23 @@ body{
             border-radius: 15px;
         }
         .taskCrossBtn{
-            height: 50%;
+            padding: 8px;
+            width: 20px;
+            height: 20px;
             border-radius: 15px;
             margin-left: 5%;
-            padding: 6pt;
             border: 1pt, black, solid;
             cursor: pointer;
         }
 
         .task{
             display: flex;
+            text-align: left;
             margin: 0;
             padding: 5pt;
-            width: 100%;
+            width: 300px;
+            
+           
             
         }
 
@@ -245,6 +253,7 @@ body{
             border-radius: 15px;
             border: 1pt blue solid;
             margin-left: 2pt;
+            font-size: 10pt;
             height: 60%;
             width: 85%;
         }

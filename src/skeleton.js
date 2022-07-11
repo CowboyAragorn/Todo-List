@@ -105,6 +105,7 @@ export default function skeleton (){
                 taskPopoutBox.append(inputContainer)
                 let userTaskInput = document.createElement('input');
                     userTaskInput.type = 'text';
+                    userTaskInput.maxLength = 80;
                     userTaskInput.id = 'userTaskInput';
                     inputContainer.append(userTaskInput);
                 let addTaskBtn = document.createElement('button');

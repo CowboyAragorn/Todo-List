@@ -59,6 +59,7 @@ export default function addNewList() {
                     let userListInput = document.createElement('input');
                         userListInput.type = 'text';
                         userListInput.id = 'userListInput';
+                        userListInput.maxLength = 15;
                         userListInput.value = btnArray[i].innerHTML;
                         userListInput.classList.add('popoutItem');
                     let editListBtnContainer = document.createElement('div');
@@ -157,11 +158,6 @@ export default function addNewList() {
         btnArray.push(userListNewBtn);
         //if the string is too long, shorten it and add to list//
         //btns should have been objects//
-        if (userListInputValue.length>10){
-            let shortenedInput = userListInputValue.substring(0,10)
-            let addingPlusShortened = shortenedInput + '...';
-            userListNewBtn.innerHTML = addingPlusShortened;
-        }
         createNewButtons();
         console.log('btnArray');
         console.log(btnArray)
@@ -189,6 +185,7 @@ export default function addNewList() {
         let userListInput = document.createElement('input');
             userListInput.type = 'text';
             userListInput.id = 'userListInput';
+            userListInput.maxLength = 15;
             userListInput.classList.add('popoutItem');
             userListInput.classList.add('addNewListInput');
         let addListPopupBtn = document.createElement('button');
