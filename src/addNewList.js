@@ -63,9 +63,14 @@ export default function addNewList() {
                     let userListInput = document.createElement('input');
                         userListInput.type = 'text';
                         userListInput.id = 'userListInput';
+<<<<<<< HEAD
                         btnArray[i].editNamedButton();
                         //userListInput.value = btnArray[i].innerHTML;
                         //userListInput.value = this.originalText;
+=======
+                        userListInput.maxLength = 15;
+                        userListInput.value = btnArray[i].innerHTML;
+>>>>>>> temp-branch
                         userListInput.classList.add('popoutItem');
                     let editListBtnContainer = document.createElement('div');
                         editListBtnContainer.id = 'editListBtnContainer';
@@ -190,8 +195,16 @@ export default function addNewList() {
         let newBtnObj = new btnObject();
         newBtnObj.nameNewButton();
         //creates new button and puts it in the button array//
+<<<<<<< HEAD
         //let userListNewBtn = document.createElement('button');
         //userListNewBtn.innerHTML = userListInputValue;
+=======
+        let userListNewBtn = document.createElement('button');
+        userListNewBtn.innerHTML = userListInputValue;
+        btnArray.push(userListNewBtn);
+        //if the string is too long, shorten it and add to list//
+        //btns should have been objects//
+>>>>>>> temp-branch
         createNewButtons();
         console.log('btnArray');
         console.log(btnArray)
@@ -219,6 +232,7 @@ export default function addNewList() {
         let userListInput = document.createElement('input');
             userListInput.type = 'text';
             userListInput.id = 'userListInput';
+            userListInput.maxLength = 15;
             userListInput.classList.add('popoutItem');
             userListInput.classList.add('addNewListInput');
         let addListPopupBtn = document.createElement('button');

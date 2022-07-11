@@ -106,6 +106,11 @@ function displayTaskDetails(){
         let changeDueDateBtn = document.getElementById('changeDueDateBtn');
         let descriptionDisplay = document.getElementById('descriptionDisplay');
         taskTitleDisplay.innerHTML = this.taskName;
+        if(this.taskName.length>20){
+            let shortenedName = this.taskName.substring(0,20)
+            let addPlus = shortenedName + '...';
+            taskTitleDisplay.innerHTML = addPlus;
+        }
         changeDueDateBtn.innerHTML = this.dueDate;
         //priorityDisplay.innerHTML = this.priority;
         descriptionDisplay.value = this.description;
