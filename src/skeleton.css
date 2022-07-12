@@ -73,6 +73,10 @@ body{
     gap: 5px;
 }
 
+.selectedList{
+    color:#4267B2;
+}
+
 #currentListsFlexContainer{
     display: flex;
     flex-direction: column;
@@ -112,13 +116,15 @@ body{
             background-repeat: no-repeat;
             background-size: cover;
             display: flex;
-            align-items:flex-end;
+            align-items: center;
+           
+            
         }
 
 
 
         #taskPopoutBoxContainer, #taskInfoPopoutContainer{
-            height: 550pt;
+            height: 80%;
             width: 300pt;
             border-radius: 4%;
             margin-left: 50pt;
@@ -174,6 +180,7 @@ body{
             height: 90%;
             width: 100%;
             margin: 0;
+
             
         }
         /*taskFlexContainer*/
@@ -286,6 +293,7 @@ body{
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            border-radius: 15px;
         }
         #dueDateDisplayContainer{
            height: 20%;
@@ -296,16 +304,23 @@ body{
             }
         
         #descriptionDisplayContainer{
+            display: flex;
+            flex-direction: column;
             height: 80%;
+            
+          
         }
             #descriptionDisplay, #descriptionDisplayInput{
                 display: flex;
                 justify-content: top;
                 align-items: center;
                 overflow-wrap: break-word;
-                width: 99%;
-                height: 95%;
+                width:99%;
+                height: 99%;
                 border: none;
+                border-bottom-left-radius: 15px;
+                border-bottom-right-radius: 15px;
+                resize: none;
                 border-top: 1pt black solid;
             }
         .infoTitle{

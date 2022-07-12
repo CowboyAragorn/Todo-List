@@ -238,7 +238,11 @@ function assignButtonsEventListener(event){
                 }
           
                 listArrayCurrentName = listNameDisplay.innerHTML;
-        
+                //clear selected list for reassignment
+                for(let i=0; i < btnArray.length;i++){
+                    btnArray[i].classList.remove('selectedList') 
+                }
+                clickedBtn.classList.add('selectedList') //turns currently selected list blue
             firstListOpenFlag = true;
             assignFormerPositions();
             pinList();
