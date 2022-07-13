@@ -1,7 +1,10 @@
+import { formatISO9075, parse } from 'date-fns';
+import addNewList from './addNewList';
 import addTask from './addTask';
 import {deleteTasks, crossedTasks} from './deleteTasks';
 import {displayTaskDetails, takeEverythingOffInfoBoard} from './displayTaskDetails';
 import rearrangeTasks from './rearrangeTasks';
+import { parsedListArray, parsedListArrayCurrent, produceListArray, reobjectedListArrayCurrent, storelistArray } from './storage';
 
 
 //declare listArray here for export later
@@ -86,7 +89,20 @@ function openLists (){
             let houseBtn = document.getElementById('1');
 
         btnArray = [groceryBtn, houseBtn,] 
-        listArray = [groceryListArray, houseListArray,]
+        listArray = [groceryListArray, houseListArray,];
+
+        //if the default load screen is different from the one saved then use the saved one.//
+        produceListArray();
+        console.log(listArray);
+        console.log(parsedListArray)
+       // console.log(reobjectedListArrayCurrent)
+        if(listArray[0] != parsedListArray[0] || listArray[1] != parsedListArray[1] || listArray.length>2){
+            listArray = parsedListArray;
+            console.log(listArray)
+            
+            //addNewList();
+        }
+
 }   
 
    //This prototype is being called to display the categories from the lists on to the popup, it also creates the buttons//
@@ -155,7 +171,6 @@ function openLists (){
 
 
 
-
  //pin list and assign buttons are fundamentally connected because of listArrayCurrent, which is the array within the array//
 
  //sorts the array between what is 
@@ -177,7 +192,7 @@ function pinList(){
     for(let p = 0; p < listArrayCurrent.length; p++){ //push the checked off items to the taskDisplay array so they pin below
         sortTracker = listArrayCurrent[p]
         listArrayCurrent[p].sortCheckedDisplayArray();
-    } 
+    }
     listArrayCurrent = [] //empty listArray for refill at bottom of function
 
     for(let p = 0; p < crossedTasks.length; p++){ //push crossed tasks array from deleteTasks to display array. This will make them appear at the bottom.
@@ -196,7 +211,8 @@ function pinList(){
         listArrayCurrent.push(taskDisplayArray[p]) //saves temporary copy for when list is selected
      } 
      console.log('listArrayCurrentAtEndOfPinning')
-     console.log(listArrayCurrent)
+     console.log(listArrayCurrent);
+     storelistArray(); //saves new listArray. Kind of have to do it here instead of adding it just when adding a task because of how I used listArrayCurrent and listArray previously
      listArray[iTracker] = listArrayCurrent; //changes original array so that modifications save whens switching b/w lists
      if(listArrayCurrent.length == 0){
         taskInfoPopoutBox.style.display = "none";
@@ -327,6 +343,7 @@ function addTaskToList () {
 
 function easyExport(){
     openLists();
+    //pinListAtLoad
     assignButtons();
     addTaskToList();
 }

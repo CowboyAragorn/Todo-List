@@ -2,7 +2,7 @@
 import closePopups from "./closePopups";
 import { takeEverythingOffInfoBoard, displayTaskDetails, displayFlagFalseForDeletingLists } from "./displayTaskDetails";
 import { listArray, assignButtons, btnArray, pinList, listArrayCurrent } from "./menuDisplay";
-import storage from "./storage";
+import {storeButtons} from "./storage";
 
 //Controls the function of the addListPopout. Also controls the addList button on side menu
 export default function addNewList() {
@@ -174,7 +174,7 @@ export default function addNewList() {
         let userListNewArray = [];
         userListNewArray.innerHTML = userListInputValue;
         listArray.push(userListNewArray);
-        storage(); //saves the new button
+        storeButtons(); //saves the new button
         userListInput.value = '';
         addListPopoutBoxContainer.style.display = 'none';
         userListNewBtn.click(); //Clicks the new button, opening the new list//
