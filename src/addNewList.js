@@ -2,6 +2,7 @@
 import closePopups from "./closePopups";
 import { takeEverythingOffInfoBoard, displayTaskDetails, displayFlagFalseForDeletingLists } from "./displayTaskDetails";
 import { listArray, assignButtons, btnArray, pinList, listArrayCurrent } from "./menuDisplay";
+import storage from "./storage";
 
 //Controls the function of the addListPopout. Also controls the addList button on side menu
 export default function addNewList() {
@@ -17,8 +18,6 @@ export default function addNewList() {
         //const listFlexContainers = document.getElementsByClassName('listFlexContainer')
         const elements = document.getElementsByClassName('listFlexContainer');
 
-        console.log(removerArray)
-        console.log(elements);
         while (removerArray.length > 0) {
             for(let p=0; p<removerArray.length;p++){
                 removerArray[p].removeChild(removerArray[p].firstChild);
@@ -168,8 +167,6 @@ export default function addNewList() {
         //if the string is too long, shorten it and add to list//
         //btns should have been objects//
         createNewButtons();
-        console.log('btnArray');
-        console.log(btnArray)
         assignButtons();
 
         //puts it in the list array
@@ -177,6 +174,7 @@ export default function addNewList() {
         let userListNewArray = [];
         userListNewArray.innerHTML = userListInputValue;
         listArray.push(userListNewArray);
+        storage(); //saves the new button
         userListInput.value = '';
         addListPopoutBoxContainer.style.display = 'none';
         userListNewBtn.click(); //Clicks the new button, opening the new list//

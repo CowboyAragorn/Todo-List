@@ -3,6 +3,7 @@ import {easyExport} from './menuDisplay'
 //import assignButtons from './assignButtons';
 import addNewList from './addNewList';
 import closePopups from './closePopups'
+import storage from './storage';
 //import displayTaskDetails from './displayTaskDetails';
 
 
@@ -12,4 +13,5 @@ easyExport();
 //displayTaskDetails();
 addNewList();
 closePopups();
+storage();
 
