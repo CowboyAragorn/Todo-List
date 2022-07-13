@@ -61,12 +61,12 @@ function produceListArray(){
             let currentInteriorArray = parsedListArray[i] //identify the current object
             console.log(currentInteriorArray)
             console.log(currentInteriorArray[i2])
-            let currentObjectOutside = currentInteriorArray[i2];
-            let currentObject = currentObjectOutside.taskName;
+            let currentObject = currentInteriorArray[i2];
+            //let currentObject = currentObjectOutside.taskName;
             console.log(currentObject)
             let reformedObject = new addTask(currentObject.taskName, currentObject.description, currentObject.dueDate, currentObject.priority, currentObject.completeStatus, currentObject.deleteEligible, currentObject.formerArrayPosition, currentObject.currentArrayPosition); //Make it into an addTask
             currentObject = reformedObject
-            currentObjectOutside = reformedObject;
+            //currentObjectOutside = reformedObject;
             console.log(parsedListArray);
             newInteriorArray.push(reformedObject);
         }
