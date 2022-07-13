@@ -9,6 +9,7 @@ let parsedListArray
 let assignedListArrayCurrent
 let reobjectedListArrayCurrent = []
 let reobjectedListArray = []
+let newBeautifulListArray = []
 //called in clickBtnAddToBtnArray
 function storeButtons(){
     let arrayOfBtnHTML = [];
@@ -40,27 +41,36 @@ function storelistArray(){
     //console.log(listArrayCurrentObj);
     localStorage.setItem('listArrayCurrent', listArrayCurrentObj);
     localStorage.setItem('listArray', listArrayObj);
-    console.log('parsedListArrayCurrent')
-    console.log(parsedListArrayCurrent);
 }
 
 function produceListArray(){
+  /*  
     let str = localStorage.getItem('listArrayCurrent');
     parsedListArrayCurrent = JSON.parse(str);
     for(let i=0;i<parsedListArrayCurrent.length;i++){
        const reAdded = new addTask(parsedListArrayCurrent[i])
        reobjectedListArrayCurrent.push(reAdded);
     }
-    
+    */
     let str2 = localStorage.getItem('listArray');
     parsedListArray = JSON.parse(str2);
     let parsedListArrayLength = parsedListArray.length;
     for(let i=0;i<parsedListArrayLength;i++){ //for the length of the whole of parsed list array
+       let newInteriorArray = [];
         for(let i2=0;i2<parsedListArray[i].length;i2++){ //for the length of the i selected item in parsed list array
-            let currentObject = parsedListArray[i] //identify the current object
-            currentObject[i2] = new addTask(currentObject[i2]); //Make it into an addTask
+            let currentInteriorArray = parsedListArray[i] //identify the current object
+            console.log(currentInteriorArray)
+            console.log(currentInteriorArray[i2])
+            let currentObjectOutside = currentInteriorArray[i2];
+            let currentObject = currentObjectOutside.taskName;
+            console.log(currentObject)
+            let reformedObject = new addTask(currentObject.taskName, currentObject.description, currentObject.dueDate, currentObject.priority, currentObject.completeStatus, currentObject.deleteEligible, currentObject.formerArrayPosition, currentObject.currentArrayPosition); //Make it into an addTask
+            currentObject = reformedObject
+            currentObjectOutside = reformedObject;
             console.log(parsedListArray);
+            newInteriorArray.push(reformedObject);
         }
+        newBeautifulListArray.push(newInteriorArray)
     }
 
     console.log('parsedListArrayCurrent')
@@ -68,4 +78,4 @@ function produceListArray(){
 }
 
 
-export {storeButtons, storelistArray, produceListArray, parsedListArrayCurrent, parsedListArray, reobjectedListArrayCurrent}
+export {storeButtons, storelistArray, produceListArray, parsedListArrayCurrent, parsedListArray, newBeautifulListArray}

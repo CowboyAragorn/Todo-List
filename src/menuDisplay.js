@@ -4,7 +4,7 @@ import addTask from './addTask';
 import {deleteTasks, crossedTasks} from './deleteTasks';
 import {displayTaskDetails, takeEverythingOffInfoBoard} from './displayTaskDetails';
 import rearrangeTasks from './rearrangeTasks';
-import { parsedListArray, parsedListArrayCurrent, produceListArray, reobjectedListArrayCurrent, storelistArray } from './storage';
+import { newBeautifulListArray, parsedListArrayCurrent, produceListArray, reobjectedListArrayCurrent, storelistArray } from './storage';
 
 
 //declare listArray here for export later
@@ -90,17 +90,15 @@ function openLists (){
 
         btnArray = [groceryBtn, houseBtn,] 
         listArray = [groceryListArray, houseListArray,];
-
+        storelistArray();
         //if the default load screen is different from the one saved then use the saved one.//
         produceListArray();
         console.log(listArray);
-        console.log(parsedListArray)
-       // console.log(reobjectedListArrayCurrent)
-        if(listArray[0] != parsedListArray[0] || listArray[1] != parsedListArray[1] || listArray.length>2){
-            listArray = parsedListArray;
+        console.log(newBeautifulListArray)
+       if(listArray[0] != newBeautifulListArray[0] || listArray[1] != newBeautifulListArray[1] || listArray.length>2){
+           listArray = newBeautifulListArray;
             console.log(listArray)
             
-            //addNewList();
         }
 
 }   
@@ -212,8 +210,8 @@ function pinList(){
      } 
      console.log('listArrayCurrentAtEndOfPinning')
      console.log(listArrayCurrent);
-     storelistArray(); //saves new listArray. Kind of have to do it here instead of adding it just when adding a task because of how I used listArrayCurrent and listArray previously
      listArray[iTracker] = listArrayCurrent; //changes original array so that modifications save whens switching b/w lists
+     storelistArray(); //saves new listArray. Kind of have to do it here instead of adding it just when adding a task because of how I used listArrayCurrent and listArray previously
      if(listArrayCurrent.length == 0){
         taskInfoPopoutBox.style.display = "none";
         return
