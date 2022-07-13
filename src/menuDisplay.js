@@ -90,7 +90,7 @@ function openLists (){
 
         btnArray = [groceryBtn, houseBtn,] 
         listArray = [groceryListArray, houseListArray,];
-        storelistArray();
+        //storelistArray();
         //if the default load screen is different from the one saved then use the saved one.//
         console.log(listArray);
         console.log(newBeautifulListArray)
