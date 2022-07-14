@@ -87,18 +87,18 @@ function openLists (){
             let btnArraySavedChecker = localStorage.getItem('btnArray');
             let listArraySavedChecker = localStorage.getItem('listArray');
             console.log(firstLoad);
-            /*
+            
             if(firstLoad == 'false' && btnArraySavedChecker != null && listArraySavedChecker != null){
                 getButtons();
                 produceListArray();
             }
             else{
                 localStorage.setItem('firstLoad', false);
-                */
+                
                 console.log(firstLoad);
                 btnArray = [groceryBtn, houseBtn,];
                 listArray = [groceryListArray, houseListArray,];
-           // }
+            }
             firstListOpenFlag = false;
 }   
 
