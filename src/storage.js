@@ -18,7 +18,6 @@ function storeButtons(){
         let textOfBtn = btnArray[i].innerHTML;
         arrayOfBtnHTML.push(textOfBtn);
     }
-
     const btnArrayObj = JSON.stringify(arrayOfBtnHTML); //stringify the array
     //console.log('listArrayCurrentObj')
     //console.log(listArrayCurrentObj);
@@ -32,13 +31,15 @@ function storeButtons(){
     console.log('parseBtn')
     console.log(parsedBtnArray);
     console.log(btnArray)
+    
     let startingBtnArrayLength = btnArray.length; //need to define length here because the btnArray length will change as it is shifted out
     for(let i=0;i<startingBtnArrayLength;i++){
         btnArray.shift();
         console.log(btnArray)
     }
     console.log('btnArray')
-    console.log(btnArray)
+    console.log(btnArray);
+    //alter the btnArray itself to re-add the HTML
     for(let i=0;i<parsedBtnArray.length;i++){
         let btn = document.createElement('button');
         btn.innerHTML = parsedBtnArray[i];
@@ -47,6 +48,33 @@ function storeButtons(){
     console.log('btnArray')
     console.log(btnArray)
 }
+
+//for loading on page start//
+function getButtons(){
+    let str = localStorage.getItem('btnArray'); //recall
+    let parsedBtnArray = JSON.parse(str); //parse back to object
+    for(let i=0;i<parsedBtnArray.length;i++){
+        let btn = document.createElement('button');
+        btn.innerHTML = parsedBtnArray[i];
+        btnArray.push(btn);
+    }
+}
+
+//firstBtn
+/*
+function firstBtn(){
+    let firstLoad = localStorage.getItem('firstLoad');
+    if(firstLoad == false){
+        getButtons;
+    }
+    else{
+        localStorage.setItem('firstLoad', false)
+        btnArray = [groceryBtn, houseBtn,];
+    }
+}
+*/
+
+
 
 //saves the CURRENTLY SELECTED LIST 
 function storelistArray(){
@@ -93,4 +121,4 @@ function produceListArray(){
 }
 
 
-export {storeButtons, storelistArray, produceListArray, parsedListArrayCurrent, parsedListArray, newBeautifulListArray}
+export {storeButtons, getButtons, storelistArray, produceListArray, parsedListArrayCurrent, parsedListArray, newBeautifulListArray}

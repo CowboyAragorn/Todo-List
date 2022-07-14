@@ -80,6 +80,7 @@ export default function addNewList() {
                             listArray.splice(i, 1);
                             //displayFlagFalseForDeletingLists(); //change the display flag to avoid an error if nothing is currently displayed//
                             takeEverythingOffInfoBoard();
+                            storeButtons();
                             createNewButtons();
                             closePopups();
                             removeDeleteAndSave();
@@ -101,6 +102,7 @@ export default function addNewList() {
                         else{
                         btnArray[i].innerHTML = userListInputValue;
                         addListPopoutBoxContainer.style.display = 'none';
+                        storeButtons();
                         createNewButtons();
                         
                         btnArray[i].click(); //Calls the clicked button to display it.

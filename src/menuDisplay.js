@@ -4,7 +4,7 @@ import addTask from './addTask';
 import {deleteTasks, crossedTasks} from './deleteTasks';
 import {displayTaskDetails, takeEverythingOffInfoBoard} from './displayTaskDetails';
 import rearrangeTasks from './rearrangeTasks';
-import { newBeautifulListArray, parsedListArrayCurrent, produceListArray, reobjectedListArrayCurrent, storelistArray } from './storage';
+import { getButtons, newBeautifulListArray, parsedListArrayCurrent, produceListArray, reobjectedListArrayCurrent, storeButtons, storelistArray } from './storage';
 
 
 //declare listArray here for export later
@@ -88,7 +88,21 @@ function openLists (){
             let groceryBtn = document.getElementById('0');
             let houseBtn = document.getElementById('1');
 
-        btnArray = [groceryBtn, houseBtn,] 
+            //check if this is the first time this user has ever loaded the lists app, if it is, then default to original settings//
+            let firstLoad = localStorage.getItem('firstLoad');
+            console.log(firstLoad)
+            if(firstLoad == 'false'){
+                getButtons();
+            }
+            else{
+                localStorage.setItem('firstLoad', false);
+                console.log(firstLoad);
+                btnArray = [groceryBtn, houseBtn,];
+            }
+        
+        
+        //getButtons();
+        //btnArray = [groceryBtn, houseBtn,];
         listArray = [groceryListArray, houseListArray,];
         //storelistArray();
         //if the default load screen is different from the one saved then use the saved one.//
