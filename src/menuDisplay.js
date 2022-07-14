@@ -251,10 +251,14 @@ function assignButtonsEventListener(event){
           
                 listArrayCurrentName = listNameDisplay.innerHTML;
                 //clear selected list for reassignment
-                for(let i=0; i < btnArray.length;i++){
-                    btnArray[i].classList.remove('selectedList') 
+                console.log(btnArray)
+                //the button array and the pinned buttons are no longer 1-1 connected
+                let collectionOfListBtns = document.getElementsByClassName('listBtn')
+                for(let i=0; i < collectionOfListBtns.length;i++){
+                    collectionOfListBtns[i].classList.remove('selectedList') 
                 }
                 clickedBtn.classList.add('selectedList') //turns currently selected list blue
+            console.log(btnArray)
             firstListOpenFlag = true;
             assignFormerPositions();
             pinList();

@@ -185,6 +185,7 @@ export default function addNewList() {
         addListPopoutBoxContainer.style.display = 'none';
         userListNewBtn.click(); //Clicks the new button, opening the new list//
         storeButtons(); //saves the new button
+        //assignButtons();
     }
 
     //ADD LISTS BUTTON EVENT LISTENER POPUP
