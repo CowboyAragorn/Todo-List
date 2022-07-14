@@ -26,7 +26,9 @@ function takeEverythingOffInfoBoard(){
     let descriptionTitle = document.getElementById('descriptionTitle')
     let descriptionDisplay = document.getElementById('descriptionDisplay')
     //This is for deleting lists if nothing is displayed, otherwise the deleteFunction will error and exit here because there is no popupBox to remove//
-    if(displayedFlag == false || firstListOpenFlag == false ){
+   console.log(taskInfoDisplayContainer);
+   console.log(typeof taskInfoDisplayContainer)
+    if(displayedFlag == false || firstListOpenFlag == false || taskInfoDisplayContainer == null){
         return
     }
     else{

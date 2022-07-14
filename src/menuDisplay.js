@@ -87,18 +87,18 @@ function openLists (){
             let btnArraySavedChecker = localStorage.getItem('btnArray');
             let listArraySavedChecker = localStorage.getItem('listArray');
             console.log(firstLoad);
-            
+            /*
             if(firstLoad == 'false' && btnArraySavedChecker != null && listArraySavedChecker != null){
                 getButtons();
                 produceListArray();
             }
             else{
                 localStorage.setItem('firstLoad', false);
-                
+                */
                 console.log(firstLoad);
                 btnArray = [groceryBtn, houseBtn,];
                 listArray = [groceryListArray, houseListArray,];
-            }
+           // }
             firstListOpenFlag = false;
 }   
 
@@ -249,7 +249,7 @@ function assignButtonsEventListener(event){
                     taskInfoPopoutBox.style.display = 'none';
                 
                 }
-          
+                firstListOpenFlag = true;
                 listArrayCurrentName = listNameDisplay.innerHTML;
                 //clear selected list for reassignment
                 console.log(btnArray)
@@ -313,7 +313,7 @@ function addTaskToList () {
         listArrayCurrent.push(userAddTask);
         assignFormerPositions();
         pinList();
-        firstListOpenFlag = true;
+
         //dis displays info box when hitting the + button
         if(listArrayCurrent.length > 0){ //If the new list is empty, make it show up, take everything off it, then pin the newly added task
             taskInfoPopoutBox.style.display = 'flex';
