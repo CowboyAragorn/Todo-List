@@ -31,6 +31,21 @@ function storeButtons(){
     let parsedBtnArray = JSON.parse(str); //parse back to object
     console.log('parseBtn')
     console.log(parsedBtnArray);
+    console.log(btnArray)
+    let startingBtnArrayLength = btnArray.length; //need to define length here because the btnArray length will change as it is shifted out
+    for(let i=0;i<startingBtnArrayLength;i++){
+        btnArray.shift();
+        console.log(btnArray)
+    }
+    console.log('btnArray')
+    console.log(btnArray)
+    for(let i=0;i<parsedBtnArray.length;i++){
+        let btn = document.createElement('button');
+        btn.innerHTML = parsedBtnArray[i];
+        btnArray.push(btn);
+    }
+    console.log('btnArray')
+    console.log(btnArray)
 }
 
 //saves the CURRENTLY SELECTED LIST 
@@ -59,15 +74,15 @@ function produceListArray(){
        let newInteriorArray = [];
         for(let i2=0;i2<parsedListArray[i].length;i2++){ //for the length of the i selected item in parsed list array
             let currentInteriorArray = parsedListArray[i] //identify the current object
-            console.log(currentInteriorArray)
-            console.log(currentInteriorArray[i2])
+           // console.log(currentInteriorArray)
+            //console.log(currentInteriorArray[i2])
             let currentObject = currentInteriorArray[i2];
             //let currentObject = currentObjectOutside.taskName;
-            console.log(currentObject)
+            //console.log(currentObject)
             let reformedObject = new addTask(currentObject.taskName, currentObject.description, currentObject.dueDate, currentObject.priority, currentObject.completeStatus, currentObject.deleteEligible, currentObject.formerArrayPosition, currentObject.currentArrayPosition); //Make it into an addTask
             currentObject = reformedObject
             //currentObjectOutside = reformedObject;
-            console.log(parsedListArray);
+           // console.log(parsedListArray);
             newInteriorArray.push(reformedObject);
         }
         newBeautifulListArray.push(newInteriorArray)

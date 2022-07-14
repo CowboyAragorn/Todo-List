@@ -13,5 +13,5 @@ easyExport();
 //displayTaskDetails();
 addNewList();
 closePopups();
-storeButtons();
+//storeButtons();
 

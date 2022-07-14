@@ -102,6 +102,7 @@ export default function addNewList() {
                         btnArray[i].innerHTML = userListInputValue;
                         addListPopoutBoxContainer.style.display = 'none';
                         createNewButtons();
+                        
                         btnArray[i].click(); //Calls the clicked button to display it.
                         removeDeleteAndSave();
                         }
@@ -166,6 +167,7 @@ export default function addNewList() {
         btnArray.push(userListNewBtn);
         //if the string is too long, shorten it and add to list//
         //btns should have been objects//
+        storeButtons(); //saves the new button
         createNewButtons();
         assignButtons();
 
@@ -174,7 +176,6 @@ export default function addNewList() {
         let userListNewArray = [];
         userListNewArray.innerHTML = userListInputValue;
         listArray.push(userListNewArray);
-        storeButtons(); //saves the new button
         userListInput.value = '';
         addListPopoutBoxContainer.style.display = 'none';
         userListNewBtn.click(); //Clicks the new button, opening the new list//

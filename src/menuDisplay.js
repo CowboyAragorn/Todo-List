@@ -94,11 +94,12 @@ function openLists (){
         //if the default load screen is different from the one saved then use the saved one.//
         console.log(listArray);
         console.log(newBeautifulListArray)
-       if(listArray[0] != newBeautifulListArray[0] || listArray[1] != newBeautifulListArray[1] || listArray.length>2){
-            produceListArray();  
-            listArray = newBeautifulListArray;
-            console.log(listArray)
-            
+        if(newBeautifulListArray != ['']){ //this is liable to break if user deletes everything//
+            if(listArray[0] != newBeautifulListArray[0] || listArray[1] != newBeautifulListArray[1] || listArray.length>2){
+                produceListArray();  
+                listArray = newBeautifulListArray;
+                console.log(listArray) 
+            }
         }
 
 }   
