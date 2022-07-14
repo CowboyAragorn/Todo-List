@@ -90,9 +90,11 @@ function openLists (){
 
             //check if this is the first time this user has ever loaded the lists app, if it is, then default to original settings//
             let firstLoad = localStorage.getItem('firstLoad');
+            let btnArraySavedChecker = localStorage.getItem('btnArray');
+            let listArraySavedChecker = localStorage.getItem('listArray');
             console.log(firstLoad);
             
-            if(firstLoad == 'false'){
+            if(firstLoad == 'false' && btnArraySavedChecker != null && listArraySavedChecker != null){
                 getButtons();
                 produceListArray();
             }

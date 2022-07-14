@@ -52,6 +52,7 @@ function storeButtons(){
 //for loading on page start//
 function getButtons(){
     let str = localStorage.getItem('btnArray'); //recall
+    console.log(str)
     let parsedBtnArray = JSON.parse(str); //parse back to object
     for(let i=0;i<parsedBtnArray.length;i++){
         let btn = document.createElement('button');
