@@ -2,7 +2,7 @@
 import closePopups from "./closePopups";
 import { takeEverythingOffInfoBoard, displayTaskDetails, displayFlagFalseForDeletingLists } from "./displayTaskDetails";
 import { listArray, assignButtons, btnArray, pinList, listArrayCurrent } from "./menuDisplay";
-import {storeButtons} from "./storage";
+import {storeButtons, storelistArray} from "./storage";
 
 //Controls the function of the addListPopout. Also controls the addList button on side menu
 export default function addNewList() {
@@ -72,15 +72,18 @@ export default function addNewList() {
                         deleteListBtn.innerHTML = 'Delete';
                     
                         //adds event listeners to the delete button in the popup, buts it out of btn and list array and resets everything//
-                    deleteListBtn.addEventListener('click', () => {
+                deleteListBtn.addEventListener('click', () => {
                             addListPopoutBoxContainer.style.display = 'none';
                             taskPopoutBox.style.display = 'none';
                             taskInfoPopoutBox.style.display = 'none';
                             btnArray.splice(i, 1);
+                                storeButtons();
+                                console.log(btnArray)
                             listArray.splice(i, 1);
+                                storelistArray();
+                                console.log(listArray)
                             //displayFlagFalseForDeletingLists(); //change the display flag to avoid an error if nothing is currently displayed//
                             takeEverythingOffInfoBoard();
-                            storeButtons();
                             createNewButtons();
                             closePopups();
                             removeDeleteAndSave();
@@ -93,7 +96,7 @@ export default function addNewList() {
                         saveEditedListBtn.innerHTML = 'Save';
                    
                 //allows you to change the name of the list//
-                    saveEditedListBtn.addEventListener('click', () => {
+                saveEditedListBtn.addEventListener('click', () => {
                         let userListInputValue = userListInput.value
                         if(userListInputValue.trim().length === 0){
                             userListInput.value = '';
@@ -138,6 +141,7 @@ export default function addNewList() {
                     })
                 })
         }
+        assignButtons();
     }
     
     //remove redundant delete and save buttons
@@ -169,9 +173,8 @@ export default function addNewList() {
         btnArray.push(userListNewBtn);
         //if the string is too long, shorten it and add to list//
         //btns should have been objects//
-        storeButtons(); //saves the new button
         createNewButtons();
-        assignButtons();
+        //assignButtons();
 
         //puts it in the list array
        
@@ -181,7 +184,7 @@ export default function addNewList() {
         userListInput.value = '';
         addListPopoutBoxContainer.style.display = 'none';
         userListNewBtn.click(); //Clicks the new button, opening the new list//
-
+        storeButtons(); //saves the new button
     }
 
     //ADD LISTS BUTTON EVENT LISTENER POPUP

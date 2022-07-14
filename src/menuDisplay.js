@@ -25,27 +25,27 @@ let idCounterForTasksInPinList2
 
 //This function controls display on the popup. This includes clicks from the side menu, additions from the popup//
 function openLists (){
-    //taskPopoutBox.style.display = 'none'; //Defaults popup to invisible before a list is clicked
-    //taskInfoPopoutBox.style.display = 'none';
+    taskPopoutBox.style.display = 'none'; //Defaults popup to invisible before a list is clicked
+    taskInfoPopoutBox.style.display = 'none';
     
     //Displays the addToList popup when clicked in menu
    
         //Preset lists//
             const mondayGrocery = new addTask(
                 'Oranges',
-                'List for Week 4/4',
+                '',
                 'Set Time',
                 'High'
             )
             const wedGrocery = new addTask(
                 'Pears',
-                'List for Week 4/4',
+                '',
                 'Set Time',
                 'Medium'
             )
             const fridayGrocery = new addTask(
                 'Grapes',
-                'List for Week 4/4',
+                '',
                 'Set Time',
                 'Low'
             )
@@ -53,36 +53,30 @@ function openLists (){
                 groceryListArray.innerHTML = 'Groceries';
 
                 const laundry = new addTask(
-                    '1',
-                    'List for Week 4/4',
+                    'Laundry',
+                    '',
                     'Set Time',
                     'High'
                 )
                 const laundry2 = new addTask(
-                    '2',
-                    'List for Week 4/4',
+                    'Vacuum',
+                    '',
                     'Set Time',
                     'High'
                 )
                 const laundry3 = new addTask(
-                    '3',
-                    'List for Week 4/4',
+                    'Scrub toilets',
+                    '',
                     'Set Time',
                     'High'
                 )
                 const laundry4 = new addTask(
-                    '4',
-                    'List for Week 4/4',
+                    'Dust',
+                    '',
                     'Set Time',
                     'High'
                 )
-                const laundry5 = new addTask(
-                    '5',
-                    'List for Week 4/4',
-                    'Set Time',
-                    'High'
-                )
-            let houseListArray = [laundry, laundry2, laundry3, laundry4, laundry5,];
+            let houseListArray = [laundry, laundry2, laundry3, laundry4,];
                 houseListArray.innerHTML = 'Weekly Housework';
         //these ID's were defined in the skeleton//
             let groceryBtn = document.getElementById('0');
@@ -100,6 +94,7 @@ function openLists (){
             }
             else{
                 localStorage.setItem('firstLoad', false);
+                
                 console.log(firstLoad);
                 btnArray = [groceryBtn, houseBtn,];
                 listArray = [groceryListArray, houseListArray,];

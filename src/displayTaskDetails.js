@@ -148,11 +148,15 @@ function displayTaskDetails(){
        
 
         addTask.prototype.saveDescriptionPrototype = function(){
-            let descriptionDisplay = document.getElementById('descriptionDisplay');
-            this.description = descriptionDisplay.value;
+            if(descriptionDisplay.value != null){ 
+                let descriptionDisplay = document.getElementById('descriptionDisplay');
+                this.description = descriptionDisplay.value;
+            }
+            return
         }
 
         function saveDescription(){
+            console.log(currentTask)
             currentTask.saveDescriptionPrototype();
         }
         //lets you click off anywhere to save
