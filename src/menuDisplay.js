@@ -99,6 +99,7 @@ function openLists (){
                 btnArray = [groceryBtn, houseBtn,];
                 listArray = [groceryListArray, houseListArray,];
             }
+            firstListOpenFlag = false;
 }   
 
    //This prototype is being called to display the categories from the lists on to the popup, it also creates the buttons//
@@ -227,7 +228,7 @@ function assignButtons(){
     }
 };
 
-firstListOpenFlag = false;
+
 //event instead of event listener?
 function assignButtonsEventListener(event){
     let taskPopoutBox = document.getElementById('taskPopoutBox');
@@ -259,7 +260,6 @@ function assignButtonsEventListener(event){
                 }
                 clickedBtn.classList.add('selectedList') //turns currently selected list blue
             console.log(btnArray)
-            firstListOpenFlag = true;
             assignFormerPositions();
             pinList();
 }
@@ -313,6 +313,7 @@ function addTaskToList () {
         listArrayCurrent.push(userAddTask);
         assignFormerPositions();
         pinList();
+        firstListOpenFlag = true;
         //dis displays info box when hitting the + button
         if(listArrayCurrent.length > 0){ //If the new list is empty, make it show up, take everything off it, then pin the newly added task
             taskInfoPopoutBox.style.display = 'flex';

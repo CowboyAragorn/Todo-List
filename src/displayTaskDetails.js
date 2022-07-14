@@ -148,8 +148,8 @@ function displayTaskDetails(){
        
 
         addTask.prototype.saveDescriptionPrototype = function(){
+            let descriptionDisplay = document.getElementById('descriptionDisplay');
             if(descriptionDisplay.value != null){ 
-                let descriptionDisplay = document.getElementById('descriptionDisplay');
                 this.description = descriptionDisplay.value;
             }
             return
