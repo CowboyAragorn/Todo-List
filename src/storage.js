@@ -80,21 +80,12 @@ function firstBtn(){
 function storelistArray(){
     const listArrayCurrentObj = JSON.stringify(listArrayCurrent)
     const listArrayObj = JSON.stringify(listArray)
-    //console.log('listArrayCurrentObj')
-    //console.log(listArrayCurrentObj);
+   
     localStorage.setItem('listArrayCurrent', listArrayCurrentObj);
     localStorage.setItem('listArray', listArrayObj);
 }
 
 function produceListArray(){
-  /*  
-    let str = localStorage.getItem('listArrayCurrent');
-    parsedListArrayCurrent = JSON.parse(str);
-    for(let i=0;i<parsedListArrayCurrent.length;i++){
-       const reAdded = new addTask(parsedListArrayCurrent[i])
-       reobjectedListArrayCurrent.push(reAdded);
-    }
-    */
     let str2 = localStorage.getItem('listArray');
     parsedListArray = JSON.parse(str2);
     let parsedListArrayLength = parsedListArray.length;
