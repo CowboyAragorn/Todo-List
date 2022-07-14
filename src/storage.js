@@ -98,22 +98,18 @@ function produceListArray(){
     let str2 = localStorage.getItem('listArray');
     parsedListArray = JSON.parse(str2);
     let parsedListArrayLength = parsedListArray.length;
+   // let startingListArrayLength = listArray.length; //need to define length here because the btnArray length will change as it is shifted out
+    
     for(let i=0;i<parsedListArrayLength;i++){ //for the length of the whole of parsed list array
        let newInteriorArray = [];
         for(let i2=0;i2<parsedListArray[i].length;i2++){ //for the length of the i selected item in parsed list array
             let currentInteriorArray = parsedListArray[i] //identify the current object
-           // console.log(currentInteriorArray)
-            //console.log(currentInteriorArray[i2])
             let currentObject = currentInteriorArray[i2];
-            //let currentObject = currentObjectOutside.taskName;
-            //console.log(currentObject)
             let reformedObject = new addTask(currentObject.taskName, currentObject.description, currentObject.dueDate, currentObject.priority, currentObject.completeStatus, currentObject.deleteEligible, currentObject.formerArrayPosition, currentObject.currentArrayPosition); //Make it into an addTask
             currentObject = reformedObject
-            //currentObjectOutside = reformedObject;
-           // console.log(parsedListArray);
             newInteriorArray.push(reformedObject);
         }
-        newBeautifulListArray.push(newInteriorArray)
+        listArray.push(newInteriorArray)
     }
 
     console.log('parsedListArrayCurrent')

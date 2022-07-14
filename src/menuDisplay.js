@@ -93,29 +93,14 @@ function openLists (){
             console.log(firstLoad)
             if(firstLoad == 'false'){
                 getButtons();
+                produceListArray();
             }
             else{
                 localStorage.setItem('firstLoad', false);
                 console.log(firstLoad);
                 btnArray = [groceryBtn, houseBtn,];
+                listArray = [groceryListArray, houseListArray,];
             }
-        
-        
-        //getButtons();
-        //btnArray = [groceryBtn, houseBtn,];
-        listArray = [groceryListArray, houseListArray,];
-        //storelistArray();
-        //if the default load screen is different from the one saved then use the saved one.//
-        console.log(listArray);
-        console.log(newBeautifulListArray)
-        if(newBeautifulListArray != ['']){ //this is liable to break if user deletes everything//
-            if(listArray[0] != newBeautifulListArray[0] || listArray[1] != newBeautifulListArray[1] || listArray.length>2){
-                produceListArray();  
-                listArray = newBeautifulListArray;
-                console.log(listArray) 
-            }
-        }
-
 }   
 
    //This prototype is being called to display the categories from the lists on to the popup, it also creates the buttons//
